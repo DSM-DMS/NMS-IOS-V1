@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,9 +13,11 @@
 		57C8501C26ECEFF200D0B3DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C8501A26ECEFF200D0B3DF /* Main.storyboard */; };
 		57C8501E26ECEFF300D0B3DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C8501D26ECEFF300D0B3DF /* Assets.xcassets */; };
 		57C8502126ECEFF300D0B3DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C8501F26ECEFF300D0B3DF /* LaunchScreen.storyboard */; };
+		CC344CA1E1998F319E9282CE /* Pods_0Z_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D180DD69D675844D002D19 /* Pods_0Z_Project.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2EFED45828D2A48D3CC7DF8B /* Pods-0Z-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-0Z-Project.release.xcconfig"; path = "Target Support Files/Pods-0Z-Project/Pods-0Z-Project.release.xcconfig"; sourceTree = "<group>"; };
 		57C8501126ECEFF200D0B3DF /* 0Z-Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "0Z-Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57C8501426ECEFF200D0B3DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57C8501626ECEFF200D0B3DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		57C8501D26ECEFF300D0B3DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57C8502026ECEFF300D0B3DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57C8502226ECEFF300D0B3DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75D180DD69D675844D002D19 /* Pods_0Z_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_0Z_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		813B8E1B66B700246CD8A5D4 /* Pods-0Z-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-0Z-Project.debug.xcconfig"; path = "Target Support Files/Pods-0Z-Project/Pods-0Z-Project.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC344CA1E1998F319E9282CE /* Pods_0Z_Project.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				57C8501326ECEFF200D0B3DF /* 0Z-Project */,
 				57C8501226ECEFF200D0B3DF /* Products */,
+				AB66B680842ED1FE62276E85 /* Pods */,
+				9BE9D8FBEDD9BA9AFD8E30BE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +74,24 @@
 			path = "0Z-Project";
 			sourceTree = "<group>";
 		};
+		9BE9D8FBEDD9BA9AFD8E30BE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75D180DD69D675844D002D19 /* Pods_0Z_Project.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB66B680842ED1FE62276E85 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				813B8E1B66B700246CD8A5D4 /* Pods-0Z-Project.debug.xcconfig */,
+				2EFED45828D2A48D3CC7DF8B /* Pods-0Z-Project.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 57C8502526ECEFF300D0B3DF /* Build configuration list for PBXNativeTarget "0Z-Project" */;
 			buildPhases = (
+				48041BC9D139611A059E07EF /* [CP] Check Pods Manifest.lock */,
 				57C8500D26ECEFF200D0B3DF /* Sources */,
 				57C8500E26ECEFF200D0B3DF /* Frameworks */,
 				57C8500F26ECEFF200D0B3DF /* Resources */,
+				80981E240D227E4F65569E5E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -103,7 +130,7 @@
 				};
 			};
 			buildConfigurationList = 57C8500C26ECEFF200D0B3DF /* Build configuration list for PBXProject "0Z-Project" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		48041BC9D139611A059E07EF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-0Z-Project-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		80981E240D227E4F65569E5E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-0Z-Project/Pods-0Z-Project-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-0Z-Project/Pods-0Z-Project-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-0Z-Project/Pods-0Z-Project-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		57C8500D26ECEFF200D0B3DF /* Sources */ = {
@@ -284,6 +353,7 @@
 		};
 		57C8502626ECEFF300D0B3DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 813B8E1B66B700246CD8A5D4 /* Pods-0Z-Project.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -292,6 +362,10 @@
 				DEVELOPMENT_TEAM = 368YFJ26SB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "0Z-Project/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = 0Z;
+				INFOPLIST_KEY_CFBundleExecutable = "0Z-Project";
+				INFOPLIST_KEY_CFBundleName = "0Z-Project";
+				INFOPLIST_KEY_CFBundleVersion = 1;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -306,12 +380,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		57C8502726ECEFF300D0B3DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EFED45828D2A48D3CC7DF8B /* Pods-0Z-Project.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -320,6 +395,10 @@
 				DEVELOPMENT_TEAM = 368YFJ26SB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "0Z-Project/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = 0Z;
+				INFOPLIST_KEY_CFBundleExecutable = "0Z-Project";
+				INFOPLIST_KEY_CFBundleName = "0Z-Project";
+				INFOPLIST_KEY_CFBundleVersion = 1;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -334,7 +413,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
