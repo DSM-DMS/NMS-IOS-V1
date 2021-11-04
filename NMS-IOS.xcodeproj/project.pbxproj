@@ -7,27 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F6AF070A433EBCBE50355F8 /* Pods_NMS_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE518AC6A9B31F9CA8CF16C /* Pods_NMS_IOS.framework */; };
+		570B6D2E2732A218002AFA9E /* MainLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570B6D2D2732A218002AFA9E /* MainLoginViewController.swift */; };
 		57C8501526ECEFF200D0B3DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8501426ECEFF200D0B3DF /* AppDelegate.swift */; };
 		57C8501726ECEFF200D0B3DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8501626ECEFF200D0B3DF /* SceneDelegate.swift */; };
-		57C8501926ECEFF200D0B3DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8501826ECEFF200D0B3DF /* ViewController.swift */; };
-		57C8501C26ECEFF200D0B3DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C8501A26ECEFF200D0B3DF /* Main.storyboard */; };
+		57C8501926ECEFF200D0B3DF /* LoginAndSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8501826ECEFF200D0B3DF /* LoginAndSignupViewController.swift */; };
 		57C8501E26ECEFF300D0B3DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C8501D26ECEFF300D0B3DF /* Assets.xcassets */; };
 		57C8502126ECEFF300D0B3DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C8501F26ECEFF300D0B3DF /* LaunchScreen.storyboard */; };
-		CC344CA1E1998F319E9282CE /* Pods_0Z_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D180DD69D675844D002D19 /* Pods_0Z_Project.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2EFED45828D2A48D3CC7DF8B /* Pods-0Z-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-0Z-Project.release.xcconfig"; path = "Target Support Files/Pods-0Z-Project/Pods-0Z-Project.release.xcconfig"; sourceTree = "<group>"; };
-		57C8501126ECEFF200D0B3DF /* 0Z-Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "0Z-Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B5A671016077FEAF634BBCB /* Pods-NMS-IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NMS-IOS.release.xcconfig"; path = "Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS.release.xcconfig"; sourceTree = "<group>"; };
+		570B6D2D2732A218002AFA9E /* MainLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLoginViewController.swift; sourceTree = "<group>"; };
+		57C8501126ECEFF200D0B3DF /* NMS-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NMS-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57C8501426ECEFF200D0B3DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57C8501626ECEFF200D0B3DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		57C8501826ECEFF200D0B3DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		57C8501B26ECEFF200D0B3DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		57C8501826ECEFF200D0B3DF /* LoginAndSignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAndSignupViewController.swift; sourceTree = "<group>"; };
 		57C8501D26ECEFF300D0B3DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57C8502026ECEFF300D0B3DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57C8502226ECEFF300D0B3DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		75D180DD69D675844D002D19 /* Pods_0Z_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_0Z_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		813B8E1B66B700246CD8A5D4 /* Pods-0Z-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-0Z-Project.debug.xcconfig"; path = "Target Support Files/Pods-0Z-Project/Pods-0Z-Project.debug.xcconfig"; sourceTree = "<group>"; };
+		D17171A966D72402C5B98E60 /* Pods-NMS-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NMS-IOS.debug.xcconfig"; path = "Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS.debug.xcconfig"; sourceTree = "<group>"; };
+		EFE518AC6A9B31F9CA8CF16C /* Pods_NMS_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NMS_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,83 +35,99 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC344CA1E1998F319E9282CE /* Pods_0Z_Project.framework in Frameworks */,
+				1F6AF070A433EBCBE50355F8 /* Pods_NMS_IOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		570B6D2B2732A19E002AFA9E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				570B6D2C2732A1AC002AFA9E /* Auth */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		570B6D2C2732A1AC002AFA9E /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				57C8501826ECEFF200D0B3DF /* LoginAndSignupViewController.swift */,
+				570B6D2D2732A218002AFA9E /* MainLoginViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		57C8500826ECEFF200D0B3DF = {
 			isa = PBXGroup;
 			children = (
-				57C8501326ECEFF200D0B3DF /* 0Z-Project */,
+				57C8501326ECEFF200D0B3DF /* MNS-IOS */,
 				57C8501226ECEFF200D0B3DF /* Products */,
 				AB66B680842ED1FE62276E85 /* Pods */,
-				9BE9D8FBEDD9BA9AFD8E30BE /* Frameworks */,
+				CE96431287950D078D6D104E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		57C8501226ECEFF200D0B3DF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				57C8501126ECEFF200D0B3DF /* 0Z-Project.app */,
+				57C8501126ECEFF200D0B3DF /* NMS-IOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		57C8501326ECEFF200D0B3DF /* 0Z-Project */ = {
+		57C8501326ECEFF200D0B3DF /* MNS-IOS */ = {
 			isa = PBXGroup;
 			children = (
+				570B6D2B2732A19E002AFA9E /* View */,
 				57C8501426ECEFF200D0B3DF /* AppDelegate.swift */,
 				57C8501626ECEFF200D0B3DF /* SceneDelegate.swift */,
-				57C8501826ECEFF200D0B3DF /* ViewController.swift */,
-				57C8501A26ECEFF200D0B3DF /* Main.storyboard */,
-				57C8501D26ECEFF300D0B3DF /* Assets.xcassets */,
 				57C8501F26ECEFF300D0B3DF /* LaunchScreen.storyboard */,
+				57C8501D26ECEFF300D0B3DF /* Assets.xcassets */,
 				57C8502226ECEFF300D0B3DF /* Info.plist */,
 			);
-			path = "0Z-Project";
-			sourceTree = "<group>";
-		};
-		9BE9D8FBEDD9BA9AFD8E30BE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				75D180DD69D675844D002D19 /* Pods_0Z_Project.framework */,
-			);
-			name = Frameworks;
+			name = "MNS-IOS";
+			path = "NMS-IOS";
 			sourceTree = "<group>";
 		};
 		AB66B680842ED1FE62276E85 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				813B8E1B66B700246CD8A5D4 /* Pods-0Z-Project.debug.xcconfig */,
-				2EFED45828D2A48D3CC7DF8B /* Pods-0Z-Project.release.xcconfig */,
+				D17171A966D72402C5B98E60 /* Pods-NMS-IOS.debug.xcconfig */,
+				0B5A671016077FEAF634BBCB /* Pods-NMS-IOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		CE96431287950D078D6D104E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EFE518AC6A9B31F9CA8CF16C /* Pods_NMS_IOS.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		57C8501026ECEFF200D0B3DF /* 0Z-Project */ = {
+		57C8501026ECEFF200D0B3DF /* NMS-IOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 57C8502526ECEFF300D0B3DF /* Build configuration list for PBXNativeTarget "0Z-Project" */;
+			buildConfigurationList = 57C8502526ECEFF300D0B3DF /* Build configuration list for PBXNativeTarget "NMS-IOS" */;
 			buildPhases = (
-				48041BC9D139611A059E07EF /* [CP] Check Pods Manifest.lock */,
+				280DA8E72559161C5C3A75F0 /* [CP] Check Pods Manifest.lock */,
 				57C8500D26ECEFF200D0B3DF /* Sources */,
 				57C8500E26ECEFF200D0B3DF /* Frameworks */,
 				57C8500F26ECEFF200D0B3DF /* Resources */,
-				80981E240D227E4F65569E5E /* [CP] Embed Pods Frameworks */,
+				741168DFA013EE02C5AB0FC6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "0Z-Project";
+			name = "NMS-IOS";
 			productName = "0Z-Project";
-			productReference = 57C8501126ECEFF200D0B3DF /* 0Z-Project.app */;
+			productReference = 57C8501126ECEFF200D0B3DF /* NMS-IOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -129,7 +145,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 57C8500C26ECEFF200D0B3DF /* Build configuration list for PBXProject "0Z-Project" */;
+			buildConfigurationList = 57C8500C26ECEFF200D0B3DF /* Build configuration list for PBXProject "NMS-IOS" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -142,7 +158,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				57C8501026ECEFF200D0B3DF /* 0Z-Project */,
+				57C8501026ECEFF200D0B3DF /* NMS-IOS */,
 			);
 		};
 /* End PBXProject section */
@@ -154,14 +170,13 @@
 			files = (
 				57C8502126ECEFF300D0B3DF /* LaunchScreen.storyboard in Resources */,
 				57C8501E26ECEFF300D0B3DF /* Assets.xcassets in Resources */,
-				57C8501C26ECEFF200D0B3DF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		48041BC9D139611A059E07EF /* [CP] Check Pods Manifest.lock */ = {
+		280DA8E72559161C5C3A75F0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -176,28 +191,28 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-0Z-Project-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-NMS-IOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		80981E240D227E4F65569E5E /* [CP] Embed Pods Frameworks */ = {
+		741168DFA013EE02C5AB0FC6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-0Z-Project/Pods-0Z-Project-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-0Z-Project/Pods-0Z-Project-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-0Z-Project/Pods-0Z-Project-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -207,7 +222,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57C8501926ECEFF200D0B3DF /* ViewController.swift in Sources */,
+				57C8501926ECEFF200D0B3DF /* LoginAndSignupViewController.swift in Sources */,
+				570B6D2E2732A218002AFA9E /* MainLoginViewController.swift in Sources */,
 				57C8501526ECEFF200D0B3DF /* AppDelegate.swift in Sources */,
 				57C8501726ECEFF200D0B3DF /* SceneDelegate.swift in Sources */,
 			);
@@ -216,14 +232,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		57C8501A26ECEFF200D0B3DF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				57C8501B26ECEFF200D0B3DF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		57C8501F26ECEFF300D0B3DF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -353,7 +361,7 @@
 		};
 		57C8502626ECEFF300D0B3DF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 813B8E1B66B700246CD8A5D4 /* Pods-0Z-Project.debug.xcconfig */;
+			baseConfigurationReference = D17171A966D72402C5B98E60 /* Pods-NMS-IOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -361,14 +369,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 368YFJ26SB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "0Z-Project/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = 0Z;
+				INFOPLIST_FILE = "NMS-IOS/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = NMS;
 				INFOPLIST_KEY_CFBundleExecutable = "0Z-Project";
 				INFOPLIST_KEY_CFBundleName = "0Z-Project";
 				INFOPLIST_KEY_CFBundleVersion = 1;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -386,7 +393,7 @@
 		};
 		57C8502726ECEFF300D0B3DF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2EFED45828D2A48D3CC7DF8B /* Pods-0Z-Project.release.xcconfig */;
+			baseConfigurationReference = 0B5A671016077FEAF634BBCB /* Pods-NMS-IOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -394,14 +401,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 368YFJ26SB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "0Z-Project/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = 0Z;
+				INFOPLIST_FILE = "NMS-IOS/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = NMS;
 				INFOPLIST_KEY_CFBundleExecutable = "0Z-Project";
 				INFOPLIST_KEY_CFBundleName = "0Z-Project";
 				INFOPLIST_KEY_CFBundleVersion = 1;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -420,7 +426,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		57C8500C26ECEFF200D0B3DF /* Build configuration list for PBXProject "0Z-Project" */ = {
+		57C8500C26ECEFF200D0B3DF /* Build configuration list for PBXProject "NMS-IOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57C8502326ECEFF300D0B3DF /* Debug */,
@@ -429,7 +435,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		57C8502526ECEFF300D0B3DF /* Build configuration list for PBXNativeTarget "0Z-Project" */ = {
+		57C8502526ECEFF300D0B3DF /* Build configuration list for PBXNativeTarget "NMS-IOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57C8502626ECEFF300D0B3DF /* Debug */,
