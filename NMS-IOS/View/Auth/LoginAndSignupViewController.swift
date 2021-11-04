@@ -50,6 +50,7 @@ class LoginAndSignupViewController: UIViewController {
     }
 
     func setAddSubView() {
+        
         view.backgroundColor = .systemBackground
         view.addSubview(backImage)
         view.addSubview(MNSLabel)
@@ -63,7 +64,13 @@ class LoginAndSignupViewController: UIViewController {
                 let mainLoginViewController = MainLoginViewController()
                 self.navigationController?.pushViewController(mainLoginViewController, animated: true)
             }.disposed(by: disposeBag)
+        signupButton.rx.tap
+            .bind {
+                let firstSignUpViewController = FirstSignUpViewController()
+                self.navigationController?.pushViewController(firstSignUpViewController, animated: true)
+            }.disposed(by: disposeBag)
     }
+    
     func setConstent() {
         backImage.snp.makeConstraints {
             $0.top.equalTo(view.snp.top)

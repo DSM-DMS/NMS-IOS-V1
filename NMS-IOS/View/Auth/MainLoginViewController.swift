@@ -14,7 +14,7 @@ import RxCocoa
 
 class MainLoginViewController: UIViewController {
     let disposeBag = DisposeBag()
-
+    
     let mainView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 25
@@ -46,11 +46,26 @@ class MainLoginViewController: UIViewController {
         $0.tintColor = UIColor(named: "MainColor1")
         $0.backgroundColor = UIColor.clear
     }
+    let buttomJustLine = UIView().then {
+        $0.backgroundColor = UIColor(named: "MainColor2")
+    }
+    let SignupMembership = UIButton().then {
+        $0.setTitle("회원가입 하기", for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        $0.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
+    }
+    let FindingPassword = UIButton().then {
+        $0.setTitle("비밀번호 찾기", for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        $0.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
+    }
+    
     let pwtextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(
             string: " PASSWORD",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "MainColor2")!]
         )
+        $0.isSecureTextEntry = true
         $0.tintColor = UIColor(named: "MainColor1")
         $0.backgroundColor = UIColor.clear
     }
@@ -62,6 +77,9 @@ class MainLoginViewController: UIViewController {
         setAddSubView()
         setMain()
         setLayout()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
     }
     func setMain() {
         saveIdButton.rx.tap
@@ -91,7 +109,10 @@ class MainLoginViewController: UIViewController {
         view.addSubview(idTextField)
         view.addSubview(saveIdButton)
         view.addSubview(pwtextField)
+        view.addSubview(buttomJustLine)
         view.addSubview(loginButton)
+        view.addSubview(SignupMembership)
+        view.addSubview(FindingPassword)
     }
     func setLayout() {
         mainView.snp.makeConstraints {
@@ -119,11 +140,30 @@ class MainLoginViewController: UIViewController {
             $0.left.equalTo(10)
             
         }
+        SignupMembership.snp.makeConstraints {
+            $0.width.equalTo(100)
+            $0.height.equalTo(20)
+            $0.centerY.equalTo(self.mainView).offset(240)
+            $0.centerX.equalTo(self.view).offset(-60)
+        }
+        FindingPassword.snp.makeConstraints {
+            $0.width.equalTo(100)
+            $0.height.equalTo(20)
+            $0.centerY.equalTo(self.mainView).offset(240)
+            $0.centerX.equalTo(self.view).offset(60)
+        }
         pwtextField.snp.makeConstraints {
             $0.width.equalTo(348)
             $0.height.equalTo(35)
             $0.centerY.equalTo(self.mainView).offset(-40)
             $0.centerX.equalTo(self.view).offset(0)
+        }
+        buttomJustLine.snp.makeConstraints {
+            $0.width.equalTo(1)
+            $0.height.equalTo(15)
+            $0.centerY.equalTo(self.mainView).offset(240)
+            $0.centerX.equalTo(self.view).offset(0)
+
         }
     }
     func setSearchController() {
@@ -136,6 +176,27 @@ class MainLoginViewController: UIViewController {
     }
 }
 extension MainLoginViewController : UITextFieldDelegate {
+    
+    @objc func keyboardWillShow(noti: Notification) {
+        let notinfo = noti.userInfo!
+        let animateDuration = notinfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
+        UIView.animate(withDuration: animateDuration) {
+            self.mainView.snp.updateConstraints() {
+                $0.bottom.equalTo(-100)
+            }
+            self.view.layoutIfNeeded()
+        }
+    }
+    @objc func keyboardWillHide(noti: Notification) {
+        let notinfo = noti.userInfo!
+        let animateDuration = notinfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
+        UIView.animate(withDuration: animateDuration) {
+            self.mainView.snp.updateConstraints() {
+                $0.bottom.equalTo(0)
+            }
+            self.view.layoutIfNeeded()
+        }
+    }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = textField.text ?? ""
         // attempt to read the range they are trying to change, or exit if we can't
