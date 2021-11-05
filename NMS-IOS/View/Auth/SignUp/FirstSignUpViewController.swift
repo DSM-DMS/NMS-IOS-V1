@@ -12,7 +12,7 @@ import RxCocoa
 import SnapKit
 
 class FirstSignUpViewController: UIViewController {
-
+    
     let nextButton = UIButton().then {
         $0.backgroundColor = UIColor(named: "MainBackColor1")
         $0.setTitle("다음", for: .normal)
@@ -38,16 +38,47 @@ class FirstSignUpViewController: UIViewController {
         $0.tintColor = UIColor(named: "MainColor1")
         $0.backgroundColor = UIColor.clear
     }
+
+
+    let gradeMenuButton = UIButton().then {
+        var Menutitle = "학년을 선택해 주세요"
+        let grade1  = UIAction(title: "1학년 공통과정", handler: {png in
+            print("1학년 공통과정\(png)")
+        })
+        let grade2SW = UIAction(title: "2학년 소프트웨어 개발과", handler: {_ in
+            
+            print("2학년 소프트웨어 개발과")
+        })
+        let grade2Se = UIAction(title: "2학년 정보보안과", handler: {_ in
+            print("2학년 정보보안과")
+        })
+        let grade2EM = UIAction(title: "2학년 임배디드 소프트웨어과", handler: {_ in
+            print("2학년 임배디드 소프트웨어과")
+        })
+        let grade3 = UIAction(title: "3학년 공통", handler: {_ in
+            print("3학년")
+        })
+        $0.setTitle(" \(Menutitle)", for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        $0.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
+                $0.menu = UIMenu(title: "학년을 선택해 주세요", options: .displayInline, children: [grade1, grade2SW, grade2Se, grade2SW, grade3])
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
+        gradeMenuButton.rx.tap.bind {
+          
+        }.disposed(by: DisposeBag())
         nameTextField.delegate = self
         setSearchController()
         setAddSubView()
         setConstent()
+    }
+    private func bind() {
+//        gradeMenuButton.menu
     }
     override func viewWillAppear(_ animated: Bool) {
         setSearchController()
@@ -63,12 +94,21 @@ class FirstSignUpViewController: UIViewController {
         bottomLine2.backgroundColor = UIColor(named: "MainColor1")?.cgColor
         schoolNumberTextField.borderStyle = UITextField.BorderStyle.none
         schoolNumberTextField.layer.addSublayer(bottomLine2)
+        let bottomLine3 = CALayer()
+        bottomLine3.frame = CGRect(x: 0.0, y: gradeMenuButton.frame.height + 3, width: gradeMenuButton.frame.width + 8, height: 1)
+        bottomLine3.backgroundColor = UIColor(named: "MainColor1")?.cgColor
+        gradeMenuButton.layer.addSublayer(bottomLine3)
+
     }
 
+    func setMain() {
+        
+    }
     func setAddSubView() {
         view.addSubview(nextButton)
         view.addSubview(nameTextField)
         view.addSubview(schoolNumberTextField)
+        view.addSubview(gradeMenuButton)
     }
     func setConstent() {
         nextButton.snp.makeConstraints {
@@ -87,6 +127,12 @@ class FirstSignUpViewController: UIViewController {
             $0.width.equalTo(356)
             $0.height.equalTo(35)
             $0.top.equalTo(280)
+            $0.centerX.equalTo(self.view).offset(0)
+        }
+        gradeMenuButton.snp.makeConstraints {
+            $0.width.equalTo(356)
+            $0.height.equalTo(35)
+            $0.top.equalTo(360)
             $0.centerX.equalTo(self.view).offset(0)
         }
     }
