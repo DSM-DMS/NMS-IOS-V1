@@ -21,7 +21,7 @@ class MainLoginViewController: UIViewController {
         $0.layer.maskedCorners = [ .layerMaxXMaxYCorner, .layerMaxXMinYCorner]
     }
     let loginButton = UIButton().then {
-        
+        $0.showsMenuAsPrimaryAction = true
         $0.setTitle("LOGIN", for: .normal)
         $0.backgroundColor = UIColor(named: "MainColor1")
         $0.setTitleColor(UIColor.white, for: .normal)
