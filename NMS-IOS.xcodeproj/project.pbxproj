@@ -10,6 +10,8 @@
 		1F6AF070A433EBCBE50355F8 /* Pods_NMS_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE518AC6A9B31F9CA8CF16C /* Pods_NMS_IOS.framework */; };
 		570B6D2E2732A218002AFA9E /* MainLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570B6D2D2732A218002AFA9E /* MainLoginViewController.swift */; };
 		5768203E27341E8B008685F7 /* FirstSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5768203D27341E8B008685F7 /* FirstSignUpViewController.swift */; };
+		5793749D2734E7D000D8096F /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793749C2734E7D000D8096F /* SignUpViewModel.swift */; };
+		5793749F2734E7EE00D8096F /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793749E2734E7EE00D8096F /* ViewModelType.swift */; };
 		57C8501526ECEFF200D0B3DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8501426ECEFF200D0B3DF /* AppDelegate.swift */; };
 		57C8501726ECEFF200D0B3DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8501626ECEFF200D0B3DF /* SceneDelegate.swift */; };
 		57C8501926ECEFF200D0B3DF /* LoginAndSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8501826ECEFF200D0B3DF /* LoginAndSignupViewController.swift */; };
@@ -21,6 +23,8 @@
 		0B5A671016077FEAF634BBCB /* Pods-NMS-IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NMS-IOS.release.xcconfig"; path = "Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS.release.xcconfig"; sourceTree = "<group>"; };
 		570B6D2D2732A218002AFA9E /* MainLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLoginViewController.swift; sourceTree = "<group>"; };
 		5768203D27341E8B008685F7 /* FirstSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSignUpViewController.swift; sourceTree = "<group>"; };
+		5793749C2734E7D000D8096F /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		5793749E2734E7EE00D8096F /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		57C8501126ECEFF200D0B3DF /* NMS-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NMS-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57C8501426ECEFF200D0B3DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57C8501626ECEFF200D0B3DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +74,23 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
+		5793749A2734E79A00D8096F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5793749E2734E7EE00D8096F /* ViewModelType.swift */,
+				5793749B2734E7A800D8096F /* Auth */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5793749B2734E7A800D8096F /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				5793749C2734E7D000D8096F /* SignUpViewModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		57C8500826ECEFF200D0B3DF = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +112,7 @@
 		57C8501326ECEFF200D0B3DF /* MNS-IOS */ = {
 			isa = PBXGroup;
 			children = (
+				5793749A2734E79A00D8096F /* ViewModel */,
 				570B6D2B2732A19E002AFA9E /* View */,
 				57C8501426ECEFF200D0B3DF /* AppDelegate.swift */,
 				57C8501626ECEFF200D0B3DF /* SceneDelegate.swift */,
@@ -237,7 +259,9 @@
 				570B6D2E2732A218002AFA9E /* MainLoginViewController.swift in Sources */,
 				57C8501526ECEFF200D0B3DF /* AppDelegate.swift in Sources */,
 				5768203E27341E8B008685F7 /* FirstSignUpViewController.swift in Sources */,
+				5793749D2734E7D000D8096F /* SignUpViewModel.swift in Sources */,
 				57C8501726ECEFF200D0B3DF /* SceneDelegate.swift in Sources */,
+				5793749F2734E7EE00D8096F /* ViewModelType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
