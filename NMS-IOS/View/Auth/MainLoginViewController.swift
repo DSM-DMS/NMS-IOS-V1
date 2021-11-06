@@ -20,13 +20,7 @@ class MainLoginViewController: UIViewController {
         $0.layer.cornerRadius = 25
         $0.layer.maskedCorners = [ .layerMaxXMaxYCorner, .layerMaxXMinYCorner]
     }
-    let loginButton = UIButton().then {
-        $0.showsMenuAsPrimaryAction = true
-        $0.setTitle("LOGIN", for: .normal)
-        $0.backgroundColor = UIColor(named: "MainColor1")
-        $0.setTitleColor(UIColor.white, for: .normal)
-        $0.layer.cornerRadius = 25.5
-    }
+
     let saveIdButton = UIButton().then {
         let checkbox = UIImage(named: "fillCheck")
         let emptyCheckbox = UIImage(named:"emptyCheck")
@@ -45,6 +39,13 @@ class MainLoginViewController: UIViewController {
         )
         $0.tintColor = UIColor(named: "MainColor1")
         $0.backgroundColor = UIColor.clear
+    }
+    let loginButton = UIButton().then {
+        $0.showsMenuAsPrimaryAction = true
+        $0.setTitle("LOGIN", for: .normal)
+        $0.backgroundColor = UIColor(named: "MainColor1")
+        $0.setTitleColor(UIColor.white, for: .normal)
+        $0.layer.cornerRadius = 25.5
     }
     let buttomJustLine = UIView().then {
         $0.backgroundColor = UIColor(named: "MainColor2")
@@ -141,15 +142,16 @@ class MainLoginViewController: UIViewController {
             
         }
         SignupMembership.snp.makeConstraints {
+
+            $0.centerY.equalTo(self.view).offset(380)
             $0.width.equalTo(100)
             $0.height.equalTo(20)
-            $0.centerY.equalTo(self.mainView).offset(240)
             $0.centerX.equalTo(self.view).offset(-60)
         }
         FindingPassword.snp.makeConstraints {
             $0.width.equalTo(100)
             $0.height.equalTo(20)
-            $0.centerY.equalTo(self.mainView).offset(240)
+            $0.centerY.equalTo(self.view).offset(380)
             $0.centerX.equalTo(self.view).offset(60)
         }
         pwtextField.snp.makeConstraints {
@@ -161,7 +163,7 @@ class MainLoginViewController: UIViewController {
         buttomJustLine.snp.makeConstraints {
             $0.width.equalTo(1)
             $0.height.equalTo(15)
-            $0.centerY.equalTo(self.mainView).offset(240)
+            $0.centerY.equalTo(self.view).offset(380)
             $0.centerX.equalTo(self.view).offset(0)
 
         }
