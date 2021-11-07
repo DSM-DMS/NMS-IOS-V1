@@ -17,6 +17,8 @@
 		57C8501926ECEFF200D0B3DF /* LoginAndSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8501826ECEFF200D0B3DF /* LoginAndSignupViewController.swift */; };
 		57C8501E26ECEFF300D0B3DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C8501D26ECEFF300D0B3DF /* Assets.xcassets */; };
 		57C8502126ECEFF300D0B3DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C8501F26ECEFF300D0B3DF /* LaunchScreen.storyboard */; };
+		57E0A56C2736B7D00074073E /* TwCenClassMTStd-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57E0A5692736B3BD0074073E /* TwCenClassMTStd-Regular.otf */; };
+		57E0A56D2736B7D40074073E /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57E0A5682736B3A90074073E /* NotoSansKR-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		57C8501D26ECEFF300D0B3DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57C8502026ECEFF300D0B3DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57C8502226ECEFF300D0B3DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57E0A5682736B3A90074073E /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Regular.otf"; path = "../../../../../Downloads/Noto_Sans_KR/NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
+		57E0A5692736B3BD0074073E /* TwCenClassMTStd-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "TwCenClassMTStd-Regular.otf"; path = "../../../../../Downloads/tw-cen-mt-std/TwCenClassMTStd-Regular.otf"; sourceTree = "<group>"; };
 		D17171A966D72402C5B98E60 /* Pods-NMS-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NMS-IOS.debug.xcconfig"; path = "Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS.debug.xcconfig"; sourceTree = "<group>"; };
 		EFE518AC6A9B31F9CA8CF16C /* Pods_NMS_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NMS_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -112,6 +116,7 @@
 		57C8501326ECEFF200D0B3DF /* MNS-IOS */ = {
 			isa = PBXGroup;
 			children = (
+				57E0A5672736B3180074073E /* Fomt */,
 				5793749A2734E79A00D8096F /* ViewModel */,
 				570B6D2B2732A19E002AFA9E /* View */,
 				57C8501426ECEFF200D0B3DF /* AppDelegate.swift */,
@@ -122,6 +127,15 @@
 			);
 			name = "MNS-IOS";
 			path = "NMS-IOS";
+			sourceTree = "<group>";
+		};
+		57E0A5672736B3180074073E /* Fomt */ = {
+			isa = PBXGroup;
+			children = (
+				57E0A5692736B3BD0074073E /* TwCenClassMTStd-Regular.otf */,
+				57E0A5682736B3A90074073E /* NotoSansKR-Regular.otf */,
+			);
+			path = Fomt;
 			sourceTree = "<group>";
 		};
 		AB66B680842ED1FE62276E85 /* Pods */ = {
@@ -201,8 +215,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57E0A56C2736B7D00074073E /* TwCenClassMTStd-Regular.otf in Resources */,
 				57C8502126ECEFF300D0B3DF /* LaunchScreen.storyboard in Resources */,
 				57C8501E26ECEFF300D0B3DF /* Assets.xcassets in Resources */,
+				57E0A56D2736B7D40074073E /* NotoSansKR-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
