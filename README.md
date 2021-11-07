@@ -1,1 +1,3 @@
-# 0Z-IOS
+# MMS-IOS
+
+##Notice Management System
