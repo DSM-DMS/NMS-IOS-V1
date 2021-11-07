@@ -20,7 +20,7 @@ class LoginAndSignupViewController: UIViewController {
         $0.text = "Notice Management System"
         $0.textColor = .white
         $0.textAlignment = .center
-        $0.font = UIFont.systemFont(ofSize: 24.0)
+        $0.font = UIFont(name: "TwCenClassMTStd-Regular", size: 24.0)
     }
     let backImage = UIImageView().then {
         $0.image = UIImage(named: "LoginAndSignupBack1")
@@ -29,6 +29,7 @@ class LoginAndSignupViewController: UIViewController {
     let loginButton = UIButton().then {
         $0.backgroundColor = .clear
         $0.setTitle("LOGIN", for: .normal)
+        $0.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 20.0)
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 25.5
         $0.layer.borderColor = UIColor.white.cgColor
@@ -37,6 +38,7 @@ class LoginAndSignupViewController: UIViewController {
     let signupButton = UIButton().then {
         $0.backgroundColor = .white
         $0.setTitle("SIGN UP", for: .normal)
+        $0.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 20.0)
         $0.setTitleColor(UIColor(named: "MainColor1"), for: .normal)
         $0.layer.cornerRadius = 25.5
     }

@@ -35,14 +35,17 @@ class MainLoginViewController: UIViewController {
     let idTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(
             string: " ID or Email",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "MainColor2")!]
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "MainColor2")!, NSAttributedString.Key.font : UIFont(name: "NotoSansKR-Regular", size: 16.0)!]
         )
+        $0.textColor = .black
+        $0.font = UIFont(name: "NotoSansKR-Regular", size: 16.0)
         $0.tintColor = UIColor(named: "MainColor1")
         $0.backgroundColor = UIColor.clear
     }
     let loginButton = UIButton().then {
         $0.showsMenuAsPrimaryAction = true
         $0.setTitle("LOGIN", for: .normal)
+        $0.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 20.0)
         $0.backgroundColor = UIColor(named: "MainColor1")
         $0.setTitleColor(UIColor.white, for: .normal)
         $0.layer.cornerRadius = 25.5
@@ -64,8 +67,11 @@ class MainLoginViewController: UIViewController {
     let pwtextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(
             string: " PASSWORD",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "MainColor2")!]
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "MainColor2")!, NSAttributedString.Key.font : UIFont(name: "NotoSansKR-Regular", size: 16.0)!]
+
         )
+        $0.textColor = .black
+        $0.font = UIFont(name: "NotoSansKR-Regular", size: 16.0)
         $0.isSecureTextEntry = true
         $0.tintColor = UIColor(named: "MainColor1")
         $0.backgroundColor = UIColor.clear
