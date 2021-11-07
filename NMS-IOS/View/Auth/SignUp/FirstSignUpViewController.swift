@@ -40,27 +40,25 @@ class FirstSignUpViewController: UIViewController {
         $0.tintColor = UIColor(named: "MainColor1")
         $0.backgroundColor = UIColor.clear
     }
-
-
+    let schoolNickTextField = UITextField().then {
+        $0.attributedPlaceholder = NSAttributedString(
+            string: " 닉네임",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "MainColor2")!]
+        )
+        $0.tintColor = UIColor(named: "MainColor1")
+        $0.backgroundColor = UIColor.clear
+    }
+    
     func setUI() {
-      
-        let grade1  = UIAction(title: "1학년 공통과정", handler: {_ in
-            self.gradeMenuButton.setTitle(" 1학년 공통과정", for: .normal)
+        let grade1  = UIAction(title: "1학년", handler: {_ in
+            self.gradeMenuButton.setTitle(" 1학년", for: .normal)
             print("1학년 공통과정")
         })
-        let grade2SW = UIAction(title: "2학년 소프트웨어 개발과", handler: {_ in
-            self.gradeMenuButton.setTitle(" 2학년 소프트웨어 개발과", for: .normal)
+        let grade2SW = UIAction(title: "2학년", handler: {_ in
+            self.gradeMenuButton.setTitle(" 2학년", for: .normal)
             print("2학년 소프트웨어 개발과")
         })
-        let grade2Se = UIAction(title: "2학년 정보보안과", handler: {_ in
-            self.gradeMenuButton.setTitle(" 2학년 정보보안과", for: .normal)
-            print("2학년 정보보안과")
-        })
-        let grade2EM = UIAction(title: "2학년 임배디드 소프트웨어과", handler: {_ in
-            self.gradeMenuButton.setTitle(" 2학년 임배디드 소프트웨어과", for: .normal)
-            print("2학년 임배디드 소프트웨어과")
-        })
-        let grade3 = UIAction(title: "3학년 공통", handler: {_ in
+        let grade3 = UIAction(title: "3학년", handler: {_ in
             self.gradeMenuButton.setTitle(" 3학년", for: .normal)
             print("3학년")
         })
@@ -68,7 +66,7 @@ class FirstSignUpViewController: UIViewController {
         gradeMenuButton.contentHorizontalAlignment = .left
         gradeMenuButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         gradeMenuButton.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
-        gradeMenuButton.menu = UIMenu(title: "학년을 선택해 주세요", options: .displayInline, children: [grade1, grade2SW, grade2Se, grade2EM, grade3])
+        gradeMenuButton.menu = UIMenu(title: "학년을 선택해 주세요", options: .displayInline, children: [grade1, grade2SW, grade3])
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,15 +75,12 @@ class FirstSignUpViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         setUI()
         gradeMenuButton.rx.tap.bind {
-          
+            
         }.disposed(by: DisposeBag())
         nameTextField.delegate = self
         setSearchController()
         setAddSubView()
         setConstent()
-    }
-    private func bind() {
-//        gradeMenuButton.menu
     }
     override func viewWillAppear(_ animated: Bool) {
         setSearchController()
@@ -102,12 +97,12 @@ class FirstSignUpViewController: UIViewController {
         schoolNumberTextField.borderStyle = UITextField.BorderStyle.none
         schoolNumberTextField.layer.addSublayer(bottomLine2)
         let bottomLine3 = CALayer()
-        bottomLine3.frame = CGRect(x: 0.0, y: gradeMenuButton.frame.height + 3, width: gradeMenuButton.frame.width + 8, height: 1)
+        bottomLine3.frame = CGRect(x: 0.0, y: schoolNickTextField.frame.height + 3, width: schoolNickTextField.frame.width + 8, height: 1)
         bottomLine3.backgroundColor = UIColor(named: "MainColor1")?.cgColor
-        gradeMenuButton.layer.addSublayer(bottomLine3)
-
+        schoolNickTextField.layer.addSublayer(bottomLine3)
+        
     }
-
+    
     func setMain() {
         
     }
@@ -115,7 +110,8 @@ class FirstSignUpViewController: UIViewController {
         view.addSubview(nextButton)
         view.addSubview(nameTextField)
         view.addSubview(schoolNumberTextField)
-        view.addSubview(gradeMenuButton)
+        view.addSubview(schoolNickTextField)
+        //        view.addSubview(gradeMenuButton)
     }
     func setConstent() {
         nextButton.snp.makeConstraints {
@@ -136,12 +132,18 @@ class FirstSignUpViewController: UIViewController {
             $0.top.equalTo(280)
             $0.centerX.equalTo(self.view).offset(0)
         }
-        gradeMenuButton.snp.makeConstraints {
+        schoolNickTextField.snp.makeConstraints {
             $0.width.equalTo(356)
             $0.height.equalTo(35)
             $0.top.equalTo(360)
             $0.centerX.equalTo(self.view).offset(0)
         }
+        //        gradeMenuButton.snp.makeConstraints {
+        //            $0.width.equalTo(356)
+        //            $0.height.equalTo(35)
+        //            $0.top.equalTo(360)
+        //            $0.centerX.equalTo(self.view).offset(0)
+        //        }
     }
     func setSearchController() {
         self.title = ""
@@ -158,7 +160,7 @@ extension FirstSignUpViewController : UITextFieldDelegate {
         let animateDuration = notinfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         UIView.animate(withDuration: animateDuration) {
             self.nextButton.snp.updateConstraints() {
-                $0.centerY.equalTo(self.view).offset(60)
+                $0.centerY.equalTo(self.view).offset(100)
             }
             self.view.layoutIfNeeded()
         }
@@ -173,5 +175,5 @@ extension FirstSignUpViewController : UITextFieldDelegate {
             self.view.layoutIfNeeded()
         }
     }
-
+    
 }
