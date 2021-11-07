@@ -14,7 +14,12 @@ import SnapKit
 class FirstSignUpViewController: UIViewController {
     
     let gradeMenuButton = UIButton()
-    
+    let disposeBag = DisposeBag()
+    let signUpLabel = UILabel().then {
+        $0.text = "Sign Up"
+        $0.font = UIFont(name: "TwCenClassMTStd-Regular", size: 30.0)
+        $0.textColor = UIColor.black
+    }
     let nextButton = UIButton().then {
         $0.backgroundColor = UIColor(named: "MainBackColor1")
         $0.setTitle("다음", for: .normal)
@@ -74,9 +79,7 @@ class FirstSignUpViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         setUI()
-        gradeMenuButton.rx.tap.bind {
-            
-        }.disposed(by: DisposeBag())
+        setMain()
         nameTextField.delegate = self
         setSearchController()
         setAddSubView()
@@ -104,9 +107,14 @@ class FirstSignUpViewController: UIViewController {
     }
     
     func setMain() {
-        
+        nextButton.rx.tap
+            .bind {
+            let secondSignUpViewController = SecondSignUpViewController()
+            self.navigationController?.pushViewController(secondSignUpViewController, animated: true)
+        }.disposed(by: disposeBag)
     }
     func setAddSubView() {
+        view.addSubview(signUpLabel)
         view.addSubview(nextButton)
         view.addSubview(nameTextField)
         view.addSubview(schoolNumberTextField)
@@ -114,6 +122,12 @@ class FirstSignUpViewController: UIViewController {
         //        view.addSubview(gradeMenuButton)
     }
     func setConstent() {
+        signUpLabel.snp.makeConstraints {
+            $0.width.equalTo(123)
+            $0.height.equalTo(30)
+            $0.top.equalTo(100)
+            $0.centerX.equalTo(self.view).offset(0)
+        }
         nextButton.snp.makeConstraints {
             $0.width.equalTo(356)
             $0.height.equalTo(51)
@@ -146,15 +160,18 @@ class FirstSignUpViewController: UIViewController {
         //        }
     }
     func setSearchController() {
+        self.view.backgroundColor = UIColor.white
         self.title = ""
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.tintColor = UIColor(named: "MainBackColor1")
     }
+
+}
+extension FirstSignUpViewController : UITextFieldDelegate {
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
     }
-}
-extension FirstSignUpViewController : UITextFieldDelegate {
     @objc func keyboardWillShow(noti: Notification) {
         let notinfo = noti.userInfo!
         let animateDuration = notinfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval

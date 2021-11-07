@@ -20,10 +20,14 @@ class LoginAndSignupViewController: UIViewController {
         $0.text = "Notice Management System"
         $0.textColor = .white
         $0.textAlignment = .center
-        $0.font = UIFont(name: "TwCenClassMTStd-Regular", size: 24.0)
+        $0.font = UIFont(name: "TwCenClassMTStd-Regular", size: 17.0)
     }
     let backImage = UIImageView().then {
         $0.image = UIImage(named: "LoginAndSignupBack1")
+    }
+    let MainLogoImage = UIImageView().then {
+        $0.image = UIImage(named: "MainLogoWhite")
+        $0.backgroundColor = .clear
     }
     
     let loginButton = UIButton().then {
@@ -55,8 +59,8 @@ class LoginAndSignupViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         view.addSubview(backImage)
-        view.addSubview(MNSLabel)
-        
+//        view.addSubview(MNSLabel)
+        view.addSubview(MainLogoImage)
         view.addSubview(loginButton)
         view.addSubview(signupButton)
     }
@@ -80,10 +84,13 @@ class LoginAndSignupViewController: UIViewController {
             $0.left.equalTo(view.snp.left)
             $0.right.equalTo(view.snp.right)
         }
-        MNSLabel.snp.makeConstraints {
-            $0.centerY.equalTo(self.view).offset(50)
-            $0.leading.equalToSuperview().offset(25)
-            $0.trailing.equalToSuperview().offset(-25)
+
+        MainLogoImage.snp.makeConstraints {
+            $0.width.equalTo(110)
+            $0.height.equalTo(110)
+            $0.centerY.equalTo(self.view).offset(-80)
+            $0.centerX.equalTo(self.view).offset(0)
+
         }
         loginButton.snp.makeConstraints {
             $0.width.equalTo(356)
