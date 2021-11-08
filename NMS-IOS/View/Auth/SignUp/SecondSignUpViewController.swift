@@ -50,7 +50,8 @@ class SecondSignUpViewController: UIViewController {
     }
     func setMain() {
         nextButton.rx.tap.bind {
-            
+            let thirdSignUpViewController = ThirdSignUpViewController()
+            self.navigationController?.pushViewController(thirdSignUpViewController, animated: true)
         }.disposed(by: disposeBag)
     }
     func setAddSubView() {
