@@ -18,9 +18,17 @@ class SecondSignUpViewController: UIViewController {
         $0.font = UIFont(name: "TwCenClassMTStd-Regular", size: 30.0)
         $0.textColor = UIColor.black
     }
+    let emailTextField = UITextField().then {
+        $0.attributedPlaceholder = NSAttributedString(
+            string: " 이메일(학교 이메일을 입력해주세요)",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "MainColor2")!]
+        )
+        $0.tintColor = UIColor(named: "MainColor1")
+        $0.backgroundColor = UIColor.clear
+    }
     let nextButton = UIButton().then {
         $0.backgroundColor = UIColor(named: "MainBackColor1")
-        $0.setTitle("다음", for: .normal)
+        $0.setTitle("인증번호를 입력하세요", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 25.5
         $0.layer.borderColor = UIColor.white.cgColor
@@ -40,7 +48,7 @@ class SecondSignUpViewController: UIViewController {
     }
     func setAddSubView() {
         view.addSubview(signUpLabel)
-
+        view.addSubview(emailTextField)
         view.addSubview(nextButton)
     }
     func setConstent() {
@@ -51,12 +59,16 @@ class SecondSignUpViewController: UIViewController {
             $0.top.equalTo(100)
             $0.centerX.equalTo(self.view).offset(0)
         }
+        emailTextField.snp.makeConstraints {
+            $0.width.equalTo(356)
+            $0.height.equalTo(35)
+            $0.top.equalTo(200)
+            $0.centerX.equalTo(self.view).offset(0)
+        }
         nextButton.snp.makeConstraints {
             $0.width.equalTo(356)
             $0.height.equalTo(51)
-
             $0.bottom.equalTo(-50)
-
             $0.centerX.equalTo(self.view).offset(0)
         }
     }
@@ -65,6 +77,13 @@ class SecondSignUpViewController: UIViewController {
         self.title = ""
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.tintColor = UIColor(named: "MainBackColor1")
+    }
+    override func viewDidLayoutSubviews() {
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRect(x: 0.0, y: emailTextField.frame.height + 3, width: emailTextField.frame.width + 8, height: 1)
+        bottomLine.backgroundColor = UIColor(named: "MainColor1")?.cgColor
+        emailTextField.borderStyle = UITextField.BorderStyle.none
+        emailTextField.layer.addSublayer(bottomLine)
     }
 }
 extension SecondSignUpViewController  {
@@ -81,7 +100,6 @@ extension SecondSignUpViewController  {
         UIView.animate(withDuration: animateDuration) {
             self.nextButton.snp.updateConstraints() {
                 $0.bottom.equalTo(heiget)
-
             }
             self.view.layoutIfNeeded()
         }
@@ -91,10 +109,7 @@ extension SecondSignUpViewController  {
         let animateDuration = notinfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         UIView.animate(withDuration: animateDuration) {
             self.nextButton.snp.updateConstraints() {
-
                 $0.bottom.equalTo(-50)
-
-                $0.centerY.equalTo(self.view).offset(350)
             }
             self.view.layoutIfNeeded()
         }
