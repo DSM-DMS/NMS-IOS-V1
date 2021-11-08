@@ -28,7 +28,7 @@ class SecondSignUpViewController: UIViewController {
     }
     let nextButton = UIButton().then {
         $0.backgroundColor = UIColor(named: "MainBackColor1")
-        $0.setTitle("인증번호를 입력하세요", for: .normal)
+        $0.setTitle("인증번호 요청", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 25.5
         $0.layer.borderColor = UIColor.white.cgColor
@@ -36,15 +36,22 @@ class SecondSignUpViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTextField.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         setSearchController()
         setAddSubView()
         setConstent()
+        setMain()
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         setSearchController()
+    }
+    func setMain() {
+        nextButton.rx.tap.bind {
+            
+        }.disposed(by: disposeBag)
     }
     func setAddSubView() {
         view.addSubview(signUpLabel)
@@ -79,15 +86,17 @@ class SecondSignUpViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor(named: "MainBackColor1")
     }
     override func viewDidLayoutSubviews() {
-        let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0.0, y: emailTextField.frame.height + 3, width: emailTextField.frame.width + 8, height: 1)
-        bottomLine.backgroundColor = UIColor(named: "MainColor1")?.cgColor
-        emailTextField.borderStyle = UITextField.BorderStyle.none
-        emailTextField.layer.addSublayer(bottomLine)
+        emailTextField.setUnderLine(color: UIColor(named: "MainColor2")!)
     }
 }
-extension SecondSignUpViewController  {
-    
+extension SecondSignUpViewController : UITextFieldDelegate  {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.setUnderLine(color: UIColor(named: "MainColor1")!)
+        return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.setUnderLine(color: UIColor(named: "MainColor2")!)
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
     }

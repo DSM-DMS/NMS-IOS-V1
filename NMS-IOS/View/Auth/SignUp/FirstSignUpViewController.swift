@@ -89,23 +89,10 @@ class FirstSignUpViewController: UIViewController {
         setSearchController()
     }
     override func viewDidLayoutSubviews() {
-        let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0.0, y: nameTextField.frame.height + 3, width: nameTextField.frame.width + 8, height: 1)
-        bottomLine.backgroundColor = UIColor(named: "MainColor1")?.cgColor
-        nameTextField.borderStyle = UITextField.BorderStyle.none
-        nameTextField.layer.addSublayer(bottomLine)
-        let bottomLine2 = CALayer()
-        bottomLine2.frame = CGRect(x: 0.0, y: schoolNumberTextField.frame.height + 3, width: schoolNumberTextField.frame.width + 8, height: 1)
-        bottomLine2.backgroundColor = UIColor(named: "MainColor1")?.cgColor
-        schoolNumberTextField.borderStyle = UITextField.BorderStyle.none
-        schoolNumberTextField.layer.addSublayer(bottomLine2)
-        let bottomLine3 = CALayer()
-        bottomLine3.frame = CGRect(x: 0.0, y: schoolNickTextField.frame.height + 3, width: schoolNickTextField.frame.width + 8, height: 1)
-        bottomLine3.backgroundColor = UIColor(named: "MainColor1")?.cgColor
-        schoolNickTextField.layer.addSublayer(bottomLine3)
-        
+        nameTextField.setUnderLine(color: UIColor(named: "MainColor2")!)
+        schoolNumberTextField.setUnderLine(color: UIColor(named: "MainColor2")!)
+        schoolNickTextField.setUnderLine(color: UIColor(named: "MainColor2")!)
     }
-    
     func setMain() {
         nextButton.rx.tap
             .bind {
@@ -114,6 +101,9 @@ class FirstSignUpViewController: UIViewController {
         }.disposed(by: disposeBag)
     }
     func setAddSubView() {
+        self.nameTextField.delegate = self
+        self.schoolNickTextField.delegate = self
+        self.schoolNumberTextField.delegate = self
         view.addSubview(signUpLabel)
         view.addSubview(nextButton)
         view.addSubview(nameTextField)
@@ -168,6 +158,13 @@ class FirstSignUpViewController: UIViewController {
 
 }
 extension FirstSignUpViewController : UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.setUnderLine(color: UIColor(named: "MainColor1")!)
+        return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.setUnderLine(color: UIColor(named: "MainColor2")!)
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)

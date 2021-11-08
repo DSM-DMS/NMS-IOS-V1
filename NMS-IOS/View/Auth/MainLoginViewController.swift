@@ -95,26 +95,19 @@ class MainLoginViewController: UIViewController {
         saveIdButton.rx.tap
             .bind {
                 self.saveIdButton.isSelected.toggle()
-                
             }.disposed(by: disposeBag)
     }
     override func viewDidLayoutSubviews() {
-        let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0.0, y: idTextField.frame.height + 3, width: idTextField.frame.width + 8, height: 1)
-        bottomLine.backgroundColor = UIColor(named: "MainColor2")?.cgColor
-        idTextField.borderStyle = UITextField.BorderStyle.none
-        idTextField.layer.addSublayer(bottomLine)
-        let bottomLine1 = CALayer()
-        bottomLine1.frame = CGRect(x: 0.0, y: idTextField.frame.height + 3, width: pwtextField.frame.width + 8, height: 1)
-        bottomLine1.backgroundColor = UIColor(named: "MainColor2")?.cgColor
-        pwtextField.borderStyle = UITextField.BorderStyle.none
-        pwtextField.layer.addSublayer(bottomLine1)
+        idTextField.setUnderLine(color: UIColor(named: "MainColor2")!)
+        pwtextField.setUnderLine(color: UIColor(named: "MainColor2")!)
+
     }
     override func viewWillAppear(_ animated: Bool) {
         setSearchController()
     }
     func setAddSubView() {
         self.idTextField.delegate = self
+        self.pwtextField.delegate = self
         view.addSubview(mainView)
         view.addSubview(MainLogoImage)
         view.addSubview(idTextField)
@@ -194,7 +187,13 @@ class MainLoginViewController: UIViewController {
     }
 }
 extension MainLoginViewController : UITextFieldDelegate {
-    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.setUnderLine(color: UIColor(named: "MainColor1")!)
+        return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.setUnderLine(color: UIColor(named: "MainColor2")!)
+    }
     @objc func keyboardWillShow(noti: Notification) {
         let notinfo = noti.userInfo!
         let animateDuration = notinfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
