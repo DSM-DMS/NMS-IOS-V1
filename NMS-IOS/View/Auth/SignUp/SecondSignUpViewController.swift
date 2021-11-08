@@ -54,7 +54,7 @@ class SecondSignUpViewController: UIViewController {
         nextButton.snp.makeConstraints {
             $0.width.equalTo(356)
             $0.height.equalTo(51)
-            $0.centerY.equalTo(self.view).offset(350)
+            $0.bottom.equalTo(-50)
             $0.centerX.equalTo(self.view).offset(0)
         }
     }
@@ -72,10 +72,12 @@ extension SecondSignUpViewController  {
     }
     @objc func keyboardWillShow(noti: Notification) {
         let notinfo = noti.userInfo!
+        let keyboardFrame = notinfo[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
+        let heiget = -(keyboardFrame.size.height - self.view.safeAreaInsets.bottom + 50)
         let animateDuration = notinfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         UIView.animate(withDuration: animateDuration) {
             self.nextButton.snp.updateConstraints() {
-                $0.centerY.equalTo(self.view).offset(100)
+                $0.bottom.equalTo(heiget)
             }
             self.view.layoutIfNeeded()
         }
@@ -85,10 +87,9 @@ extension SecondSignUpViewController  {
         let animateDuration = notinfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         UIView.animate(withDuration: animateDuration) {
             self.nextButton.snp.updateConstraints() {
-                $0.centerY.equalTo(self.view).offset(350)
+                $0.bottom.equalTo(-50)
             }
             self.view.layoutIfNeeded()
         }
     }
-    
 }

@@ -14,7 +14,10 @@ import RxCocoa
 
 class MainLoginViewController: UIViewController {
     let disposeBag = DisposeBag()
-    
+    let MainLogoImage = UIImageView().then {
+        $0.image = UIImage(named: "MainLogoWhite")
+        $0.backgroundColor = .clear
+    }
     let mainView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 25
@@ -113,6 +116,7 @@ class MainLoginViewController: UIViewController {
     func setAddSubView() {
         self.idTextField.delegate = self
         view.addSubview(mainView)
+        view.addSubview(MainLogoImage)
         view.addSubview(idTextField)
         view.addSubview(saveIdButton)
         view.addSubview(pwtextField)
@@ -127,6 +131,12 @@ class MainLoginViewController: UIViewController {
             $0.bottom.equalTo(view.snp.bottom)
             $0.left.equalTo(view.snp.left)
             $0.right.equalTo(view.snp.right)
+        }
+        MainLogoImage.snp.makeConstraints {
+            $0.width.equalTo(57)
+            $0.height.equalTo(57)
+            $0.top.equalTo(self.mainView).offset(-85)
+            $0.left.equalTo(25)
         }
         loginButton.snp.makeConstraints {
             $0.width.equalTo(356)
