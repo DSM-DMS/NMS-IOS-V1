@@ -96,6 +96,10 @@ class MainLoginViewController: UIViewController {
             .bind {
                 self.saveIdButton.isSelected.toggle()
             }.disposed(by: disposeBag)
+        SignupMembership.rx.tap.bind {
+            let firstSignUpViewController = FirstSignUpViewController()
+            self.navigationController?.pushViewController(firstSignUpViewController, animated: true)
+        }.disposed(by: disposeBag)
     }
     override func viewDidLayoutSubviews() {
         idTextField.setUnderLine(color: UIColor(named: "MainColor2")!)
