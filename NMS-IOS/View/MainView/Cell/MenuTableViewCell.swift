@@ -79,7 +79,7 @@ class MenuTableViewCell: UITableViewCell {
             self.schoolMenuButton.backgroundColor = .clear
             self.schoolMenuButton.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
             self.schoolMenuButton.layer.borderColor = UIColor(named: "MainColor2")?.cgColor
-            self.gradeMenuButton.layer.borderWidth = 1
+            self.schoolMenuButton.layer.borderWidth = 1
         })
 
         let nonegrade = UIAction(title: "선택안함", handler: {_ in
