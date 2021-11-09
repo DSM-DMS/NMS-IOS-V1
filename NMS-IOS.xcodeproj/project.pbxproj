@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1F6AF070A433EBCBE50355F8 /* Pods_NMS_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE518AC6A9B31F9CA8CF16C /* Pods_NMS_IOS.framework */; };
+		570077B5273A7C4500608A93 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570077B4273A7C4500608A93 /* MenuTableViewCell.swift */; };
 		570B6D2E2732A218002AFA9E /* MainLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570B6D2D2732A218002AFA9E /* MainLoginViewController.swift */; };
+		571234D5273962F100E9E9B4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571234D4273962F100E9E9B4 /* MainViewController.swift */; };
 		573E430A27380F2E004457AA /* SecondSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E430927380F2E004457AA /* SecondSignUpViewController.swift */; };
 		5768203E27341E8B008685F7 /* FirstSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5768203D27341E8B008685F7 /* FirstSignUpViewController.swift */; };
 		5793749D2734E7D000D8096F /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793749C2734E7D000D8096F /* SignUpViewModel.swift */; };
@@ -26,7 +28,9 @@
 
 /* Begin PBXFileReference section */
 		0B5A671016077FEAF634BBCB /* Pods-NMS-IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NMS-IOS.release.xcconfig"; path = "Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS.release.xcconfig"; sourceTree = "<group>"; };
+		570077B4273A7C4500608A93 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		570B6D2D2732A218002AFA9E /* MainLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLoginViewController.swift; sourceTree = "<group>"; };
+		571234D4273962F100E9E9B4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		573E430927380F2E004457AA /* SecondSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSignUpViewController.swift; sourceTree = "<group>"; };
 		5768203D27341E8B008685F7 /* FirstSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSignUpViewController.swift; sourceTree = "<group>"; };
 		5793749C2734E7D000D8096F /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -58,9 +62,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		570077B1273A7BD900608A93 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				570077B4273A7C4500608A93 /* MenuTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		570B6D2B2732A19E002AFA9E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				571234D3273962B200E9E9B4 /* MainView */,
 				570B6D2C2732A1AC002AFA9E /* Auth */,
 			);
 			path = View;
@@ -74,6 +87,15 @@
 				5768203C27341E61008685F7 /* SignUp */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		571234D3273962B200E9E9B4 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				570077B1273A7BD900608A93 /* Cell */,
+				571234D4273962F100E9E9B4 /* MainViewController.swift */,
+			);
+			path = MainView;
 			sourceTree = "<group>";
 		};
 		5768203C27341E61008685F7 /* SignUp */ = {
@@ -289,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				573E430A27380F2E004457AA /* SecondSignUpViewController.swift in Sources */,
+				571234D5273962F100E9E9B4 /* MainViewController.swift in Sources */,
 				57C8501926ECEFF200D0B3DF /* LoginAndSignupViewController.swift in Sources */,
 				57D8062027393CCD003B5C06 /* ThirdSignUpViewController.swift in Sources */,
 				570B6D2E2732A218002AFA9E /* MainLoginViewController.swift in Sources */,
@@ -297,6 +320,7 @@
 				5793749D2734E7D000D8096F /* SignUpViewModel.swift in Sources */,
 				57D8061E2739052C003B5C06 /* TextField.swift in Sources */,
 				57C8501726ECEFF200D0B3DF /* SceneDelegate.swift in Sources */,
+				570077B5273A7C4500608A93 /* MenuTableViewCell.swift in Sources */,
 				5793749F2734E7EE00D8096F /* ViewModelType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
