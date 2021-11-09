@@ -13,19 +13,29 @@ import RxCocoa
 
 class MenuTableViewCell: UITableViewCell {
     
+    let disposebag = DisposeBag()
     let gradeMenuButton = UIButton().then {
         $0.setTitle("학년별", for: .normal)
-        $0.backgroundColor = UIColor(named: "MainColor1")
+        $0.contentHorizontalAlignment = .center
         $0.backgroundColor = .clear
-        $0.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 16.0)
-        $0.setTitleColor(UIColor(named: "MainColor1"), for: .normal)
-        $0.layer.cornerRadius = $0.frame.height / 2
-        $0.layer.borderColor = UIColor(named: "MainColor1")?.cgColor
-        $0.layer.borderWidth = 2
-        
+        $0.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 10.0)
+        $0.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
+        $0.layer.cornerRadius = 10
+        $0.layer.borderColor = UIColor(named: "MainColor2")?.cgColor
+        $0.layer.borderWidth = 1
     }
     
-    let schoolMenuButton = UIButton()
+    let schoolMenuButton = UIButton().then {
+        $0.setTitle("카테고리", for: .normal)
+        $0.contentHorizontalAlignment = .center
+        $0.backgroundColor = .clear
+        $0.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 10.0)
+        $0.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
+        $0.layer.cornerRadius = 10
+        $0.layer.borderColor = UIColor(named: "MainColor2")?.cgColor
+        $0.layer.borderWidth = 1
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,13 +44,23 @@ class MenuTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(gradeMenuButton)
+        contentView.addSubview(schoolMenuButton)
+        setUI()
         gradeMenuButton.snp.makeConstraints {
-            $0.width.equalTo(110)
-            $0.height.equalTo(110)
-            //            $0.centerY.equalTo(self.contentView).offset(-80)
-            $0.left.equalTo(40)
-            $0.centerX.equalTo(self.contentView).offset(0)
+            $0.width.equalTo(65)
+            $0.height.equalTo(20)
+            $0.left.equalTo(88)
+            $0.centerY.equalTo(self.contentView).offset(0)
         }
+        schoolMenuButton.snp.makeConstraints {
+            $0.width.equalTo(65)
+            $0.height.equalTo(20)
+            $0.left.equalTo(15)
+            $0.centerY.equalTo(self.contentView).offset(0)
+        }
+        gradeMenuButton.rx.tap.bind {
+            print("gradeMenuButton tap")
+        }.disposed(by: disposebag)
     }
     
     required init?(coder: NSCoder) {
@@ -48,29 +68,61 @@ class MenuTableViewCell: UITableViewCell {
     }
     func setUI() {
         
+        let inSchool = UIAction(title: "교내", handler: {_ in
+            self.InSchoolChangeTitle(title: "교내")
+        })
+        let outSchool = UIAction(title: "교내", handler: {_ in
+            self.InSchoolChangeTitle(title: "교외")
+        })
+        let noneinschool = UIAction(title: "선택안함", handler: {_ in
+            self.schoolMenuButton.setTitle("카테고리", for: .normal)
+            self.schoolMenuButton.backgroundColor = .clear
+            self.schoolMenuButton.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
+            self.schoolMenuButton.layer.borderColor = UIColor(named: "MainColor2")?.cgColor
+            self.gradeMenuButton.layer.borderWidth = 1
+        })
+
+        let nonegrade = UIAction(title: "선택안함", handler: {_ in
+            self.gradeMenuButton.setTitle("학년별", for: .normal)
+            self.gradeMenuButton.backgroundColor = .clear
+            self.gradeMenuButton.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
+            self.gradeMenuButton.layer.borderColor = UIColor(named: "MainColor2")?.cgColor
+            self.gradeMenuButton.layer.borderWidth = 1
+        })
         let grade1  = UIAction(title: "1학년", handler: {_ in
-            self.gradeMenuButton.setTitle(" 1학년 공통과정", for: .normal)
-            print("1학년 공통과정")
+            self.GradeChangTitle(title: "1학년")
         })
         let grade2 = UIAction(title: "2학년", handler: {_ in
-            self.gradeMenuButton.setTitle(" 2학년 임배디드 소프트웨어과", for: .normal)
-            print("2학년 임배디드 소프트웨어과")
+            self.GradeChangTitle(title: "2학년")
         })
         let grade3 = UIAction(title: "3학년", handler: {_ in
-            self.gradeMenuButton.setTitle(" 3학년", for: .normal)
-            print("3학년")
+            self.GradeChangTitle(title: "3학년")
         })
-        gradeMenuButton.setTitle(" 학년을 선택해주세요", for: .normal)
-        gradeMenuButton.contentHorizontalAlignment = .left
-        gradeMenuButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        gradeMenuButton.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
-        gradeMenuButton.menu = UIMenu(title: "학년을 선택해 주세요", options: .displayInline, children: [grade1, grade2, grade3])
+        schoolMenuButton.showsMenuAsPrimaryAction = true
+        schoolMenuButton.menu = UIMenu( options: .displayInline, children: [noneinschool, inSchool, outSchool])
+        gradeMenuButton.showsMenuAsPrimaryAction = true
+        gradeMenuButton.menu = UIMenu(options: .displayInline, children: [nonegrade, grade1, grade2, grade3])
     }
-    
-    //    override func setSelected(_ selected: Bool, animated: Bool) {
-    //        super.setSelected(selected, animated: animated)
-    //
-    //        // Configure the view for the selected state
-    //    }
-
+    func GradeChangTitle (title : String) {
+        self.gradeMenuButton.setTitle(title, for: .normal)
+        self.gradeMenuButton.backgroundColor = UIColor(named: "MainColor1")
+        self.gradeMenuButton.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 10.0)
+        self.gradeMenuButton.setTitleColor(UIColor.white, for: .normal)
+        self.gradeMenuButton.layer.borderWidth = 0
+    }
+    func InSchoolChangeTitle(title : String) {
+        self.schoolMenuButton.setTitle(title, for: .normal)
+        self.schoolMenuButton.backgroundColor = UIColor(named: "MainColor1")
+        self.schoolMenuButton.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 10.0)
+        self.schoolMenuButton.setTitleColor(UIColor.white, for: .normal)
+        self.schoolMenuButton.layer.borderWidth = 0
+    }
 }
+
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//
+//        // Configure the view for the selected state
+//    }
+
+

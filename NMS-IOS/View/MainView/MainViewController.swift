@@ -24,10 +24,11 @@ class MainViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         mainTableView.delegate = self
         mainTableView.dataSource = self
         view.addSubview(mainTableView)
+        setConstent()
         mainTableView.register(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
         setNavagationBar()
     }
@@ -57,7 +58,12 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MenuTableViewCell
+        let bgColorView = UIView()
+       bgColorView.backgroundColor = .clear
+       cell.selectedBackgroundView = bgColorView
+
+        return cell
     }
     
     
