@@ -16,6 +16,8 @@ class MainViewController: UIViewController {
     let mainTableView = UITableView().then {
         $0.backgroundColor = .white
         $0.separatorStyle = .none
+        $0.estimatedRowHeight = 68.0
+        $0.rowHeight = UITableView.automaticDimension
     }
     let personButton = UIBarButtonItem().then {
         let personImage = UIImage(systemName: "person.fill")
@@ -30,6 +32,7 @@ class MainViewController: UIViewController {
         view.addSubview(mainTableView)
         setConstent()
         mainTableView.register(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
+        mainTableView.register(MainPostTableViewCell.self, forCellReuseIdentifier: "cell2")
         setNavagationBar()
     }
     
@@ -54,17 +57,36 @@ class MainViewController: UIViewController {
 
 extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 1 + 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MenuTableViewCell
-        let bgColorView = UIView()
-       bgColorView.backgroundColor = .clear
-       cell.selectedBackgroundView = bgColorView
-
-        return cell
+        if indexPath.row == 0 {
+            let Ccell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MenuTableViewCell
+            let bgColorView = UIView()
+            bgColorView.backgroundColor = .clear
+            Ccell.selectedBackgroundView = bgColorView
+            
+            return Ccell
+        } else {
+            
+            let Pcell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! MainPostTableViewCell
+            let bgColorView = UIView()
+            bgColorView.backgroundColor = .clear
+            Pcell.selectedBackgroundView = bgColorView
+            return Pcell
+        }
+        
     }
-    
-    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.layoutIfNeeded()
+    }
 }
