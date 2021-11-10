@@ -48,6 +48,8 @@
 		57D8061F27393CCD003B5C06 /* ThirdSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSignUpViewController.swift; sourceTree = "<group>"; };
 		57E0A5682736B3A90074073E /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Regular.otf"; path = "../../../../../Downloads/Noto_Sans_KR/NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		57E0A5692736B3BD0074073E /* TwCenClassMTStd-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "TwCenClassMTStd-Regular.otf"; path = "../../../../../Downloads/tw-cen-mt-std/TwCenClassMTStd-Regular.otf"; sourceTree = "<group>"; };
+		57FB6ACF273B7FE800512787 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Medium.otf"; path = "../../../../../Downloads/Noto_Sans_KR/NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
+		57FB6AD0273B7FF200512787 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Bold.otf"; path = "../../../../../Downloads/Noto_Sans_KR/NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		D17171A966D72402C5B98E60 /* Pods-NMS-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NMS-IOS.debug.xcconfig"; path = "Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS.debug.xcconfig"; sourceTree = "<group>"; };
 		EFE518AC6A9B31F9CA8CF16C /* Pods_NMS_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NMS_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -155,8 +157,8 @@
 				570B6D2B2732A19E002AFA9E /* View */,
 				57C8501426ECEFF200D0B3DF /* AppDelegate.swift */,
 				57C8501626ECEFF200D0B3DF /* SceneDelegate.swift */,
-				57C8501F26ECEFF300D0B3DF /* LaunchScreen.storyboard */,
 				57C8501D26ECEFF300D0B3DF /* Assets.xcassets */,
+				57C8501F26ECEFF300D0B3DF /* LaunchScreen.storyboard */,
 				57C8502226ECEFF300D0B3DF /* Info.plist */,
 			);
 			name = "MNS-IOS";
@@ -176,6 +178,8 @@
 			children = (
 				57E0A5692736B3BD0074073E /* TwCenClassMTStd-Regular.otf */,
 				57E0A5682736B3A90074073E /* NotoSansKR-Regular.otf */,
+				57FB6ACF273B7FE800512787 /* NotoSansKR-Medium.otf */,
+				57FB6AD0273B7FF200512787 /* NotoSansKR-Bold.otf */,
 			);
 			path = Fomt;
 			sourceTree = "<group>";
