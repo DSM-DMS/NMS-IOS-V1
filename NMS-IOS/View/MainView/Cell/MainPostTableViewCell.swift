@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 
 class MainPostTableViewCell: UITableViewCell {
-
+    
     var userImage = UIImageView().then {
         $0.image = UIImage(named: "noImage")
         $0.layer.borderWidth = 1
@@ -42,13 +42,22 @@ class MainPostTableViewCell: UITableViewCell {
         $0.text = "오늘의 급식은 백미밥 돈육 김치찌개 부들 어묵볶음 돌자반 계란후라이 사과 단호박브로콜리스프 해산물스파게티 목살 스테이크폭찹 등등 오늘의 급식은 백미밥 돈육 김치찌개 부들 어묵볶음 돌자반 계란후라이 사과 단호박브로콜리스프 해산물스파게티 목살스테이크폭찹 등등  "
         $0.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
     }
-    
+    let lineheight = UIView().then {
+        $0.backgroundColor = .secondaryLabel
+    }
+    let linewidth = UIView().then {
+        $0.backgroundColor = .secondaryLabel
+    }
+    let linewidth2 = UIView().then {
+        $0.backgroundColor = .secondaryLabel
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.backgroundColor = .white
     }
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         adjustUITextViewHeight(arg: mainPostTextView)
         contentView.addSubview(userImage)
@@ -57,6 +66,9 @@ class MainPostTableViewCell: UITableViewCell {
         contentView.addSubview(postLocationLabel)
         contentView.addSubview(postTitleTextView)
         contentView.addSubview(mainPostTextView)
+        contentView.addSubview(linewidth)
+        contentView.addSubview(lineheight)
+        contentView.addSubview(linewidth2)
         userImage.snp.makeConstraints {
             $0.width.equalTo(36)
             $0.height.equalTo(36)
@@ -82,12 +94,30 @@ class MainPostTableViewCell: UITableViewCell {
             $0.left.equalTo(20)
         }
         mainPostTextView.snp.makeConstraints {
-            
-//            $0.height.equalTo(self.mainPostTextView.textContainer.maximumNumberOfLines * 15)
             $0.top.equalTo(self.postTitleTextView).offset(20)
             $0.left.equalTo(20)
             $0.right.equalTo(-20)
-            $0.bottom.equalTo(-20)
+            $0.bottom.equalTo(-92)
+        }
+        linewidth.snp.makeConstraints {
+            $0.width.equalTo(0.5)
+            $0.height.equalTo(32)
+            $0.centerX.equalTo(self.contentView).offset(0)
+            $0.bottom.equalTo(0)
+        }
+        linewidth2.snp.makeConstraints {
+            $0.height.equalTo(0.5)
+            $0.left.equalTo(0)
+            $0.right.equalTo(0)
+            $0.centerX.equalTo(self.contentView).offset(0)
+            $0.bottom.equalTo(-32)
+        }
+        lineheight.snp.makeConstraints {
+            $0.height.equalTo(1)
+            $0.left.equalTo(0)
+            $0.right.equalTo(0)
+            $0.centerX.equalTo(self.contentView).offset(0)
+            $0.bottom.equalTo(0)
         }
     }
     
