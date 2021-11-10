@@ -26,7 +26,7 @@ class MainViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        mainTableView.reloadData()
         mainTableView.delegate = self
         mainTableView.dataSource = self
         view.addSubview(mainTableView)
@@ -77,16 +77,5 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
             return Pcell
         }
         
-    }
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.layoutIfNeeded()
     }
 }

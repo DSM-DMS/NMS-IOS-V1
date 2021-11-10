@@ -25,6 +25,8 @@
 		57D8062027393CCD003B5C06 /* ThirdSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8061F27393CCD003B5C06 /* ThirdSignUpViewController.swift */; };
 		57E0A56C2736B7D00074073E /* TwCenClassMTStd-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57E0A5692736B3BD0074073E /* TwCenClassMTStd-Regular.otf */; };
 		57E0A56D2736B7D40074073E /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57E0A5682736B3A90074073E /* NotoSansKR-Regular.otf */; };
+		57FB6AD1273B910500512787 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57FB6ACF273B7FE800512787 /* NotoSansKR-Medium.otf */; };
+		57FB6AD2273B910A00512787 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57FB6AD0273B7FF200512787 /* NotoSansKR-Bold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -261,6 +263,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57FB6AD2273B910A00512787 /* NotoSansKR-Bold.otf in Resources */,
+				57FB6AD1273B910500512787 /* NotoSansKR-Medium.otf in Resources */,
 				57E0A56C2736B7D00074073E /* TwCenClassMTStd-Regular.otf in Resources */,
 				57C8502126ECEFF300D0B3DF /* LaunchScreen.storyboard in Resources */,
 				57C8501E26ECEFF300D0B3DF /* Assets.xcassets in Resources */,
