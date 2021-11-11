@@ -51,6 +51,19 @@ class MainPostTableViewCell: UITableViewCell {
     let linewidth2 = UIView().then {
         $0.backgroundColor = .secondaryLabel
     }
+    let likeButton = UIButton().then {
+        $0.setTitle("좋아요", for: .normal)
+        $0.setImage(UIImage(named: "빈칸 좋아요"), for: .normal)
+        $0.titleLabel?.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
+        $0.setTitleColor(.secondaryLabel, for: .normal)
+    }
+    let commentButton = UIButton().then {
+        $0.setTitle("댓글 작성", for: .normal)
+        $0.setImage(UIImage(named: "빈칸 댓글"), for: .normal)
+        $0.titleLabel?.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
+        $0.setTitleColor(.secondaryLabel, for: .normal)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.backgroundColor = .white
@@ -62,10 +75,13 @@ class MainPostTableViewCell: UITableViewCell {
         adjustUITextViewHeight(arg: mainPostTextView)
         contentView.addSubview(userImage)
         userImage.layer.cornerRadius = 18
+        print(self.contentView.frame.width)
         contentView.addSubview(useridLabel)
         contentView.addSubview(postLocationLabel)
         contentView.addSubview(postTitleTextView)
         contentView.addSubview(mainPostTextView)
+        contentView.addSubview(likeButton)
+        contentView.addSubview(commentButton)
         contentView.addSubview(linewidth)
         contentView.addSubview(lineheight)
         contentView.addSubview(linewidth2)
@@ -112,8 +128,20 @@ class MainPostTableViewCell: UITableViewCell {
             $0.centerX.equalTo(self.contentView).offset(0)
             $0.bottom.equalTo(-32)
         }
+        likeButton.snp.makeConstraints {
+            $0.height.equalTo(19)
+            $0.width.equalTo(73)
+            $0.centerX.equalTo(self.contentView).offset(-self.contentView.frame.width / 3)
+            $0.bottom.equalTo(-8)
+        }
+        commentButton.snp.makeConstraints {
+            $0.height.equalTo(19)
+            $0.width.equalTo(73)
+            $0.centerX.equalTo(self.contentView).offset(self.contentView.frame.width / 3)
+            $0.bottom.equalTo(-8)
+        }
         lineheight.snp.makeConstraints {
-            $0.height.equalTo(1)
+            $0.height.equalTo(0.5)
             $0.left.equalTo(0)
             $0.right.equalTo(0)
             $0.centerX.equalTo(self.contentView).offset(0)
