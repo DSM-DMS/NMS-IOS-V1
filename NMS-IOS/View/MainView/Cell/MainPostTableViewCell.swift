@@ -63,7 +63,17 @@ class MainPostTableViewCell: UITableViewCell {
         $0.titleLabel?.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
         $0.setTitleColor(.secondaryLabel, for: .normal)
     }
-    
+    let likeCountLabel = UIButton().then {
+        $0.setTitle(" 34", for: .normal)
+        $0.setImage(UIImage(named: "좋아요 파란색"), for: .normal)
+        $0.titleLabel?.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
+        $0.setTitleColor(.black, for: .normal)
+    }
+    let commentCountLabel = UILabel().then {
+        $0.text = "댓글 12"
+        $0.textAlignment = .right
+        $0.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.backgroundColor = .white
@@ -85,6 +95,8 @@ class MainPostTableViewCell: UITableViewCell {
         contentView.addSubview(linewidth)
         contentView.addSubview(lineheight)
         contentView.addSubview(linewidth2)
+        contentView.addSubview(likeCountLabel)
+        contentView.addSubview(commentCountLabel)
         userImage.snp.makeConstraints {
             $0.width.equalTo(36)
             $0.height.equalTo(36)
@@ -147,15 +159,27 @@ class MainPostTableViewCell: UITableViewCell {
             $0.centerX.equalTo(self.contentView).offset(0)
             $0.bottom.equalTo(0)
         }
+        likeCountLabel.snp.makeConstraints {
+            $0.width.equalTo(40)
+            $0.height.equalTo(18)
+            $0.left.equalTo(20)
+            $0.bottom.equalTo(-45)
+        }
+        commentCountLabel.snp.makeConstraints {
+            $0.width.equalTo(40)
+            $0.height.equalTo(18)
+            $0.right.equalTo(-20)
+            $0.bottom.equalTo(-45)
+        }
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     func adjustUITextViewHeight(arg : UITextView)
