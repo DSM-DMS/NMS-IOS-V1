@@ -74,6 +74,12 @@ class MainPostTableViewCell: UITableViewCell {
         $0.textAlignment = .right
         $0.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
     }
+    let PostImage = UIImageView().then {
+        $0.layer.cornerRadius = 15
+        $0.layer.borderWidth = 1
+        $0.clipsToBounds = true
+        $0.layer.borderColor = UIColor.clear.cgColor
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.backgroundColor = .white
@@ -85,6 +91,7 @@ class MainPostTableViewCell: UITableViewCell {
         adjustUITextViewHeight(arg: mainPostTextView)
         contentView.addSubview(userImage)
         userImage.layer.cornerRadius = 18
+        
         print(self.contentView.frame.width)
         contentView.addSubview(useridLabel)
         contentView.addSubview(postLocationLabel)
@@ -121,12 +128,12 @@ class MainPostTableViewCell: UITableViewCell {
             $0.top.equalTo(self.postLocationLabel).offset(25)
             $0.left.equalTo(20)
         }
-        mainPostTextView.snp.makeConstraints {
-            $0.top.equalTo(self.postTitleTextView).offset(20)
-            $0.left.equalTo(20)
-            $0.right.equalTo(-20)
-            $0.bottom.equalTo(-92)
-        }
+//        mainPostTextView.snp.makeConstraints {
+//            $0.top.equalTo(self.postTitleTextView).offset(20)
+//            $0.left.equalTo(20)
+//            $0.right.equalTo(-20)
+//            $0.bottom.equalTo(-92)
+//        }
         linewidth.snp.makeConstraints {
             $0.width.equalTo(0.5)
             $0.height.equalTo(32)
@@ -184,7 +191,6 @@ class MainPostTableViewCell: UITableViewCell {
     }
     func adjustUITextViewHeight(arg : UITextView)
     {
-        arg.translatesAutoresizingMaskIntoConstraints = true
         arg.sizeToFit()
         arg.isScrollEnabled = false
     }
