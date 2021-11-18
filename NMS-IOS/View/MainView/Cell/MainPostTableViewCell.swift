@@ -29,7 +29,7 @@ class MainPostTableViewCell: UITableViewCell {
         $0.textColor = .secondaryLabel
     }
     var postTitleTextView = UILabel().then {
-        $0.text = " 얘들아 급식 알려줄게"
+        $0.text = " 제목이 들어가요"
         $0.font = UIFont(name: "NotoSansKR-Medium", size: 12.0)
     }
     
@@ -39,7 +39,7 @@ class MainPostTableViewCell: UITableViewCell {
         $0.isEditable = false
         $0.isSelectable = false
         $0.textContainer.lineBreakMode = .byTruncatingTail
-        $0.text = "오늘의 급식은 백미밥 돈육 김치찌개 부들 어묵볶음 돌자반 계란후라이 사과 단호박브로콜리스프 해산물스파게티 목살 스테이크폭찹 등등 오늘의 급식은 백미밥 돈육 김치찌개 부들 어묵볶음 돌자반 계란후라이 사과 단호박브로콜리스프 해산물스파게티 목살스테이크폭찹 등등  "
+        $0.text = " 내용이 들어가요"
         $0.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
     }
     let lineheight = UIView().then {
@@ -67,7 +67,7 @@ class MainPostTableViewCell: UITableViewCell {
         $0.setTitle(" 34", for: .normal)
         $0.setImage(UIImage(named: "좋아요 파란색"), for: .normal)
         $0.titleLabel?.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
-        $0.setTitleColor(.black, for: .normal)
+        $0.setTitleColor(.label, for: .normal)
     }
     let commentCountLabel = UILabel().then {
         $0.text = "댓글 12"
@@ -77,6 +77,7 @@ class MainPostTableViewCell: UITableViewCell {
     let PostImage = UIImageView().then {
         $0.layer.cornerRadius = 15
         $0.layer.borderWidth = 1
+        $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.layer.borderColor = UIColor.clear.cgColor
     }
@@ -88,6 +89,7 @@ class MainPostTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
         super .init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = UIColor(named: "BackColor")
         adjustUITextViewHeight(arg: mainPostTextView)
         contentView.addSubview(userImage)
         userImage.layer.cornerRadius = 18

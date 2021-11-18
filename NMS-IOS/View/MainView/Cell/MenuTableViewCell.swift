@@ -19,9 +19,9 @@ class MenuTableViewCell: UITableViewCell {
         $0.contentHorizontalAlignment = .center
         $0.backgroundColor = .clear
         $0.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 10.0)
-        $0.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
+        $0.setTitleColor(.systemGray, for: .normal)
         $0.layer.cornerRadius = 10
-        $0.layer.borderColor = UIColor(named: "MainColor2")?.cgColor
+        $0.layer.borderColor = UIColor.systemGray.cgColor
         $0.layer.borderWidth = 1
     }
     
@@ -30,9 +30,9 @@ class MenuTableViewCell: UITableViewCell {
         $0.contentHorizontalAlignment = .center
         $0.backgroundColor = .clear
         $0.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 10.0)
-        $0.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
+        $0.setTitleColor(.systemGray, for: .normal)
         $0.layer.cornerRadius = 10
-        $0.layer.borderColor = UIColor(named: "MainColor2")?.cgColor
+        $0.layer.borderColor = UIColor.systemGray.cgColor
         $0.layer.borderWidth = 1
         
     }
@@ -43,6 +43,7 @@ class MenuTableViewCell: UITableViewCell {
     }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = UIColor(named: "BackColor")
         contentView.addSubview(gradeMenuButton)
         contentView.addSubview(schoolMenuButton)
         setUI()
@@ -81,7 +82,7 @@ class MenuTableViewCell: UITableViewCell {
             self.schoolMenuButton.layer.borderColor = UIColor(named: "MainColor2")?.cgColor
             self.schoolMenuButton.layer.borderWidth = 1
         })
-
+        
         let nonegrade = UIAction(title: "선택안함", handler: {_ in
             self.gradeMenuButton.setTitle("학년별", for: .normal)
             self.gradeMenuButton.backgroundColor = .clear
