@@ -15,43 +15,61 @@ class MainViewController: UIViewController {
     
     let store = MainPost()
     
+    let mainBackView = UIView().then {
+        $0.backgroundColor = UIColor(named: "BackColor")
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     let mainTableView = UITableView().then {
-        $0.backgroundColor = .white
+        $0.backgroundColor = UIColor(named: "BackColor")
         $0.separatorStyle = .none
         
     }
     let personButton = UIBarButtonItem().then {
         let personImage = UIImage(systemName: "person.fill")
         $0.image = personImage
-        $0.tintColor = .black
+        $0.tintColor = .label
     }
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor(named: "BackColor")
+        view.addSubview(mainBackView)
+        
+        mainBackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        mainBackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        mainBackView.trailingAnchor.constraint(equalTo: self.view.c.trailingAnchor).isActive = true
+        mainBackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
         mainTableView.reloadData()
         mainTableView.delegate = self
         mainTableView.dataSource = self
-        view.addSubview(mainTableView)
+        mainBackView.addSubview(mainTableView)
+        
         setConstent()
+        
         mainTableView.register(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
         mainTableView.register(MainPostTableViewCell.self, forCellReuseIdentifier: "cell2")
         setNavagationBar()
     }
-    
     func setNavagationBar() {
-        self.view.backgroundColor = .systemBackground
+        
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
         imageView.contentMode = .scaleAspectFit
         let image = UIImage(named: "MainLogoBlue")
         imageView.image = image
         self.navigationItem.titleView = imageView
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "BackColor")!.withAlphaComponent(0.1)
+        self.navigationController?.navigationBar.backgroundColor = UIColor(named: "BackColor")
         self.navigationItem.rightBarButtonItem = personButton
     }
     func setConstent() {
         mainTableView.snp.makeConstraints {
-            $0.top.equalTo(view.snp.top)
-            $0.bottom.equalTo(view.snp.bottom)
-            $0.left.equalTo(view.snp.left)
-            $0.right.equalTo(view.snp.right)
+            $0.top.equalTo(mainBackView.snp.top)
+            $0.bottom.equalTo(mainBackView.snp.bottom)
+            $0.left.equalTo(mainBackView.snp.left)
+            $0.right.equalTo(mainBackView.snp.right)
         }
     }
 }
@@ -84,12 +102,6 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                 
                 Pcell.addSubview(Pcell.PostImage)
                 Pcell.adjustUITextViewHeight(arg: Pcell.mainPostTextView)
-//                Pcell.mainPostTextView.snp.updateConstraints {
-//                    $0.top.equalTo(Pcell.postTitleTextView.snp.bottom).offset(20)
-//                    $0.left.equalTo(20)
-//                    $0.right.equalTo(-20)
-//                    $0.bottom.equalTo(Pcell.PostImage.snp.top).offset(-20)
-//                }
                 Pcell.PostImage.snp.makeConstraints {
                     $0.top.equalTo(Pcell.mainPostTextView.snp.bottom).offset(10)
                     $0.left.equalTo(20)
