@@ -93,14 +93,15 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
             let Pcell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! MainPostTableViewCell
             
             Pcell.reportButtonAction = { [unowned self] in
-//                Pcell.likeButton.isSelected.toggle()
-                if Pcell.likeButton.isSelected == false {
-                    print("case false:")
-                    Pcell.likeButton.isSelected = true
-//                    mainTableView.reloadRows(at: [indexPath], with: .fade)
-                    print(Pcell.likeButton.isSelected)
-//                    mainTableView.reloadRows(at: [indexPath], with: .automatic)
-                }
+                Pcell.likeButton.isSelected.toggle()
+                Pcell.likeButton.isSelected = revertBool(bool: Pcell.likeButton.isSelected)
+//                if Pcell.likeButton.isSelected == false {
+//                    print("case false:")
+//                    Pcell.likeButton.isSelected = revertBool(bool: true)
+////                    mainTableView.reloadRows(at: [indexPath], with: .fade)
+//                    print(Pcell.likeButton.isSelected)
+////                    mainTableView.reloadRows(at: [indexPath], with: .automatic)
+//                }
 //                switch Pcell.likeButton.isSelected {
 //                case true:
 //                    print("case true:")
@@ -154,5 +155,12 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
             return Pcell
         }
         
+    }
+    func revertBool(bool : Bool) -> Bool {
+        if bool == false {
+            return true
+        } else {
+            return false
+        }
     }
 }

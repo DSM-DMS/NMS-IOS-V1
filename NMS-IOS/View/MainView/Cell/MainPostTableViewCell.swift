@@ -55,7 +55,7 @@ class MainPostTableViewCell: UITableViewCell {
         $0.backgroundColor = .secondaryLabel
     }
     let likeButton = UIButton().then {
-        $0.setTitle("좋아요", for: .normal)
+        $0.setTitle(" 좋아요", for: .normal)
         $0.setImage(UIImage(named: "빈칸 좋아요"), for: .normal)
         $0.setImage(UIImage(named: "좋아요 버튼 Fill"), for: .selected)
         $0.titleLabel?.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
@@ -63,7 +63,7 @@ class MainPostTableViewCell: UITableViewCell {
         $0.isSelected = false
     }
     let commentButton = UIButton().then {
-        $0.setTitle("댓글 작성", for: .normal)
+        $0.setTitle(" 댓글 작성", for: .normal)
         $0.setImage(UIImage(named: "빈칸 댓글"), for: .normal)
         $0.titleLabel?.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
         $0.setTitleColor(.secondaryLabel, for: .normal)
@@ -136,6 +136,7 @@ class MainPostTableViewCell: UITableViewCell {
             $0.height.equalTo(18)
             $0.top.equalTo(self.postLocationLabel).offset(25)
             $0.left.equalTo(20)
+            $0.right.equalTo(-20)
         }
 //        mainPostTextView.snp.makeConstraints {
 //            $0.top.equalTo(self.postTitleTextView).offset(20)
