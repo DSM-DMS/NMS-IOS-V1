@@ -22,6 +22,7 @@
 		57C8501926ECEFF200D0B3DF /* LoginAndSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8501826ECEFF200D0B3DF /* LoginAndSignupViewController.swift */; };
 		57C8501E26ECEFF300D0B3DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C8501D26ECEFF300D0B3DF /* Assets.xcassets */; };
 		57C8502126ECEFF300D0B3DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C8501F26ECEFF300D0B3DF /* LaunchScreen.storyboard */; };
+		57D264562747F07A009002C4 /* MainMyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D264552747F07A009002C4 /* MainMyPageViewController.swift */; };
 		57D8061E2739052C003B5C06 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8061D2739052C003B5C06 /* TextField.swift */; };
 		57D8062027393CCD003B5C06 /* ThirdSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8061F27393CCD003B5C06 /* ThirdSignUpViewController.swift */; };
 		57E0A56C2736B7D00074073E /* TwCenClassMTStd-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57E0A5692736B3BD0074073E /* TwCenClassMTStd-Regular.otf */; };
@@ -48,6 +49,7 @@
 		57C8501D26ECEFF300D0B3DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57C8502026ECEFF300D0B3DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57C8502226ECEFF300D0B3DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57D264552747F07A009002C4 /* MainMyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMyPageViewController.swift; sourceTree = "<group>"; };
 		57D8061D2739052C003B5C06 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		57D8061F27393CCD003B5C06 /* ThirdSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSignUpViewController.swift; sourceTree = "<group>"; };
 		57E0A5682736B3A90074073E /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Regular.otf"; path = "../../../../../Downloads/Noto_Sans_KR/NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 		570B6D2B2732A19E002AFA9E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				57D264542747EF6E009002C4 /* MyPage */,
 				571234D3273962B200E9E9B4 /* MainView */,
 				570B6D2C2732A1AC002AFA9E /* Auth */,
 			);
@@ -168,6 +171,14 @@
 			);
 			name = "MNS-IOS";
 			path = "NMS-IOS";
+			sourceTree = "<group>";
+		};
+		57D264542747EF6E009002C4 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				57D264552747F07A009002C4 /* MainMyPageViewController.swift */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 		57D8061C273904FC003B5C06 /* Extension */ = {
@@ -329,6 +340,7 @@
 				571234D5273962F100E9E9B4 /* MainViewController.swift in Sources */,
 				57C8501926ECEFF200D0B3DF /* LoginAndSignupViewController.swift in Sources */,
 				57D8062027393CCD003B5C06 /* ThirdSignUpViewController.swift in Sources */,
+				57D264562747F07A009002C4 /* MainMyPageViewController.swift in Sources */,
 				570B6D2E2732A218002AFA9E /* MainLoginViewController.swift in Sources */,
 				57637F8E273AAE2E007B8334 /* MainPostTableViewCell.swift in Sources */,
 				57C8501526ECEFF200D0B3DF /* AppDelegate.swift in Sources */,
