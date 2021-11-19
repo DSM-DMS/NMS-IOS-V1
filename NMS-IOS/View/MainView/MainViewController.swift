@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
     
     let store = MainPost()
     
+
     let mainBackView = UIView().then {
         $0.backgroundColor = UIColor(named: "BackColor")
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -86,20 +87,44 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
             let bgColorView = UIView()
             bgColorView.backgroundColor = .clear
             Ccell.selectedBackgroundView = bgColorView
-            
             return Ccell
         } else {
             
             let Pcell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! MainPostTableViewCell
             
-            Pcell.postTitleTextView.text = "\(store.list[indexPath.row - 1].Title)"
+            Pcell.reportButtonAction = { [unowned self] in
+//                Pcell.likeButton.isSelected.toggle()
+                if Pcell.likeButton.isSelected == false {
+                    print("case false:")
+                    Pcell.likeButton.isSelected = true
+//                    mainTableView.reloadRows(at: [indexPath], with: .fade)
+                    print(Pcell.likeButton.isSelected)
+//                    mainTableView.reloadRows(at: [indexPath], with: .automatic)
+                }
+//                switch Pcell.likeButton.isSelected {
+//                case true:
+//                    print("case true:")
+//                    Pcell.likeButton.isSelected = false
+//                    print(Pcell.likeButton.isSelected)
+//                    mainTableView.reloadRows(at: [indexPath], with: .automatic)
+////                    mainTableView.beginUpdates()
+////                    mainTableView.reloadData()
+//                case false:
+//                    print("case false:")
+//                    Pcell.likeButton.isSelected = true
+////                    mainTableView.reloadRows(at: [indexPath], with: .fade)
+//                    print(Pcell.likeButton.isSelected)
+////                    mainTableView.reloadRows(at: [indexPath], with: .automatic)
+//                }
+            }
+            
+            Pcell.postTitleTextView.text = "\(store.list[indexPath.row - 1 ].Title)"
             Pcell.postLocationLabel.text = "\(store.list[indexPath.row - 1].LocationDate)"
             Pcell.mainPostTextView.text = "\(store.list[indexPath.row - 1].Body)"
             Pcell.likeCountLabel.setTitle(" \(store.list[indexPath.row - 1].LikeCount)", for: .normal)
             Pcell.commentCountLabel.text = "댓글 \(store.list[indexPath.row - 1].CommentCount)"
             if store.list[indexPath.row - 1].PostImage != nil {
                 Pcell.PostImage.image = store.list[indexPath.row - 1].PostImage
-                
                 Pcell.addSubview(Pcell.PostImage)
                 Pcell.adjustUITextViewHeight(arg: Pcell.mainPostTextView)
                 Pcell.PostImage.snp.makeConstraints {

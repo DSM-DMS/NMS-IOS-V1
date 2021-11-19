@@ -13,6 +13,9 @@ import RxCocoa
 
 class MainPostTableViewCell: UITableViewCell {
     
+    
+    var reportButtonAction : (() -> ())?
+    
     var userImage = UIImageView().then {
         $0.image = UIImage(named: "noImage")
         $0.layer.borderWidth = 1
@@ -54,8 +57,10 @@ class MainPostTableViewCell: UITableViewCell {
     let likeButton = UIButton().then {
         $0.setTitle("좋아요", for: .normal)
         $0.setImage(UIImage(named: "빈칸 좋아요"), for: .normal)
+        $0.setImage(UIImage(named: "좋아요 버튼 Fill"), for: .selected)
         $0.titleLabel?.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
         $0.setTitleColor(.secondaryLabel, for: .normal)
+        $0.isSelected = false
     }
     let commentButton = UIButton().then {
         $0.setTitle("댓글 작성", for: .normal)
@@ -69,6 +74,7 @@ class MainPostTableViewCell: UITableViewCell {
         $0.titleLabel?.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
         $0.setTitleColor(.label, for: .normal)
     }
+
     let commentCountLabel = UILabel().then {
         $0.text = "댓글 12"
         $0.textAlignment = .right
@@ -89,11 +95,11 @@ class MainPostTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
         super .init(style: style, reuseIdentifier: reuseIdentifier)
+        likeButton.addTarget(self, action: #selector(categoryClicked), for: .touchUpInside)
         contentView.backgroundColor = UIColor(named: "BackColor")
         adjustUITextViewHeight(arg: mainPostTextView)
         contentView.addSubview(userImage)
         userImage.layer.cornerRadius = 18
-        
         print(self.contentView.frame.width)
         contentView.addSubview(useridLabel)
         contentView.addSubview(postLocationLabel)
@@ -106,6 +112,7 @@ class MainPostTableViewCell: UITableViewCell {
         contentView.addSubview(linewidth2)
         contentView.addSubview(likeCountLabel)
         contentView.addSubview(commentCountLabel)
+        
         userImage.snp.makeConstraints {
             $0.width.equalTo(36)
             $0.height.equalTo(36)
@@ -186,6 +193,12 @@ class MainPostTableViewCell: UITableViewCell {
         super.init(coder: coder)
     }
     
+    
+    @objc func categoryClicked() {
+        self.likeButton.isSelected.toggle()
+        reportButtonAction?()
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
@@ -197,5 +210,3 @@ class MainPostTableViewCell: UITableViewCell {
         arg.isScrollEnabled = false
     }
 }
-
-
