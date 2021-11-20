@@ -96,7 +96,7 @@ class MainPostTableViewCell: UITableViewCell {
         
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         likeButton.addTarget(self, action: #selector(categoryClicked), for: .touchUpInside)
-        contentView.backgroundColor = UIColor(named: "BackColor")
+        contentView.backgroundColor = .systemBackground
         adjustUITextViewHeight(arg: mainPostTextView)
         contentView.addSubview(userImage)
         userImage.layer.cornerRadius = 18

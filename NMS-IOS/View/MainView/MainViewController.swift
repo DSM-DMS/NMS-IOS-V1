@@ -14,15 +14,15 @@ import RxCocoa
 class MainViewController: UIViewController {
     
     let store = MainPost()
-    
+    let bag = DisposeBag()
 
     let mainBackView = UIView().then {
-        $0.backgroundColor = UIColor(named: "BackColor")
+        $0.backgroundColor = .systemBackground
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     let mainTableView = UITableView().then {
-        $0.backgroundColor = UIColor(named: "BackColor")
+        $0.backgroundColor = .systemBackground
         $0.separatorStyle = .none
         
     }
@@ -34,8 +34,11 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        view.backgroundColor = UIColor(named: "BackColor")
+        personButton.rx.tap.bind {
+            let mainMyPageViewController = MainMyPageViewController()
+            self.navigationController?.pushViewController(mainMyPageViewController, animated: true)
+        }.disposed(by: bag)
+        view.backgroundColor = .systemBackground
         view.addSubview(mainBackView)
         
         mainBackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -61,8 +64,6 @@ class MainViewController: UIViewController {
         let image = UIImage(named: "MainLogoBlue")
         imageView.image = image
         self.navigationItem.titleView = imageView
-        self.navigationController?.navigationBar.barTintColor = UIColor(named: "BackColor")!.withAlphaComponent(0.1)
-        self.navigationController?.navigationBar.backgroundColor = UIColor(named: "BackColor")
         self.navigationItem.rightBarButtonItem = personButton
     }
     func setConstent() {
