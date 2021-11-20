@@ -137,14 +137,14 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     $0.bottom.equalTo(-90)
                 }
                 Pcell.mainPostTextView.snp.makeConstraints {
-                    $0.top.equalTo(Pcell.postTitleTextView.snp.bottom).offset(10)
+                    $0.top.equalTo(Pcell.postTitleTextView.snp.bottom).offset(5)
                     $0.left.equalTo(20)
                     $0.right.equalTo(-20)
                     $0.bottom.equalTo(-250 - 100)
                 }
             } else {
                 Pcell.mainPostTextView.snp.makeConstraints {
-                    $0.top.equalTo(Pcell.postTitleTextView.snp.bottom).offset(20)
+                    $0.top.equalTo(Pcell.postTitleTextView.snp.bottom).offset(6)
                     $0.left.equalTo(20)
                     $0.right.equalTo(-20)
                     $0.bottom.equalTo(-90)

@@ -33,7 +33,7 @@ class MainPostTableViewCell: UITableViewCell {
     }
     var postTitleTextView = UILabel().then {
         $0.text = " 제목이 들어가요"
-        $0.font = UIFont(name: "NotoSansKR-Medium", size: 12.0)
+        $0.font = UIFont(name: "NotoSansKR-Medium", size: 13.0)
     }
     
     var mainPostTextView = UITextView().then {
@@ -134,7 +134,7 @@ class MainPostTableViewCell: UITableViewCell {
         postTitleTextView.snp.makeConstraints {
             $0.width.equalTo(320)
             $0.height.equalTo(18)
-            $0.top.equalTo(self.postLocationLabel).offset(25)
+            $0.top.equalTo(self.postLocationLabel).offset(50)
             $0.left.equalTo(20)
             $0.right.equalTo(-20)
         }
@@ -170,7 +170,7 @@ class MainPostTableViewCell: UITableViewCell {
             $0.bottom.equalTo(-8)
         }
         lineheight.snp.makeConstraints {
-            $0.height.equalTo(0.5)
+            $0.height.equalTo(1.5)
             $0.left.equalTo(0)
             $0.right.equalTo(0)
             $0.centerX.equalTo(self.contentView).offset(0)
