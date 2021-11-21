@@ -125,6 +125,12 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
             Pcell.mainPostTextView.text = "\(store.list[indexPath.row - 1].Body)"
             Pcell.likeCountLabel.setTitle(" \(store.list[indexPath.row - 1].LikeCount)", for: .normal)
             Pcell.commentCountLabel.text = "댓글 \(store.list[indexPath.row - 1].CommentCount)"
+            if store.list[indexPath.row - 1].badge?.count == 1 {
+                Pcell.badgeSetting(title: "\(store.list[indexPath.row - 1].badge![0])", target: Pcell.categorybadge)
+            } else if store.list[indexPath.row - 1].badge?.count == 2 {
+                Pcell.badgeSetting(title: "\(store.list[indexPath.row - 1].badge![0])", target: Pcell.categorybadge)
+                Pcell.badgeSetting(title: "\(store.list[indexPath.row - 1].badge![1])", target: Pcell.categorybadge2)
+            }
             if store.list[indexPath.row - 1].PostImage != nil {
                 Pcell.PostImage.image = store.list[indexPath.row - 1].PostImage
                 Pcell.addSubview(Pcell.PostImage)

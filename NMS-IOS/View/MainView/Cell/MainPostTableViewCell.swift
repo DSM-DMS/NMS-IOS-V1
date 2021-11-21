@@ -31,6 +31,10 @@ class MainPostTableViewCell: UITableViewCell {
         $0.font = UIFont(name: "NotoSansKR-Medium", size: 10.0)
         $0.textColor = .secondaryLabel
     }
+    
+    let categorybadge = UIButton()
+    let categorybadge2 = UIButton()
+    
     var postTitleTextView = UILabel().then {
         $0.text = " 제목이 들어가요"
         $0.font = UIFont(name: "NotoSansKR-Medium", size: 13.0)
@@ -100,10 +104,12 @@ class MainPostTableViewCell: UITableViewCell {
         adjustUITextViewHeight(arg: mainPostTextView)
         contentView.addSubview(userImage)
         userImage.layer.cornerRadius = 18
-        print(self.contentView.frame.width)
+       
         contentView.addSubview(useridLabel)
         contentView.addSubview(postLocationLabel)
         contentView.addSubview(postTitleTextView)
+        contentView.addSubview(categorybadge)
+        contentView.addSubview(categorybadge2)
         contentView.addSubview(mainPostTextView)
         contentView.addSubview(likeButton)
         contentView.addSubview(commentButton)
@@ -131,6 +137,18 @@ class MainPostTableViewCell: UITableViewCell {
             $0.top.equalTo(40)
             $0.left.equalTo(self.userImage).offset(45)
         }
+        categorybadge.snp.makeConstraints {
+            $0.width.equalTo(45)
+            $0.height.equalTo(18)
+            $0.top.equalTo(self.postLocationLabel).offset(27)
+            $0.left.equalTo(20)
+        }
+        categorybadge2.snp.makeConstraints {
+            $0.width.equalTo(45)
+            $0.height.equalTo(18)
+            $0.top.equalTo(self.postLocationLabel).offset(27)
+            $0.left.equalTo(self.categorybadge).offset(50)
+        }
         postTitleTextView.snp.makeConstraints {
             $0.width.equalTo(320)
             $0.height.equalTo(18)
@@ -138,12 +156,6 @@ class MainPostTableViewCell: UITableViewCell {
             $0.left.equalTo(20)
             $0.right.equalTo(-20)
         }
-//        mainPostTextView.snp.makeConstraints {
-//            $0.top.equalTo(self.postTitleTextView).offset(20)
-//            $0.left.equalTo(20)
-//            $0.right.equalTo(-20)
-//            $0.bottom.equalTo(-92)
-//        }
         linewidth.snp.makeConstraints {
             $0.width.equalTo(0.5)
             $0.height.equalTo(32)
@@ -204,6 +216,14 @@ class MainPostTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+    }
+    func badgeSetting(title : String, target : UIButton) {
+        target.setTitle("\(title)", for: .normal)
+        target.backgroundColor = UIColor(named: "MainColor1")
+        target.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 8.0)
+        target.setTitleColor(UIColor.white, for: .normal)
+        target.layer.borderWidth = 0
+        target.layer.cornerRadius = 9
     }
     func adjustUITextViewHeight(arg : UITextView)
     {
