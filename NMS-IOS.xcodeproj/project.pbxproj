@@ -14,6 +14,7 @@
 		573E430A27380F2E004457AA /* SecondSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E430927380F2E004457AA /* SecondSignUpViewController.swift */; };
 		57637F8E273AAE2E007B8334 /* MainPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57637F8D273AAE2E007B8334 /* MainPostTableViewCell.swift */; };
 		5768203E27341E8B008685F7 /* FirstSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5768203D27341E8B008685F7 /* FirstSignUpViewController.swift */; };
+		577A1BDE274B0BAD00282527 /* LikePostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577A1BDD274B0BAD00282527 /* LikePostCollectionViewCell.swift */; };
 		5793749D2734E7D000D8096F /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793749C2734E7D000D8096F /* SignUpViewModel.swift */; };
 		5793749F2734E7EE00D8096F /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793749E2734E7EE00D8096F /* ViewModelType.swift */; };
 		57BBF7822745C79A0075053D /* DumeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BBF7812745C79A0075053D /* DumeData.swift */; };
@@ -39,6 +40,7 @@
 		573E430927380F2E004457AA /* SecondSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSignUpViewController.swift; sourceTree = "<group>"; };
 		57637F8D273AAE2E007B8334 /* MainPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPostTableViewCell.swift; sourceTree = "<group>"; };
 		5768203D27341E8B008685F7 /* FirstSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSignUpViewController.swift; sourceTree = "<group>"; };
+		577A1BDD274B0BAD00282527 /* LikePostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePostCollectionViewCell.swift; sourceTree = "<group>"; };
 		5793749C2734E7D000D8096F /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		5793749E2734E7EE00D8096F /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		57BBF7812745C79A0075053D /* DumeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DumeData.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				57D264552747F07A009002C4 /* MainMyPageViewController.swift */,
+				577A1BDD274B0BAD00282527 /* LikePostCollectionViewCell.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				57637F8E273AAE2E007B8334 /* MainPostTableViewCell.swift in Sources */,
 				57C8501526ECEFF200D0B3DF /* AppDelegate.swift in Sources */,
 				5768203E27341E8B008685F7 /* FirstSignUpViewController.swift in Sources */,
+				577A1BDE274B0BAD00282527 /* LikePostCollectionViewCell.swift in Sources */,
 				5793749D2734E7D000D8096F /* SignUpViewModel.swift in Sources */,
 				57D8061E2739052C003B5C06 /* TextField.swift in Sources */,
 				57C8501726ECEFF200D0B3DF /* SceneDelegate.swift in Sources */,
