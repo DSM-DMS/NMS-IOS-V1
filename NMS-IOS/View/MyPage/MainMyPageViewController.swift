@@ -10,8 +10,13 @@ import Then
 import SnapKit
 import RxSwift
 import RxCocoa
+import Alamofire
 
 class MainMyPageViewController: UIViewController {
+    
+    private var likePostCollectionView: CustomCollectionView!
+    let store = MainPost()
+    let bag = DisposeBag()
     
     let mainBackView = UIView().then {
         $0.backgroundColor = .systemBackground
@@ -27,7 +32,9 @@ class MainMyPageViewController: UIViewController {
     var userImage = UIImageView().then {
         $0.image = UIImage(named: "DumeData-2")
         $0.layer.borderWidth = 1
+        
         $0.clipsToBounds = true
+        
         $0.layer.borderColor = UIColor.clear.cgColor
     }
     var useridLabel = UILabel().then {
@@ -55,9 +62,16 @@ class MainMyPageViewController: UIViewController {
     let collectionTopLine = UIView().then {
         $0.backgroundColor = .systemGray
     }
+    
+    func setcustomCollectionView() {
+        likePostCollectionView = CustomCollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
+        likePostCollectionView.backgroundColor = .systemBackground
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavagationBar()
+        setcustomCollectionView()
+        likePostCollectionView.register(LikePostCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "cellIdentifier")
         userImage.layer.cornerRadius = 25.5
         view.addSubview(mainBackView)
         mainBackView.addSubview(userImage)
@@ -66,7 +80,10 @@ class MainMyPageViewController: UIViewController {
         mainBackView.addSubview(editButton)
         mainBackView.addSubview(likepostlabel)
         mainBackView.addSubview(collectionTopLine)
+        mainBackView.addSubview(likePostCollectionView)
         makeConstraint()
+        likePostCollectionView.delegate = self
+        likePostCollectionView.dataSource = self
     }
     func makeConstraint() {
         mainBackView.snp.makeConstraints {
@@ -111,6 +128,12 @@ class MainMyPageViewController: UIViewController {
             $0.height.equalTo(1)
             $0.top.equalTo(155)
         }
+        likePostCollectionView.snp.makeConstraints {
+            $0.leading.equalTo(30)
+            $0.trailing.equalTo(-30)
+            $0.bottom.equalTo(0)
+            $0.top.equalTo(self.collectionTopLine).offset(30)
+        }
     }
     func setNavagationBar() {
         self.view.backgroundColor = .systemBackground
@@ -125,5 +148,24 @@ class MainMyPageViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.backBarButtonItem = homeButton
     }
+    
+}
 
+extension MainMyPageViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 175, height: 175)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return store.list.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = likePostCollectionView.dequeueReusableCell(withReuseIdentifier: "cellIdentifier", for: indexPath) as! LikePostCollectionViewCell
+        cell.postImageView.image = store.list[indexPath.row].PostImage
+        cell.locationLabel.text = "\(store.list[indexPath.row].LocationDate)"
+        cell.titleLabel.text = "\(store.list[indexPath.row].Title)"
+        return cell
+    }
 }
