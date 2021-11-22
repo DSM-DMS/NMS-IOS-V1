@@ -163,7 +163,12 @@ extension MainMyPageViewController : UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = likePostCollectionView.dequeueReusableCell(withReuseIdentifier: "cellIdentifier", for: indexPath) as! LikePostCollectionViewCell
-        cell.postImageView.image = store.list[indexPath.row].PostImage
+        
+        if store.list[indexPath.row].PostImage == nil {
+            cell.postImageView.image = UIImage(named: "noImage")
+        } else {
+            cell.postImageView.image = store.list[indexPath.row].PostImage
+        }
         cell.locationLabel.text = "\(store.list[indexPath.row].LocationDate)"
         cell.titleLabel.text = "\(store.list[indexPath.row].Title)"
         return cell
