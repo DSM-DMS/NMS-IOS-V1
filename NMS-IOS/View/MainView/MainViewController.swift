@@ -15,7 +15,7 @@ class MainViewController: UIViewController {
     
     let store = MainPost()
     let bag = DisposeBag()
-
+    
     let mainBackView = UIView().then {
         $0.backgroundColor = .systemBackground
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -55,6 +55,7 @@ class MainViewController: UIViewController {
         
         mainTableView.register(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
         mainTableView.register(MainPostTableViewCell.self, forCellReuseIdentifier: "cell2")
+        mainTableView.register(MainPostHasImageTableViewCell.self, forCellReuseIdentifier: "cell3")
         setNavagationBar()
     }
     func setNavagationBar() {
@@ -91,77 +92,55 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
             return Ccell
         } else {
             
-            let Pcell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! MainPostTableViewCell
-            
-            Pcell.reportButtonAction = { [unowned self] in
-                Pcell.likeButton.isSelected.toggle()
-                Pcell.likeButton.isSelected = revertBool(bool: Pcell.likeButton.isSelected)
-//                if Pcell.likeButton.isSelected == false {
-//                    print("case false:")
-//                    Pcell.likeButton.isSelected = revertBool(bool: true)
-////                    mainTableView.reloadRows(at: [indexPath], with: .fade)
-//                    print(Pcell.likeButton.isSelected)
-////                    mainTableView.reloadRows(at: [indexPath], with: .automatic)
-//                }
-//                switch Pcell.likeButton.isSelected {
-//                case true:
-//                    print("case true:")
-//                    Pcell.likeButton.isSelected = false
-//                    print(Pcell.likeButton.isSelected)
-//                    mainTableView.reloadRows(at: [indexPath], with: .automatic)
-////                    mainTableView.beginUpdates()
-////                    mainTableView.reloadData()
-//                case false:
-//                    print("case false:")
-//                    Pcell.likeButton.isSelected = true
-////                    mainTableView.reloadRows(at: [indexPath], with: .fade)
-//                    print(Pcell.likeButton.isSelected)
-////                    mainTableView.reloadRows(at: [indexPath], with: .automatic)
-//                }
-            }
-            
-            Pcell.postTitleTextView.text = "\(store.list[indexPath.row - 1 ].Title)"
-            Pcell.postLocationLabel.text = "\(store.list[indexPath.row - 1].LocationDate)"
-            Pcell.mainPostTextView.text = "\(store.list[indexPath.row - 1].Body)"
-            Pcell.likeCountLabel.setTitle(" \(store.list[indexPath.row - 1].LikeCount)", for: .normal)
-            Pcell.commentCountLabel.text = "댓글 \(store.list[indexPath.row - 1].CommentCount)"
-            if store.list[indexPath.row - 1].badge?.count == 1 {
-                Pcell.badgeSetting(title: "\(store.list[indexPath.row - 1].badge![0])", target: Pcell.categorybadge)
-            } else if store.list[indexPath.row - 1].badge?.count == 2 {
-                Pcell.badgeSetting(title: "\(store.list[indexPath.row - 1].badge![0])", target: Pcell.categorybadge)
-                Pcell.badgeSetting(title: "\(store.list[indexPath.row - 1].badge![1])", target: Pcell.categorybadge2)
-            }
-            if store.list[indexPath.row - 1].PostImage != nil {
-                Pcell.PostImage.image = store.list[indexPath.row - 1].PostImage
-                Pcell.addSubview(Pcell.PostImage)
-                Pcell.adjustUITextViewHeight(arg: Pcell.mainPostTextView)
-                Pcell.PostImage.snp.makeConstraints {
-                    $0.top.equalTo(Pcell.mainPostTextView.snp.bottom).offset(10)
-                    $0.left.equalTo(20)
-                    $0.right.equalTo(-20)
-                    $0.height.equalTo(250)
-                    $0.bottom.equalTo(-90)
-                }
-                Pcell.mainPostTextView.snp.makeConstraints {
-                    $0.top.equalTo(Pcell.postTitleTextView.snp.bottom).offset(5)
-                    $0.left.equalTo(20)
-                    $0.right.equalTo(-20)
-                    $0.bottom.equalTo(-250 - 100)
-                }
-            } else {
-                Pcell.mainPostTextView.snp.makeConstraints {
-                    $0.top.equalTo(Pcell.postTitleTextView.snp.bottom).offset(6)
-                    $0.left.equalTo(20)
-                    $0.right.equalTo(-20)
-                    $0.bottom.equalTo(-90)
-                }
-            }
             let bgColorView = UIView()
             bgColorView.backgroundColor = .clear
-            Pcell.selectedBackgroundView = bgColorView
-            return Pcell
+            if store.list[indexPath.row - 1].PostImage == nil {
+                let Pcell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! MainPostTableViewCell
+                
+                Pcell.reportButtonAction = { [unowned self] in
+                    Pcell.likeButton.isSelected.toggle()
+                    Pcell.likeButton.isSelected = revertBool(bool: Pcell.likeButton.isSelected)
+                }
+                Pcell.postTitleTextView.text = "\(store.list[indexPath.row - 1 ].Title)"
+                Pcell.postLocationLabel.text = "\(store.list[indexPath.row - 1].LocationDate)"
+                Pcell.mainPostTextView.text = "\(store.list[indexPath.row - 1].Body)"
+                Pcell.likeCountLabel.setTitle(" \(store.list[indexPath.row - 1].LikeCount)", for: .normal)
+                Pcell.commentCountLabel.text = "댓글 \(store.list[indexPath.row - 1].CommentCount)"
+                if store.list[indexPath.row - 1].badge?.count == 1 {
+                    badgeSetting(title: "\(store.list[indexPath.row - 1].badge![0])", target: Pcell.categorybadge)
+                } else if store.list[indexPath.row - 1].badge?.count == 2 {
+                    badgeSetting(title: "\(store.list[indexPath.row - 1].badge![0])", target: Pcell.categorybadge)
+                    badgeSetting(title: "\(store.list[indexPath.row - 1].badge![1])", target: Pcell.categorybadge2)
+                }
+                Pcell.selectedBackgroundView = bgColorView
+                return Pcell
+            }
+            else {
+                
+                let Hcell = tableView.dequeueReusableCell(withIdentifier: "cell3") as! MainPostHasImageTableViewCell
+
+                Hcell.reportButtonAction = { [unowned self] in
+                    Hcell.likeButton.isSelected.toggle()
+                    Hcell.likeButton.isSelected = revertBool(bool: Hcell.likeButton.isSelected)
+                }
+                Hcell.postTitleTextView.text = "\(store.list[indexPath.row - 1 ].Title)"
+                Hcell.postLocationLabel.text = "\(store.list[indexPath.row - 1].LocationDate)"
+                Hcell.mainPostTextView.text = "\(store.list[indexPath.row - 1].Body)"
+                Hcell.likeCountLabel.setTitle(" \(store.list[indexPath.row - 1].LikeCount)", for: .normal)
+                Hcell.commentCountLabel.text = "댓글 \(store.list[indexPath.row - 1].CommentCount)"
+                if store.list[indexPath.row - 1].badge?.count == 1 {
+                    badgeSetting(title: "\(store.list[indexPath.row - 1].badge![0])", target: Hcell.categorybadge)
+                } else if store.list[indexPath.row - 1].badge?.count == 2 {
+                    badgeSetting(title: "\(store.list[indexPath.row - 1].badge![0])", target: Hcell.categorybadge)
+                    badgeSetting(title: "\(store.list[indexPath.row - 1].badge![1])", target: Hcell.categorybadge2)
+                }
+
+                Hcell.PostImage.image = store.list[indexPath.row - 1].PostImage
+                Hcell.selectedBackgroundView = bgColorView
+                return Hcell
+
+            }
         }
-        
     }
     func revertBool(bool : Bool) -> Bool {
         if bool == false {
