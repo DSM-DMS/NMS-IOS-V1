@@ -91,6 +91,10 @@ class MainMyPageViewController: UIViewController {
         likePostCollectionView.delegate = self
         likePostCollectionView.dataSource = self
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setNavagationBar()
+    }
     func makeConstraint() {
         mainBackView.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
@@ -149,6 +153,7 @@ class MainMyPageViewController: UIViewController {
         imageView.image = image
         self.navigationItem.titleView = imageView
         self.navigationController?.navigationBar.tintColor = .label
+        self.navigationController?.navigationBar.layoutIfNeeded()
         self.navigationController?.navigationBar.topItem?.title = ""
     }
     

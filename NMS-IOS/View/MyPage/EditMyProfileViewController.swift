@@ -36,7 +36,8 @@ class EditMyProfileViewController: UIViewController {
     func makeNavigationBar() {
         self.view.backgroundColor = .systemBackground
         self.navigationController?.navigationBar.topItem?.title = "이전"
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.layoutIfNeeded()
         self.navigationItem.title =  "프로필 수정"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
