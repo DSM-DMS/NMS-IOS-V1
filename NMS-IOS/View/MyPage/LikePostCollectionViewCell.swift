@@ -68,7 +68,7 @@ class LikePostCollectionViewCell: UICollectionViewCell {
             $0.top.equalTo(0)
             $0.leading.equalTo(0)
             $0.trailing.equalTo(0)
-            $0.height.equalTo(110)
+            $0.bottom.equalTo(-50)
         }
         titleLabel.snp.makeConstraints {
             $0.height.equalTo(30)

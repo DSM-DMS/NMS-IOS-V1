@@ -66,6 +66,8 @@ class MainMyPageViewController: UIViewController {
     func setcustomCollectionView() {
         likePostCollectionView = CustomCollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
         likePostCollectionView.backgroundColor = .systemBackground
+        likePostCollectionView.showsHorizontalScrollIndicator = false
+        likePostCollectionView.showsVerticalScrollIndicator = false
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,8 +131,8 @@ class MainMyPageViewController: UIViewController {
             $0.top.equalTo(155)
         }
         likePostCollectionView.snp.makeConstraints {
-            $0.leading.equalTo(30)
-            $0.trailing.equalTo(-30)
+            $0.leading.equalTo(20)
+            $0.trailing.equalTo(-20)
             $0.bottom.equalTo(0)
             $0.top.equalTo(self.collectionTopLine).offset(30)
         }
@@ -154,7 +156,13 @@ class MainMyPageViewController: UIViewController {
 extension MainMyPageViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 175, height: 175)
+        let noOfCellsInRow = 2
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        let totalSpace = flowLayout.sectionInset.left
+        + flowLayout.sectionInset.right
+        + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
+        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
+        return CGSize(width: size, height: size)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
