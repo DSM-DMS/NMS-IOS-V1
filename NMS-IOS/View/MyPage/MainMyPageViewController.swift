@@ -73,6 +73,10 @@ class MainMyPageViewController: UIViewController {
         super.viewDidLoad()
         setNavagationBar()
         setcustomCollectionView()
+        editButton.rx.tap.bind {
+            let editMyProfileViewController = EditMyProfileViewController()
+            self.navigationController?.pushViewController(editMyProfileViewController, animated: true)
+        }.disposed(by: bag)
         likePostCollectionView.register(LikePostCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "cellIdentifier")
         userImage.layer.cornerRadius = 25.5
         view.addSubview(mainBackView)
@@ -144,11 +148,8 @@ class MainMyPageViewController: UIViewController {
         let image = UIImage(named: "MainLogoBlue")
         imageView.image = image
         self.navigationItem.titleView = imageView
-        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "baseline_home")
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "baseline_home")
         self.navigationController?.navigationBar.tintColor = .label
         self.navigationController?.navigationBar.topItem?.title = ""
-        self.navigationItem.backBarButtonItem = homeButton
     }
     
 }

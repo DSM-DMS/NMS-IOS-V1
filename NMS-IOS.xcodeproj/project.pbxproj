@@ -188,8 +188,8 @@
 		57D264542747EF6E009002C4 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				57D264552747F07A009002C4 /* MainMyPageViewController.swift */,
 				577A1BDD274B0BAD00282527 /* LikePostCollectionViewCell.swift */,
+				57D264552747F07A009002C4 /* MainMyPageViewController.swift */,
 				5724F80C274CD49A00F3A93A /* EditMyProfileViewController.swift */,
 				577A1BDF274B0F0200282527 /* CustomCollectionView.swift */,
 			);
