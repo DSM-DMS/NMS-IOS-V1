@@ -85,8 +85,8 @@
 			children = (
 				570077B4273A7C4500608A93 /* MenuTableViewCell.swift */,
 				57637F8D273AAE2E007B8334 /* MainPostTableViewCell.swift */,
-				577A1BE1274B7AB400282527 /* MainPostCrellFunc.swift */,
 				577A1BE3274BB51A00282527 /* MainPostHasImageTableViewCell.swift */,
+				577A1BE1274B7AB400282527 /* MainPostCrellFunc.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";

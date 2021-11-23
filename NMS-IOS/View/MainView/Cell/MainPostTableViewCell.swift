@@ -78,22 +78,14 @@ class MainPostTableViewCell: UITableViewCell {
         $0.titleLabel?.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
         $0.setTitleColor(.label, for: .normal)
     }
-
+    
     let commentCountLabel = UILabel().then {
         $0.text = "댓글 12"
         $0.textAlignment = .right
         $0.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
     }
-    let PostImage = UIImageView().then {
-        $0.layer.cornerRadius = 15
-        $0.layer.borderWidth = 1
-        $0.contentMode = .scaleAspectFill
-        $0.clipsToBounds = true
-        $0.layer.borderColor = UIColor.clear.cgColor
-    }
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.backgroundColor = .white
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -102,9 +94,10 @@ class MainPostTableViewCell: UITableViewCell {
         likeButton.addTarget(self, action: #selector(categoryClicked), for: .touchUpInside)
         contentView.backgroundColor = .systemBackground
         adjustUITextViewHeight(arg: mainPostTextView)
+//        MakeMainPost(view: contentView, cellNum: 0)
         contentView.addSubview(userImage)
         userImage.layer.cornerRadius = 18
-       
+        
         contentView.addSubview(useridLabel)
         contentView.addSubview(postLocationLabel)
         contentView.addSubview(postTitleTextView)
@@ -118,7 +111,7 @@ class MainPostTableViewCell: UITableViewCell {
         contentView.addSubview(linewidth2)
         contentView.addSubview(likeCountLabel)
         contentView.addSubview(commentCountLabel)
-        
+
         userImage.snp.makeConstraints {
             $0.width.equalTo(36)
             $0.height.equalTo(36)
@@ -150,11 +143,17 @@ class MainPostTableViewCell: UITableViewCell {
             $0.left.equalTo(self.categorybadge).offset(50)
         }
         postTitleTextView.snp.makeConstraints {
-            $0.width.equalTo(320)
+//            $0.width.equalTo(320)
             $0.height.equalTo(18)
             $0.top.equalTo(self.postLocationLabel).offset(50)
             $0.left.equalTo(20)
             $0.right.equalTo(-20)
+        }
+        mainPostTextView.snp.makeConstraints {
+            $0.top.equalTo(105)
+            $0.left.equalTo(20)
+            $0.right.equalTo(-20)
+            $0.bottom.equalTo(-90)
         }
         linewidth.snp.makeConstraints {
             $0.width.equalTo(0.5)
@@ -216,18 +215,5 @@ class MainPostTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
-    }
-    func badgeSetting(title : String, target : UIButton) {
-        target.setTitle("\(title)", for: .normal)
-        target.backgroundColor = UIColor(named: "MainColor1")
-        target.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 8.0)
-        target.setTitleColor(UIColor.white, for: .normal)
-        target.layer.borderWidth = 0
-        target.layer.cornerRadius = 9
-    }
-    func adjustUITextViewHeight(arg : UITextView)
-    {
-        arg.sizeToFit()
-        arg.isScrollEnabled = false
     }
 }
