@@ -11,6 +11,7 @@
 		570077B5273A7C4500608A93 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570077B4273A7C4500608A93 /* MenuTableViewCell.swift */; };
 		570B6D2E2732A218002AFA9E /* MainLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570B6D2D2732A218002AFA9E /* MainLoginViewController.swift */; };
 		571234D5273962F100E9E9B4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571234D4273962F100E9E9B4 /* MainViewController.swift */; };
+		5724F80D274CD49A00F3A93A /* EditMyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5724F80C274CD49A00F3A93A /* EditMyProfileViewController.swift */; };
 		573E430A27380F2E004457AA /* SecondSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E430927380F2E004457AA /* SecondSignUpViewController.swift */; };
 		57637F8E273AAE2E007B8334 /* MainPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57637F8D273AAE2E007B8334 /* MainPostTableViewCell.swift */; };
 		5768203E27341E8B008685F7 /* FirstSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5768203D27341E8B008685F7 /* FirstSignUpViewController.swift */; };
@@ -40,6 +41,7 @@
 		570077B4273A7C4500608A93 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		570B6D2D2732A218002AFA9E /* MainLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLoginViewController.swift; sourceTree = "<group>"; };
 		571234D4273962F100E9E9B4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		5724F80C274CD49A00F3A93A /* EditMyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyProfileViewController.swift; sourceTree = "<group>"; };
 		573E430927380F2E004457AA /* SecondSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSignUpViewController.swift; sourceTree = "<group>"; };
 		57637F8D273AAE2E007B8334 /* MainPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPostTableViewCell.swift; sourceTree = "<group>"; };
 		5768203D27341E8B008685F7 /* FirstSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSignUpViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			children = (
 				57D264552747F07A009002C4 /* MainMyPageViewController.swift */,
 				577A1BDD274B0BAD00282527 /* LikePostCollectionViewCell.swift */,
+				5724F80C274CD49A00F3A93A /* EditMyProfileViewController.swift */,
 				577A1BDF274B0F0200282527 /* CustomCollectionView.swift */,
 			);
 			path = MyPage;
@@ -351,6 +354,7 @@
 				577A1BE2274B7AB400282527 /* MainPostCrellFunc.swift in Sources */,
 				57BBF7822745C79A0075053D /* DumeData.swift in Sources */,
 				573E430A27380F2E004457AA /* SecondSignUpViewController.swift in Sources */,
+				5724F80D274CD49A00F3A93A /* EditMyProfileViewController.swift in Sources */,
 				571234D5273962F100E9E9B4 /* MainViewController.swift in Sources */,
 				57C8501926ECEFF200D0B3DF /* LoginAndSignupViewController.swift in Sources */,
 				577A1BE4274BB51A00282527 /* MainPostHasImageTableViewCell.swift in Sources */,
