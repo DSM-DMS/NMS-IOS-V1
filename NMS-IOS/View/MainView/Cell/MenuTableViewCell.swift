@@ -15,7 +15,9 @@ class MenuTableViewCell: UITableViewCell {
     
     let disposebag = DisposeBag()
     let gradeMenuButton = UIButton().then {
-        $0.setTitle("학년별", for: .normal)
+        $0.setTitle("학년별 ", for: .normal)
+        $0.setImage(#imageLiteral(resourceName: "Icon ionic-ios-arrow-down"), for: .normal)
+        $0.semanticContentAttribute = .forceRightToLeft
         $0.contentHorizontalAlignment = .center
         $0.backgroundColor = .clear
         $0.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 10.0)
@@ -26,7 +28,9 @@ class MenuTableViewCell: UITableViewCell {
     }
     
     let schoolMenuButton = UIButton().then {
-        $0.setTitle("카테고리", for: .normal)
+        $0.setTitle("카테고리 ", for: .normal)
+        $0.setImage(#imageLiteral(resourceName: "Icon ionic-ios-arrow-down"), for: .normal)
+        $0.semanticContentAttribute = .forceRightToLeft
         $0.contentHorizontalAlignment = .center
         $0.backgroundColor = .clear
         $0.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 10.0)
@@ -70,13 +74,14 @@ class MenuTableViewCell: UITableViewCell {
     func setUI() {
         
         let inSchool = UIAction(title: "교내", handler: {_ in
-            self.InSchoolChangeTitle(title: "교내")
+            self.InSchoolChangeTitle(title: "교내 ")
         })
         let outSchool = UIAction(title: "교내", handler: {_ in
-            self.InSchoolChangeTitle(title: "교외")
+            self.InSchoolChangeTitle(title: "교외 ")
         })
         let noneinschool = UIAction(title: "선택안함", handler: {_ in
             self.schoolMenuButton.setTitle("카테고리", for: .normal)
+            self.schoolMenuButton.setImage(#imageLiteral(resourceName: "Icon ionic-ios-arrow-down"), for: .normal)
             self.schoolMenuButton.backgroundColor = .clear
             self.schoolMenuButton.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
             self.schoolMenuButton.layer.borderColor = UIColor(named: "MainColor2")?.cgColor
@@ -85,19 +90,20 @@ class MenuTableViewCell: UITableViewCell {
         
         let nonegrade = UIAction(title: "선택안함", handler: {_ in
             self.gradeMenuButton.setTitle("학년별", for: .normal)
+            self.gradeMenuButton.setImage(#imageLiteral(resourceName: "Icon ionic-ios-arrow-down"), for: .normal)
             self.gradeMenuButton.backgroundColor = .clear
             self.gradeMenuButton.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
             self.gradeMenuButton.layer.borderColor = UIColor(named: "MainColor2")?.cgColor
             self.gradeMenuButton.layer.borderWidth = 1
         })
         let grade1  = UIAction(title: "1학년", handler: {_ in
-            self.GradeChangTitle(title: "1학년")
+            self.GradeChangTitle(title: "1학년 ")
         })
         let grade2 = UIAction(title: "2학년", handler: {_ in
-            self.GradeChangTitle(title: "2학년")
+            self.GradeChangTitle(title: "2학년 ")
         })
         let grade3 = UIAction(title: "3학년", handler: {_ in
-            self.GradeChangTitle(title: "3학년")
+            self.GradeChangTitle(title: "3학년 ")
         })
         schoolMenuButton.showsMenuAsPrimaryAction = true
         schoolMenuButton.menu = UIMenu( options: .displayInline, children: [noneinschool, inSchool, outSchool])
@@ -107,6 +113,8 @@ class MenuTableViewCell: UITableViewCell {
     func GradeChangTitle (title : String) {
         self.gradeMenuButton.setTitle(title, for: .normal)
         self.gradeMenuButton.backgroundColor = UIColor(named: "MainColor1")
+        self.gradeMenuButton.setImage(#imageLiteral(resourceName: "cancleXICon"), for: .normal)
+        self.gradeMenuButton.semanticContentAttribute = .forceRightToLeft
         self.gradeMenuButton.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 10.0)
         self.gradeMenuButton.setTitleColor(UIColor.white, for: .normal)
         self.gradeMenuButton.layer.borderWidth = 0
@@ -114,6 +122,8 @@ class MenuTableViewCell: UITableViewCell {
     func InSchoolChangeTitle(title : String) {
         self.schoolMenuButton.setTitle(title, for: .normal)
         self.schoolMenuButton.backgroundColor = UIColor(named: "MainColor1")
+        self.schoolMenuButton.setImage(#imageLiteral(resourceName: "cancleXICon"), for: .normal)
+        self.schoolMenuButton.semanticContentAttribute = .forceRightToLeft
         self.schoolMenuButton.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 10.0)
         self.schoolMenuButton.setTitleColor(UIColor.white, for: .normal)
         self.schoolMenuButton.layer.borderWidth = 0
