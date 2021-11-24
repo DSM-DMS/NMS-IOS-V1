@@ -74,66 +74,47 @@ class MenuTableViewCell: UITableViewCell {
     func setUI() {
         
         let inSchool = UIAction(title: "교내", handler: {_ in
-            self.InSchoolChangeTitle(title: "교내 ")
+            self.changeTitle(title: "교내 ", target: self.schoolMenuButton)
         })
         let outSchool = UIAction(title: "교내", handler: {_ in
-            self.InSchoolChangeTitle(title: "교외 ")
+            self.changeTitle(title: "교외 ", target: self.schoolMenuButton)
         })
         let noneinschool = UIAction(title: "선택안함", handler: {_ in
-            self.schoolMenuButton.setTitle("카테고리", for: .normal)
-            self.schoolMenuButton.setImage(#imageLiteral(resourceName: "Icon ionic-ios-arrow-down"), for: .normal)
-            self.schoolMenuButton.backgroundColor = .clear
-            self.schoolMenuButton.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
-            self.schoolMenuButton.layer.borderColor = UIColor(named: "MainColor2")?.cgColor
-            self.schoolMenuButton.layer.borderWidth = 1
+            self.noneSelectTitle(title: "카테고리 ", target: self.schoolMenuButton)
         })
-        
         let nonegrade = UIAction(title: "선택안함", handler: {_ in
-            self.gradeMenuButton.setTitle("학년별", for: .normal)
-            self.gradeMenuButton.setImage(#imageLiteral(resourceName: "Icon ionic-ios-arrow-down"), for: .normal)
-            self.gradeMenuButton.backgroundColor = .clear
-            self.gradeMenuButton.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
-            self.gradeMenuButton.layer.borderColor = UIColor(named: "MainColor2")?.cgColor
-            self.gradeMenuButton.layer.borderWidth = 1
+            self.noneSelectTitle(title: "학년별 ", target: self.gradeMenuButton)
         })
         let grade1  = UIAction(title: "1학년", handler: {_ in
-            self.GradeChangTitle(title: "1학년 ")
+            self.changeTitle(title: "1학년 ", target: self.gradeMenuButton)
         })
         let grade2 = UIAction(title: "2학년", handler: {_ in
-            self.GradeChangTitle(title: "2학년 ")
+            self.changeTitle(title: "2학년 ", target: self.gradeMenuButton)
         })
         let grade3 = UIAction(title: "3학년", handler: {_ in
-            self.GradeChangTitle(title: "3학년 ")
+            self.changeTitle(title: "3학년 ", target: self.gradeMenuButton)
         })
         schoolMenuButton.showsMenuAsPrimaryAction = true
         schoolMenuButton.menu = UIMenu( options: .displayInline, children: [noneinschool, inSchool, outSchool])
         gradeMenuButton.showsMenuAsPrimaryAction = true
         gradeMenuButton.menu = UIMenu(options: .displayInline, children: [nonegrade, grade1, grade2, grade3])
     }
-    func GradeChangTitle (title : String) {
-        self.gradeMenuButton.setTitle(title, for: .normal)
-        self.gradeMenuButton.backgroundColor = UIColor(named: "MainColor1")
-        self.gradeMenuButton.setImage(#imageLiteral(resourceName: "cancleXICon"), for: .normal)
-        self.gradeMenuButton.semanticContentAttribute = .forceRightToLeft
-        self.gradeMenuButton.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 10.0)
-        self.gradeMenuButton.setTitleColor(UIColor.white, for: .normal)
-        self.gradeMenuButton.layer.borderWidth = 0
+    func noneSelectTitle(title : String, target : UIButton) {
+        target.setTitle(title, for: .normal)
+        target.setImage(#imageLiteral(resourceName: "Icon ionic-ios-arrow-down"), for: .normal)
+        target.backgroundColor = .clear
+        target.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
+        target.layer.borderColor = UIColor(named: "MainColor2")?.cgColor
+        target.layer.borderWidth = 1
     }
-    func InSchoolChangeTitle(title : String) {
-        self.schoolMenuButton.setTitle(title, for: .normal)
-        self.schoolMenuButton.backgroundColor = UIColor(named: "MainColor1")
-        self.schoolMenuButton.setImage(#imageLiteral(resourceName: "cancleXICon"), for: .normal)
-        self.schoolMenuButton.semanticContentAttribute = .forceRightToLeft
-        self.schoolMenuButton.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 10.0)
-        self.schoolMenuButton.setTitleColor(UIColor.white, for: .normal)
-        self.schoolMenuButton.layer.borderWidth = 0
+    func changeTitle(title : String, target : UIButton) {
+        target.setTitle(title, for: .normal)
+        target.backgroundColor = UIColor(named: "MainColor1")
+        target.setImage(#imageLiteral(resourceName: "cancleXICon"), for: .normal)
+        target.semanticContentAttribute = .forceRightToLeft
+        target.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 10.0)
+        target.setTitleColor(UIColor.white, for: .normal)
+        target.layer.borderWidth = 0
+        
     }
 }
-
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
-
-
