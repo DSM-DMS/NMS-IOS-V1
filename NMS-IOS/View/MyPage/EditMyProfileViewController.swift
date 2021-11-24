@@ -22,16 +22,39 @@ class EditMyProfileViewController: UIViewController {
     let backNavigationBarView  = UIView().then {
         $0.backgroundColor = UIColor(named: "MainColor1")
     }
+    let warningLabel = UILabel().then {
+        $0.text = "* 닉네임과 프로필 사진만 변경이 가능합니다"
+        $0.textAlignment = .center
+        $0.font = UIFont(name: "NotoSansKR-Medium", size: 14.0)
+    }
+    var userImage = UIImageView().then {
+        $0.image = UIImage(named: "DumeData-5")
+        $0.layer.borderWidth = 1
+        $0.layer.cornerRadius = 50
+        $0.clipsToBounds = true
+        $0.layer.borderColor = UIColor.clear.cgColor
+    }
+    let editButton = UIButton().then {
+        $0.backgroundColor = .systemBackground
+        $0.setImage(UIImage(named: "gray awesome-pen"), for: .normal)
+        $0.tintColor = UIColor(named: "BackColor")
+        $0.layer.cornerRadius = 12.5
+        $0.layer.borderColor = UIColor(named: "BackColor")?.cgColor
+        $0.layer.borderWidth = 2
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         makeNavigationBar()
         view.addSubview(mainBackView)
         view.addSubview(backNavigationBarView)
+        mainBackView.addSubview(warningLabel)
+        mainBackView.addSubview(userImage)
+        mainBackView.addSubview(editButton)
         makeConstraint()
         // Do any additional setup after loading the view.
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
-            return .darkContent
+        return .default
         }
     func makeNavigationBar() {
         self.view.backgroundColor = .systemBackground
@@ -53,6 +76,24 @@ class EditMyProfileViewController: UIViewController {
             $0.leading.equalTo(0)
             $0.trailing.equalTo(0)
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+        }
+        warningLabel.snp.makeConstraints {
+            $0.top.equalTo(20)
+            $0.trailing.equalTo(30)
+            $0.leading.equalTo(-30)
+            $0.height.equalTo(20)
+        }
+        userImage.snp.makeConstraints {
+            $0.width.equalTo(100)
+            $0.height.equalTo(100)
+            $0.top.equalTo(self.warningLabel).offset(40)
+            $0.centerX.equalTo(self.view).offset(0)
+        }
+        editButton.snp.makeConstraints {
+            $0.width.equalTo(25)
+            $0.height.equalTo(25)
+            $0.right.equalTo(self.userImage).offset(0)
+            $0.bottom.equalTo(self.userImage).offset(0)
         }
     }
 }

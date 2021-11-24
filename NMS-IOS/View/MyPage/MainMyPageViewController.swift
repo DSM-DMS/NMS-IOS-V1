@@ -49,8 +49,6 @@ class MainMyPageViewController: UIViewController {
     let editButton = UIButton().then {
         $0.backgroundColor = .clear
         $0.setImage(UIImage(named: "awesome-pen"), for: .normal)
-        $0.titleLabel?.font = UIFont(name: "TwCenClassMTStd-Regular", size: 20.0)
-        $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 14
         $0.layer.borderColor = UIColor(named: "MainColor1")?.cgColor
         $0.layer.borderWidth = 2
