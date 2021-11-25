@@ -54,25 +54,6 @@ class FirstSignUpViewController: UIViewController {
         $0.backgroundColor = UIColor.clear
     }
     
-    func setUI() {
-        let grade1  = UIAction(title: "1학년", handler: {_ in
-            self.gradeMenuButton.setTitle(" 1학년", for: .normal)
-            print("1학년 공통과정")
-        })
-        let grade2SW = UIAction(title: "2학년", handler: {_ in
-            self.gradeMenuButton.setTitle(" 2학년", for: .normal)
-            print("2학년 소프트웨어 개발과")
-        })
-        let grade3 = UIAction(title: "3학년", handler: {_ in
-            self.gradeMenuButton.setTitle(" 3학년", for: .normal)
-            print("3학년")
-        })
-        gradeMenuButton.setTitle(" 학년을 선택해주세요", for: .normal)
-        gradeMenuButton.contentHorizontalAlignment = .left
-        gradeMenuButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        gradeMenuButton.setTitleColor(UIColor(named: "MainColor2"), for: .normal)
-        gradeMenuButton.menu = UIMenu(title: "학년을 선택해 주세요", options: .displayInline, children: [grade1, grade2SW, grade3])
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
