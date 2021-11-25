@@ -47,25 +47,38 @@ class EditMyProfileViewController: UIViewController {
         $0.tintColor = UIColor(named: "MainColor1")
         $0.backgroundColor = UIColor.clear
     }
+    let nextButton = UIButton().then {
+        $0.backgroundColor = UIColor(named: "MainBackColor1")
+        $0.setTitle("다음", for: .normal)
+        $0.setTitleColor(.white, for: .normal)
+        $0.layer.cornerRadius = 25.5
+        $0.layer.borderColor = UIColor.white.cgColor
+        $0.layer.borderWidth = 2
+    }
     override func viewDidLayoutSubviews() {
         nickNameTextField.setUnderLine(color: UIColor(named: "MainColor2")!)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         makeNavigationBar()
+        
+        nickNameTextField.delegate = self
         nickNameTextField.text = "김대희"
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         view.addSubview(mainBackView)
         view.addSubview(backNavigationBarView)
         mainBackView.addSubview(warningLabel)
         mainBackView.addSubview(userImage)
         mainBackView.addSubview(editButton)
+        mainBackView.addSubview(nextButton)
         mainBackView.addSubview(nickNameTextField)
         makeConstraint()
         // Do any additional setup after loading the view.
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
-        }
+    }
     func makeNavigationBar() {
         self.view.backgroundColor = .systemBackground
         self.navigationController?.navigationBar.topItem?.title = "이전"
@@ -111,5 +124,47 @@ class EditMyProfileViewController: UIViewController {
             $0.top.equalTo(200)
             $0.centerX.equalTo(self.view).offset(0)
         }
+        nextButton.snp.makeConstraints {
+            $0.width.equalTo(356)
+            $0.height.equalTo(51)
+            $0.bottom.equalTo(-30)
+            $0.centerX.equalTo(self.view).offset(0)
+        }
     }
+}
+extension EditMyProfileViewController : UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.setUnderLine(color: UIColor(named: "MainColor1")!)
+        return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.setUnderLine(color: UIColor(named: "MainColor2")!)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.view.endEditing(true)
+    }
+    @objc func keyboardWillShow(noti: Notification) {
+        let notinfo = noti.userInfo!
+        let keyboardFrame = notinfo[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
+        let heiget = -(keyboardFrame.size.height - self.view.safeAreaInsets.bottom + 50)
+        let animateDuration = notinfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
+        UIView.animate(withDuration: animateDuration) {
+            self.nextButton.snp.updateConstraints() {
+                $0.bottom.equalTo(heiget)
+            }
+            self.view.layoutIfNeeded()
+        }
+    }
+    @objc func keyboardWillHide(noti: Notification) {
+        let notinfo = noti.userInfo!
+        let animateDuration = notinfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
+        UIView.animate(withDuration: animateDuration) {
+            self.nextButton.snp.updateConstraints() {
+                $0.bottom.equalTo(-50)
+            }
+            self.view.layoutIfNeeded()
+        }
+    }
+    
 }
