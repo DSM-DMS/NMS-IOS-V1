@@ -42,14 +42,24 @@ class EditMyProfileViewController: UIViewController {
         $0.layer.borderColor = UIColor(named: "BackColor")?.cgColor
         $0.layer.borderWidth = 2
     }
+    let nickNameTextField = UITextField().then {
+        $0.textAlignment = .center
+        $0.tintColor = UIColor(named: "MainColor1")
+        $0.backgroundColor = UIColor.clear
+    }
+    override func viewDidLayoutSubviews() {
+        nickNameTextField.setUnderLine(color: UIColor(named: "MainColor2")!)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         makeNavigationBar()
+        nickNameTextField.text = "김대희"
         view.addSubview(mainBackView)
         view.addSubview(backNavigationBarView)
         mainBackView.addSubview(warningLabel)
         mainBackView.addSubview(userImage)
         mainBackView.addSubview(editButton)
+        mainBackView.addSubview(nickNameTextField)
         makeConstraint()
         // Do any additional setup after loading the view.
     }
@@ -94,6 +104,12 @@ class EditMyProfileViewController: UIViewController {
             $0.height.equalTo(25)
             $0.right.equalTo(self.userImage).offset(0)
             $0.bottom.equalTo(self.userImage).offset(0)
+        }
+        nickNameTextField.snp.makeConstraints {
+            $0.width.equalTo(300)
+            $0.height.equalTo(35)
+            $0.top.equalTo(200)
+            $0.centerX.equalTo(self.view).offset(0)
         }
     }
 }

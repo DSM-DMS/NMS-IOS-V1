@@ -59,7 +59,6 @@ class FirstSignUpViewController: UIViewController {
         view.backgroundColor = UIColor.white
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        setUI()
         setMain()
         nameTextField.delegate = self
         setSearchController()
