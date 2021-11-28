@@ -19,6 +19,7 @@
 		577A1BE0274B0F0200282527 /* CustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577A1BDF274B0F0200282527 /* CustomCollectionView.swift */; };
 		577A1BE2274B7AB400282527 /* MainPostCrellFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577A1BE1274B7AB400282527 /* MainPostCrellFunc.swift */; };
 		577A1BE4274BB51A00282527 /* MainPostHasImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577A1BE3274BB51A00282527 /* MainPostHasImageTableViewCell.swift */; };
+		577E39EF2753AEB100FBAD3A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577E39EE2753AEB100FBAD3A /* AudioToolbox.framework */; };
 		5793749D2734E7D000D8096F /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793749C2734E7D000D8096F /* SignUpViewModel.swift */; };
 		5793749F2734E7EE00D8096F /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793749E2734E7EE00D8096F /* ViewModelType.swift */; };
 		57BBF7822745C79A0075053D /* DumeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BBF7812745C79A0075053D /* DumeData.swift */; };
@@ -49,6 +50,7 @@
 		577A1BDF274B0F0200282527 /* CustomCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionView.swift; sourceTree = "<group>"; };
 		577A1BE1274B7AB400282527 /* MainPostCrellFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPostCrellFunc.swift; sourceTree = "<group>"; };
 		577A1BE3274BB51A00282527 /* MainPostHasImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPostHasImageTableViewCell.swift; sourceTree = "<group>"; };
+		577E39EE2753AEB100FBAD3A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5793749C2734E7D000D8096F /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		5793749E2734E7EE00D8096F /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		57BBF7812745C79A0075053D /* DumeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DumeData.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F6AF070A433EBCBE50355F8 /* Pods_NMS_IOS.framework in Frameworks */,
+				577E39EF2753AEB100FBAD3A /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +230,7 @@
 		CE96431287950D078D6D104E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				577E39EE2753AEB100FBAD3A /* AudioToolbox.framework */,
 				EFE518AC6A9B31F9CA8CF16C /* Pods_NMS_IOS.framework */,
 			);
 			name = Frameworks;
