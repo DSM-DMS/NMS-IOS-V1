@@ -148,16 +148,16 @@ class MainPostHasImageTableViewCell: UITableViewCell {
         }
         postTitleTextView.snp.makeConstraints {
             //            $0.width.equalTo(320)
-            $0.height.equalTo(18)
+            $0.height.equalTo(20)
             $0.top.equalTo(self.postLocationLabel).offset(50)
             $0.left.equalTo(20)
             $0.right.equalTo(-20)
         }
         mainPostTextView.snp.makeConstraints {
-            $0.top.equalTo(105)
+            $0.top.equalTo(110)
             $0.left.equalTo(20)
             $0.right.equalTo(-20)
-            $0.bottom.equalTo(-90)
+            $0.bottom.equalTo(-85)
         }
         linewidth.snp.makeConstraints {
             $0.width.equalTo(0.5)

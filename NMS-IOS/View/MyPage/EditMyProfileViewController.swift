@@ -39,7 +39,7 @@ class EditMyProfileViewController: UIViewController {
         $0.setImage(UIImage(named: "gray awesome-pen"), for: .normal)
         $0.tintColor = UIColor(named: "BackColor")
         $0.layer.cornerRadius = 12.5
-        $0.layer.borderColor = UIColor(named: "BackColor")?.cgColor
+        $0.layer.borderColor = UIColor.systemGray.cgColor
         $0.layer.borderWidth = 2
     }
     let nickNameTextField = UITextField().then {
@@ -48,12 +48,19 @@ class EditMyProfileViewController: UIViewController {
         $0.backgroundColor = UIColor.clear
     }
     let nextButton = UIButton().then {
-        $0.backgroundColor = UIColor(named: "MainBackColor1")
+        $0.backgroundColor = UIColor(named: "MainColor1")
         $0.setTitle("다음", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 25.5
-        $0.layer.borderColor = UIColor.white.cgColor
+        $0.layer.borderColor = UIColor(named: "MainColor1")?.cgColor
         $0.layer.borderWidth = 2
+    }
+    let changePasswordButton = UIButton().then {
+        let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue]
+        let underlineAttributedString = NSAttributedString(string: "비밀번호 변경을 원하시나요?", attributes: underlineAttribute)
+        $0.titleLabel?.font = UIFont(name: "NotoSansKR-Medium", size: 14.0)
+        $0.setTitleColor(UIColor(named: "MainColor1"), for: .normal)
+        $0.setAttributedTitle(underlineAttributedString, for: .normal)
     }
     override func viewDidLayoutSubviews() {
         nickNameTextField.setUnderLine(color: UIColor(named: "MainColor2")!)
@@ -73,6 +80,7 @@ class EditMyProfileViewController: UIViewController {
         mainBackView.addSubview(editButton)
         mainBackView.addSubview(nextButton)
         mainBackView.addSubview(nickNameTextField)
+        mainBackView.addSubview(changePasswordButton)
         makeConstraint()
         // Do any additional setup after loading the view.
     }
@@ -130,6 +138,12 @@ class EditMyProfileViewController: UIViewController {
             $0.bottom.equalTo(-30)
             $0.centerX.equalTo(self.view).offset(0)
         }
+        changePasswordButton.snp.makeConstraints {
+            $0.height.equalTo(15)
+            $0.trailing.equalTo(30)
+            $0.leading.equalTo(-30)
+            $0.bottom.equalTo(-10)
+        }
     }
 }
 extension EditMyProfileViewController : UITextFieldDelegate {
@@ -161,7 +175,7 @@ extension EditMyProfileViewController : UITextFieldDelegate {
         let animateDuration = notinfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         UIView.animate(withDuration: animateDuration) {
             self.nextButton.snp.updateConstraints() {
-                $0.bottom.equalTo(-50)
+                $0.bottom.equalTo(-30)
             }
             self.view.layoutIfNeeded()
         }

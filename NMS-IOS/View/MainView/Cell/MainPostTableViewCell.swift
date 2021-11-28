@@ -144,7 +144,7 @@ class MainPostTableViewCell: UITableViewCell {
         }
         postTitleTextView.snp.makeConstraints {
 //            $0.width.equalTo(320)
-            $0.height.equalTo(18)
+            $0.height.equalTo(20)
             $0.top.equalTo(self.postLocationLabel).offset(50)
             $0.left.equalTo(20)
             $0.right.equalTo(-20)
