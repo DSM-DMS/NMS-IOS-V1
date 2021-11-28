@@ -10,6 +10,7 @@ import Then
 import SnapKit
 import RxSwift
 import RxCocoa
+import AudioToolbox
 
 class MainViewController: UIViewController {
     
@@ -98,6 +99,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                 let Pcell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! MainPostTableViewCell
                 
                 Pcell.reportButtonAction = { [unowned self] in
+                    AudioServicesPlaySystemSound(1520)
                     Pcell.likeButton.isSelected.toggle()
                     Pcell.likeButton.isSelected = revertBool(bool: Pcell.likeButton.isSelected)
                 }
@@ -120,6 +122,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                 let Hcell = tableView.dequeueReusableCell(withIdentifier: "cell3") as! MainPostHasImageTableViewCell
 
                 Hcell.reportButtonAction = { [unowned self] in
+                    AudioServicesPlaySystemSound(1520)
                     Hcell.likeButton.isSelected.toggle()
                     Hcell.likeButton.isSelected = revertBool(bool: Hcell.likeButton.isSelected)
                 }
