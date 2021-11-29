@@ -71,6 +71,10 @@ class EditMyProfileViewController: UIViewController {
         
         nickNameTextField.delegate = self
         nickNameTextField.text = "김대희"
+        changePasswordButton.rx.tap.bind {
+            let firstChangPassWordViewController = FirstChangPassWordViewController()
+            self.navigationController?.pushViewController(firstChangPassWordViewController, animated: true)
+        }.disposed(by: bag)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         view.addSubview(mainBackView)
