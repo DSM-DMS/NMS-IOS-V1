@@ -92,6 +92,11 @@ class MainLoginViewController: UIViewController {
         
     }
     func setMain() {
+        loginButton.rx.tap.bind {
+            let mainViewController = MainViewController()
+            self.navigationController?.pushViewController(mainViewController, animated: true)
+
+        }.disposed(by: disposeBag)
         saveIdButton.rx.tap
             .bind {
                 self.saveIdButton.isSelected.toggle()

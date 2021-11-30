@@ -61,6 +61,8 @@ class FirstSignUpViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         setMain()
         nameTextField.delegate = self
+        schoolNumberTextField.delegate = self
+        schoolNickTextField.delegate = self
         setSearchController()
         setAddSubView()
         setConstent()
