@@ -13,6 +13,9 @@ import RxCocoa
 
 
 class FirstChangPassWordViewController: UIViewController {
+    
+    let bag = DisposeBag()
+    var errorColor = Bool()
 
     let mainBackView = UIView().then {
         $0.backgroundColor = .systemBackground
@@ -37,10 +40,17 @@ class FirstChangPassWordViewController: UIViewController {
         $0.layer.borderColor = UIColor(named: "MainColor1")?.cgColor
         $0.layer.borderWidth = 2
     }
+    var errorLabel = UILabel().then {
+//        $0.textAlignment = .left
+        $0.textColor = .systemRed
+        $0.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         makeNavigationBar()
+        bindButton()
+
         nowPasswordField.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -90,12 +100,58 @@ class FirstChangPassWordViewController: UIViewController {
     }
 }
 extension FirstChangPassWordViewController : UITextFieldDelegate {
+    
+    func bindButton() {
+        nextButton.rx.tap.bind {
+            if self.nowPasswordField.text == "" {
+                self.errorColor = true
+                print("--------\(self.nowPasswordField.text ?? "NULL")")
+                self.errorLabel.text = "비밀번호를 입력하세요"
+                self.mainBackView.addSubview(self.errorLabel)
+                self.nowPasswordField.setUnderLine(color: UIColor.systemRed)
+                self.changBottomColor(textField: self.nowPasswordField)
+                self.errorLabel.snp.makeConstraints {
+                    $0.top.equalTo(self.nowPasswordField.snp.bottom).offset(8)
+                    $0.width.equalTo(356)
+                    $0.height.equalTo(15)
+                    $0.centerX.equalTo(self.view).offset(0)
+                }
+            }
+        }.disposed(by: bag )
+    }
+
+    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        textField.setUnderLine(color: UIColor(named: "MainColor1")!)
-        return true
+   
+        if errorColor == true {
+            print("1")
+            textField.setUnderLine(color: UIColor.systemRed)
+            return true
+        } else {
+            print("2")
+            textField.setUnderLine(color: UIColor(named: "MainColor1")!)
+            return true
+        }
+        
+    }
+    func changBottomColor(textField : UITextField) {
+        print("12")
+//        textField.setUnderLine(color: UIColor.red)
+        self.view.layoutIfNeeded()
+        
+//        textField.becomeFirstResponder()
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.setUnderLine(color: UIColor(named: "MainColor2")!)
+        if errorColor == true {
+            print("3")
+            textField.setUnderLine(color: UIColor.systemRed)
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        textField.setUnderLine(color: UIColor.systemRed)
+        return true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
