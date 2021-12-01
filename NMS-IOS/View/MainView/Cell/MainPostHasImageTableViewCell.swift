@@ -227,9 +227,10 @@ class MainPostHasImageTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
+        
     }
     @objc func categoryClicked() {
+        self.likeButton.isSelected.toggle()
         reportButtonAction?()
     }
     @objc func categoryCommentClicked() {

@@ -103,6 +103,11 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     Pcell.likeButton.isSelected.toggle()
                     Pcell.likeButton.isSelected = revertBool(bool: Pcell.likeButton.isSelected)
                 }
+                Pcell.reportCommentButtonAction = {
+                    let DetailPostViewController = DetailPostViewController()
+                    self.navigationController?.pushViewController(DetailPostViewController, animated: true)
+
+                }
                 Pcell.postTitleTextView.text = "\(store.list[indexPath.row - 1 ].Title)"
                 Pcell.postLocationLabel.text = "\(store.list[indexPath.row - 1].LocationDate)"
                 Pcell.mainPostTextView.text = "\(store.list[indexPath.row - 1].Body)"
@@ -125,6 +130,10 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     AudioServicesPlaySystemSound(1520)
                     Hcell.likeButton.isSelected.toggle()
                     Hcell.likeButton.isSelected = revertBool(bool: Hcell.likeButton.isSelected)
+                }
+                Hcell.reportCommentButtonAction = {
+                    let DetailPostViewController = DetailPostViewController()
+                    self.navigationController?.pushViewController(DetailPostViewController, animated: true)
                 }
                 Hcell.postTitleTextView.text = "\(store.list[indexPath.row - 1 ].Title)"
                 Hcell.postLocationLabel.text = "\(store.list[indexPath.row - 1].LocationDate)"
