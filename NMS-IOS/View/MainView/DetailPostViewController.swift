@@ -32,15 +32,19 @@ class DetailPostViewController: UIViewController {
         view.addSubview(backNavigationBarView)
         makeConstraint()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        makeNavigationBar()
+    }
     func makeNavigationBar() {
         self.view.backgroundColor = .systemBackground
         self.navigationController?.navigationBar.tintColor = .white
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
         imageView.contentMode = .scaleAspectFit
-        let image = UIImage(named: "MainLogoBlue")
+        let image = UIImage(named: "MainLogoWhite")
         imageView.image = image
         self.navigationItem.titleView = imageView
         self.navigationController?.navigationBar.layoutIfNeeded()
+        self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
     func makeConstraint() {
