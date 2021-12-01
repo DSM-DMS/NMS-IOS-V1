@@ -15,6 +15,7 @@ class MainPostTableViewCell: UITableViewCell {
     
     
     var reportButtonAction : (() -> ())?
+    var reportCommentButtonAction : (() -> ())?
     
     var userImage = UIImageView().then {
         $0.image = UIImage(named: "noImage")
@@ -92,6 +93,7 @@ class MainPostTableViewCell: UITableViewCell {
         
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         likeButton.addTarget(self, action: #selector(categoryClicked), for: .touchUpInside)
+        commentButton.addTarget(self, action: #selector(categoryCommentClicked), for: .touchUpInside)
         contentView.backgroundColor = .systemBackground
         adjustUITextViewHeight(arg: mainPostTextView)
 //        MakeMainPost(view: contentView, cellNum: 0)
@@ -210,6 +212,11 @@ class MainPostTableViewCell: UITableViewCell {
         self.likeButton.isSelected.toggle()
         reportButtonAction?()
     }
+    @objc func categoryCommentClicked() {
+        self.commentButton.isSelected.toggle()
+        reportCommentButtonAction?()
+    }
+
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

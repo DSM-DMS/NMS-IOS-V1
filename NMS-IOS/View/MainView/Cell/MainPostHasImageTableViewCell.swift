@@ -14,6 +14,7 @@ import RxCocoa
 class MainPostHasImageTableViewCell: UITableViewCell {
     
     var reportButtonAction : (() -> ())?
+    var reportCommentButtonAction : (() -> ())?
     
     var userImage = UIImageView().then {
         $0.image = UIImage(named: "noImage")
@@ -95,6 +96,7 @@ class MainPostHasImageTableViewCell: UITableViewCell {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .white
         likeButton.addTarget(self, action: #selector(categoryClicked), for: .touchUpInside)
+        commentButton.addTarget(self, action: #selector(categoryCommentClicked), for: .touchUpInside)
         contentView.backgroundColor = .systemBackground
         adjustUITextViewHeight(arg: mainPostTextView)
         //        MakeMainPost(view: contentView, cellNum: 0)
@@ -228,7 +230,9 @@ class MainPostHasImageTableViewCell: UITableViewCell {
        
     }
     @objc func categoryClicked() {
-        self.likeButton.isSelected.toggle()
         reportButtonAction?()
+    }
+    @objc func categoryCommentClicked() {
+        reportCommentButtonAction?()
     }
 }

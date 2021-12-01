@@ -13,6 +13,7 @@
 		571234D5273962F100E9E9B4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571234D4273962F100E9E9B4 /* MainViewController.swift */; };
 		5724F80D274CD49A00F3A93A /* EditMyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5724F80C274CD49A00F3A93A /* EditMyProfileViewController.swift */; };
 		573E430A27380F2E004457AA /* SecondSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E430927380F2E004457AA /* SecondSignUpViewController.swift */; };
+		574A77B42757A6E000204BFF /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A77B32757A6E000204BFF /* DetailPostViewController.swift */; };
 		57637F8E273AAE2E007B8334 /* MainPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57637F8D273AAE2E007B8334 /* MainPostTableViewCell.swift */; };
 		5768203E27341E8B008685F7 /* FirstSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5768203D27341E8B008685F7 /* FirstSignUpViewController.swift */; };
 		5772272727563FFC00BDF2BE /* SecondChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772272627563FFC00BDF2BE /* SecondChangePasswordViewController.swift */; };
@@ -46,6 +47,7 @@
 		571234D4273962F100E9E9B4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5724F80C274CD49A00F3A93A /* EditMyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyProfileViewController.swift; sourceTree = "<group>"; };
 		573E430927380F2E004457AA /* SecondSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSignUpViewController.swift; sourceTree = "<group>"; };
+		574A77B32757A6E000204BFF /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
 		57637F8D273AAE2E007B8334 /* MainPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPostTableViewCell.swift; sourceTree = "<group>"; };
 		5768203D27341E8B008685F7 /* FirstSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSignUpViewController.swift; sourceTree = "<group>"; };
 		5772272627563FFC00BDF2BE /* SecondChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondChangePasswordViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				57637F8D273AAE2E007B8334 /* MainPostTableViewCell.swift */,
 				577A1BE3274BB51A00282527 /* MainPostHasImageTableViewCell.swift */,
 				577A1BE1274B7AB400282527 /* MainPostCrellFunc.swift */,
+				574A77B32757A6E000204BFF /* DetailPostViewController.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				577A1BE0274B0F0200282527 /* CustomCollectionView.swift in Sources */,
 				577A1BE2274B7AB400282527 /* MainPostCrellFunc.swift in Sources */,
 				57BBF7822745C79A0075053D /* DumeData.swift in Sources */,
+				574A77B42757A6E000204BFF /* DetailPostViewController.swift in Sources */,
 				573E430A27380F2E004457AA /* SecondSignUpViewController.swift in Sources */,
 				5724F80D274CD49A00F3A93A /* EditMyProfileViewController.swift in Sources */,
 				571234D5273962F100E9E9B4 /* MainViewController.swift in Sources */,
