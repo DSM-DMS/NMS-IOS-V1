@@ -93,9 +93,10 @@ class MainLoginViewController: UIViewController {
     }
     func setMain() {
         loginButton.rx.tap.bind {
-            let mainViewController = MainViewController()
-            self.navigationController?.pushViewController(mainViewController, animated: true)
-
+            let editorViewController = MainViewController()
+            let navEditorViewController: UINavigationController = UINavigationController(rootViewController: editorViewController)
+            navEditorViewController.modalPresentationStyle = .fullScreen
+            self.present(navEditorViewController, animated: true, completion: nil)
         }.disposed(by: disposeBag)
         saveIdButton.rx.tap
             .bind {
