@@ -66,7 +66,6 @@ class FirstChangPassWordViewController: UIViewController {
     }
     func makeNavigationBar() {
         self.view.backgroundColor = .systemBackground
-//        self.navigationController?.navigationBar.topItem?.title = "이전"
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.layoutIfNeeded()
         self.navigationItem.title =  "현재 비밀번호 확인"
@@ -117,6 +116,11 @@ extension FirstChangPassWordViewController : UITextFieldDelegate {
                     $0.centerX.equalTo(self.view).offset(0)
                 }
             }
+            else {
+                let secondChangePasswordViewController = SecondChangePasswordViewController()
+                self.navigationController?.pushViewController(secondChangePasswordViewController, animated: true)
+
+            }
         }.disposed(by: bag )
     }
 
@@ -149,10 +153,6 @@ extension FirstChangPassWordViewController : UITextFieldDelegate {
         }
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        textField.setUnderLine(color: UIColor.systemRed)
-        return true
-    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
