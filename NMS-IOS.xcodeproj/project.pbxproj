@@ -70,10 +70,10 @@
 		57D8061D2739052C003B5C06 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		57D8061F27393CCD003B5C06 /* ThirdSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSignUpViewController.swift; sourceTree = "<group>"; };
 		57DF49D3275512CA001AC399 /* FirstChangPassWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstChangPassWordViewController.swift; sourceTree = "<group>"; };
-		57E0A5682736B3A90074073E /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Regular.otf"; path = "../../../../../Downloads/Noto_Sans_KR/NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
-		57E0A5692736B3BD0074073E /* TwCenClassMTStd-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "TwCenClassMTStd-Regular.otf"; path = "../../../../../Downloads/tw-cen-mt-std/TwCenClassMTStd-Regular.otf"; sourceTree = "<group>"; };
-		57FB6ACF273B7FE800512787 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Medium.otf"; path = "../../../../../Downloads/Noto_Sans_KR/NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
-		57FB6AD0273B7FF200512787 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Bold.otf"; path = "../../../../../Downloads/NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
+		57E0A5682736B3A90074073E /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
+		57E0A5692736B3BD0074073E /* TwCenClassMTStd-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TwCenClassMTStd-Regular.otf"; sourceTree = "<group>"; };
+		57FB6ACF273B7FE800512787 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
+		57FB6AD0273B7FF200512787 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		D17171A966D72402C5B98E60 /* Pods-NMS-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NMS-IOS.debug.xcconfig"; path = "Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS.debug.xcconfig"; sourceTree = "<group>"; };
 		EFE518AC6A9B31F9CA8CF16C /* Pods_NMS_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NMS_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -142,14 +142,37 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
-		5793749A2734E79A00D8096F /* ViewModel */ = {
+		57892477275A423900901FDB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				57E0A5672736B3180074073E /* Fomt */,
+				57C8501D26ECEFF300D0B3DF /* Assets.xcassets */,
+				57C8501426ECEFF200D0B3DF /* AppDelegate.swift */,
+				57C8501626ECEFF200D0B3DF /* SceneDelegate.swift */,
+				57C8501F26ECEFF300D0B3DF /* LaunchScreen.storyboard */,
+				57C8502226ECEFF300D0B3DF /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		57892478275A42B700901FDB /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				57D8061C273904FC003B5C06 /* Extension */,
+				5793749A2734E79A00D8096F /* Model */,
+				570B6D2B2732A19E002AFA9E /* View */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		5793749A2734E79A00D8096F /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				57BBF7812745C79A0075053D /* DumeData.swift */,
 				5793749E2734E7EE00D8096F /* ViewModelType.swift */,
 				5793749B2734E7A800D8096F /* Auth */,
 			);
-			path = ViewModel;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		5793749B2734E7A800D8096F /* Auth */ = {
@@ -181,15 +204,8 @@
 		57C8501326ECEFF200D0B3DF /* MNS-IOS */ = {
 			isa = PBXGroup;
 			children = (
-				57D8061C273904FC003B5C06 /* Extension */,
-				57E0A5672736B3180074073E /* Fomt */,
-				5793749A2734E79A00D8096F /* ViewModel */,
-				570B6D2B2732A19E002AFA9E /* View */,
-				57C8501426ECEFF200D0B3DF /* AppDelegate.swift */,
-				57C8501626ECEFF200D0B3DF /* SceneDelegate.swift */,
-				57C8501D26ECEFF300D0B3DF /* Assets.xcassets */,
-				57C8501F26ECEFF300D0B3DF /* LaunchScreen.storyboard */,
-				57C8502226ECEFF300D0B3DF /* Info.plist */,
+				57892478275A42B700901FDB /* Sources */,
+				57892477275A423900901FDB /* Resources */,
 			);
 			name = "MNS-IOS";
 			path = "NMS-IOS";
@@ -539,7 +555,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z25H7B85Z8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "NMS-IOS/Info.plist";
+				INFOPLIST_FILE = "NMS-IOS/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = NMS;
 				INFOPLIST_KEY_CFBundleExecutable = "0Z-Project";
 				INFOPLIST_KEY_CFBundleName = "0Z-Project";
@@ -571,7 +587,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z25H7B85Z8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "NMS-IOS/Info.plist";
+				INFOPLIST_FILE = "NMS-IOS/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = NMS;
 				INFOPLIST_KEY_CFBundleExecutable = "0Z-Project";
 				INFOPLIST_KEY_CFBundleName = "0Z-Project";
