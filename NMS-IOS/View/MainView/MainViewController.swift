@@ -105,8 +105,8 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                 }
                 Pcell.reportCommentButtonAction = {
                     let DetailPostViewController = DetailPostViewController()
+                    DetailPostViewController.indexNum = indexPath.row
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
-
                 }
                 Pcell.postTitleTextView.text = "\(store.list[indexPath.row - 1 ].Title)"
                 Pcell.postLocationLabel.text = "\(store.list[indexPath.row - 1].LocationDate)"
@@ -123,16 +123,17 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                 return Pcell
             }
             else {
-                
                 let Hcell = tableView.dequeueReusableCell(withIdentifier: "cell3") as! MainPostHasImageTableViewCell
-
+                
                 Hcell.reportButtonAction = { [unowned self] in
                     AudioServicesPlaySystemSound(1520)
                     Hcell.likeButton.isSelected.toggle()
                     Hcell.likeButton.isSelected = revertBool(bool: Hcell.likeButton.isSelected)
                 }
                 Hcell.reportCommentButtonAction = {
+                    AudioServicesPlaySystemSound(1520)
                     let DetailPostViewController = DetailPostViewController()
+                    DetailPostViewController.indexNum = indexPath.row
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
                 }
                 Hcell.postTitleTextView.text = "\(store.list[indexPath.row - 1 ].Title)"
@@ -146,11 +147,11 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     badgeSetting(title: "\(store.list[indexPath.row - 1].badge![0])", target: Hcell.categorybadge)
                     badgeSetting(title: "\(store.list[indexPath.row - 1].badge![1])", target: Hcell.categorybadge2)
                 }
-
+                
                 Hcell.PostImage.image = store.list[indexPath.row - 1].PostImage
                 Hcell.selectedBackgroundView = bgColorView
                 return Hcell
-
+                
             }
         }
     }

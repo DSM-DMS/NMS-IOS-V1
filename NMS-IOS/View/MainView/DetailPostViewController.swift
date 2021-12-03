@@ -14,8 +14,10 @@ import RxCocoa
 
 class DetailPostViewController: UIViewController {
     
+    var indexNum = 1
+    let mainVC = MainViewController()
     let bag = DisposeBag()
-    var errorColor = Bool()
+    let store = MainPost()
 
     let mainBackView = UIView().then {
         $0.backgroundColor = .systemBackground
@@ -31,20 +33,16 @@ class DetailPostViewController: UIViewController {
         view.addSubview(mainBackView)
         view.addSubview(backNavigationBarView)
         makeConstraint()
-    }
+        
+            }
     override func viewDidAppear(_ animated: Bool) {
         makeNavigationBar()
     }
     func makeNavigationBar() {
         self.view.backgroundColor = .systemBackground
         self.navigationController?.navigationBar.tintColor = .white
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-        imageView.contentMode = .scaleAspectFit
-        let image = UIImage(named: "MainLogoWhite")
-        imageView.image = image
-        self.navigationItem.titleView = imageView
         self.navigationController?.navigationBar.layoutIfNeeded()
-        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationItem.title =  "\(store.list[indexNum - 1].Title)"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
     func makeConstraint() {
