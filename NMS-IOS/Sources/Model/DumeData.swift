@@ -41,3 +41,23 @@ class MainPost {
         ]
     }
 }
+
+
+struct DetailCommentDume {
+    var commentHashtagBool : Bool?
+    var id : Int?
+    var userName : String?
+    var userImage : UIImage?
+    var locationDate : String?
+    var commentBody : String?
+}
+class MainComment {
+    var list : [DetailCommentDume]
+    init() {
+        list = [
+            DetailCommentDume(commentHashtagBool: false, id: 0, userName: "1301 김대희", userImage: UIImage(named: "DumeData-3"), locationDate: "1분 전", commentBody: "이저 진짜임?? 놀랍다."),
+            DetailCommentDume(commentHashtagBool: false, id: 1, userName: "1201 김지민", userImage: UIImage(named: "DumeData-1"), locationDate: "지금막", commentBody: "어쩔티비"),
+            DetailCommentDume(commentHashtagBool: true, id: 1, userName: "장성해(마이스터부)", userImage: nil, locationDate: "1시간 전", commentBody: "일단은 내일 학교에서 보자. ")
+        ]
+    }
+}
