@@ -43,7 +43,7 @@ class MainPostTableViewCell: UITableViewCell {
     
     var mainPostTextView = UITextView().then {
         $0.backgroundColor = .clear
-        $0.textContainer.maximumNumberOfLines = 6
+
         $0.isEditable = false
         $0.isSelectable = false
         $0.textContainer.lineBreakMode = .byTruncatingTail

@@ -59,6 +59,9 @@ class MainViewController: UIViewController {
         mainTableView.register(MainPostHasImageTableViewCell.self, forCellReuseIdentifier: "cell3")
         setNavagationBar()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        setNavagationBar()
+    }
     func setNavagationBar() {
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
@@ -66,6 +69,7 @@ class MainViewController: UIViewController {
         let image = UIImage(named: "MainLogoBlue")
         imageView.image = image
         self.navigationItem.titleView = imageView
+
         self.navigationItem.rightBarButtonItem = personButton
     }
     func setConstent() {
@@ -97,7 +101,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
             bgColorView.backgroundColor = .clear
             if store.list[indexPath.row - 1].PostImage == nil {
                 let Pcell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! MainPostTableViewCell
-                
+                Pcell.mainPostTextView.textContainer.maximumNumberOfLines = 6
                 Pcell.reportButtonAction = { [unowned self] in
                     AudioServicesPlaySystemSound(1520)
                     Pcell.likeButton.isSelected.toggle()
@@ -105,7 +109,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                 }
                 Pcell.reportCommentButtonAction = {
                     let DetailPostViewController = DetailPostViewController()
-                    DetailPostViewController.indexNum = indexPath.row
+                    DetailPostViewController.indexNum = indexPath.row - 1
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
                 }
                 Pcell.postTitleTextView.text = "\(store.list[indexPath.row - 1 ].Title)"
@@ -124,7 +128,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
             }
             else {
                 let Hcell = tableView.dequeueReusableCell(withIdentifier: "cell3") as! MainPostHasImageTableViewCell
-                
+                Hcell.mainPostTextView.textContainer.maximumNumberOfLines = 6
                 Hcell.reportButtonAction = { [unowned self] in
                     AudioServicesPlaySystemSound(1520)
                     Hcell.likeButton.isSelected.toggle()
@@ -133,7 +137,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                 Hcell.reportCommentButtonAction = {
                     AudioServicesPlaySystemSound(1520)
                     let DetailPostViewController = DetailPostViewController()
-                    DetailPostViewController.indexNum = indexPath.row
+                    DetailPostViewController.indexNum = indexPath.row - 1
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
                 }
                 Hcell.postTitleTextView.text = "\(store.list[indexPath.row - 1 ].Title)"
