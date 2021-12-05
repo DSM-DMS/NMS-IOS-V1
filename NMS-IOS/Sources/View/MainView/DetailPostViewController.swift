@@ -33,6 +33,30 @@ class DetailPostViewController: UIViewController {
         $0.separatorStyle = .none
         
     }
+    let inputTextFieldView = UIView().then {
+        $0.backgroundColor = .systemBackground
+    }
+    let inputUserImage = UIImageView().then {
+        $0.image = UIImage(named: "noImage")
+        $0.layer.borderWidth = 1
+        $0.clipsToBounds = true
+        $0.layer.borderColor = UIColor.clear.cgColor
+    }
+    let inputTextField = UITextField().then {
+        $0.borderStyle = .none
+        $0.tintColor = .gray
+    }
+    let inputTextFieldBorderView = UIView().then {
+        $0.backgroundColor = .clear
+        $0.layer.cornerRadius = 10
+        $0.layer.borderColor = UIColor(named: "MainColor2")?.cgColor
+        $0.layer.borderWidth = 0.5
+    }
+    
+    let sendButton = UIButton().then {
+        $0.setTitle("전송", for: .normal)
+        $0.setTitleColor(UIColor(named: "MainColor1"), for: .normal)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         makeNavigationBar()
@@ -42,6 +66,13 @@ class DetailPostViewController: UIViewController {
         mainTableView.register(MainPostHasImageTableViewCell.self, forCellReuseIdentifier: "cell3")
         
         view.addSubview(mainBackView)
+        view.addSubview(inputTextFieldView)
+        inputTextFieldView.addSubview(inputUserImage)
+        inputUserImage.layer.cornerRadius = 15
+        inputTextFieldBorderView.layer.cornerRadius = 15
+        inputTextFieldView.addSubview(inputTextFieldBorderView)
+        inputTextFieldBorderView.addSubview(inputTextField)
+        inputTextFieldBorderView.addSubview(sendButton)
         view.addSubview(backNavigationBarView)
         mainBackView.addSubview(mainTableView)
         mainTableView.reloadData()
@@ -61,12 +92,33 @@ class DetailPostViewController: UIViewController {
         self.navigationItem.title =  "\(store.list[indexNum].Title)"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
+    func bind() {
+        
+    }
     func makeConstraint() {
         mainBackView.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing)
+            $0.bottom.equalTo(self.inputTextFieldView.snp.bottom)
+        }
+        inputTextFieldView.snp.makeConstraints {
+            $0.trailing.equalTo(0)
+            $0.leading.equalTo(0)
+            $0.height.equalTo(60)
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+        }
+        inputUserImage.snp.makeConstraints {
+            $0.width.equalTo(30)
+            $0.height.equalTo(30)
+            $0.left.equalTo(20)
+            $0.centerY.equalTo(self.inputTextFieldView).offset(0)
+        }
+        inputTextFieldBorderView.snp.makeConstraints {
+            $0.height.equalTo(30)
+            $0.left.equalTo(self.inputUserImage.snp.right).offset(10)
+            $0.right.equalTo(-20)
+            $0.centerY.equalTo(self.inputTextFieldView).offset(0)
         }
         backNavigationBarView.snp.makeConstraints {
             $0.top.equalTo(0)
