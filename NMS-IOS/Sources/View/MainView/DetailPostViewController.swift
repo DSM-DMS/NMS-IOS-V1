@@ -54,7 +54,7 @@ class DetailPostViewController: UIViewController {
     }
     
     let sendButton = UIButton().then {
-        $0.setTitle("전송", for: .normal)
+        $0.setTitle("개시", for: .normal)
         $0.setTitleColor(UIColor(named: "MainColor1"), for: .normal)
     }
     override func viewDidLoad() {
@@ -68,8 +68,8 @@ class DetailPostViewController: UIViewController {
         view.addSubview(mainBackView)
         view.addSubview(inputTextFieldView)
         inputTextFieldView.addSubview(inputUserImage)
-        inputUserImage.layer.cornerRadius = 15
-        inputTextFieldBorderView.layer.cornerRadius = 15
+        inputUserImage.layer.cornerRadius = 17.5
+        inputTextFieldBorderView.layer.cornerRadius = 17.5
         inputTextFieldView.addSubview(inputTextFieldBorderView)
         inputTextFieldBorderView.addSubview(inputTextField)
         inputTextFieldBorderView.addSubview(sendButton)
@@ -100,7 +100,7 @@ class DetailPostViewController: UIViewController {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing)
-            $0.bottom.equalTo(self.inputTextFieldView.snp.bottom)
+            $0.bottom.equalTo(self.inputTextFieldView.snp.top)
         }
         inputTextFieldView.snp.makeConstraints {
             $0.trailing.equalTo(0)
@@ -109,15 +109,25 @@ class DetailPostViewController: UIViewController {
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
         inputUserImage.snp.makeConstraints {
-            $0.width.equalTo(30)
-            $0.height.equalTo(30)
+            $0.width.equalTo(35)
+            $0.height.equalTo(35)
             $0.left.equalTo(20)
             $0.centerY.equalTo(self.inputTextFieldView).offset(0)
         }
         inputTextFieldBorderView.snp.makeConstraints {
-            $0.height.equalTo(30)
+            $0.height.equalTo(35)
             $0.left.equalTo(self.inputUserImage.snp.right).offset(10)
             $0.right.equalTo(-20)
+            $0.centerY.equalTo(self.inputTextFieldView).offset(0)
+        }
+        sendButton.snp.makeConstraints {
+            $0.right.equalTo(-20)
+            $0.width.equalTo(40)
+            $0.centerY.equalTo(self.inputTextFieldView).offset(0)
+        }
+        inputTextField.snp.makeConstraints {
+            $0.left.equalTo(20)
+            $0.right.equalTo(self.sendButton.snp.left).offset(-10)
             $0.centerY.equalTo(self.inputTextFieldView).offset(0)
         }
         backNavigationBarView.snp.makeConstraints {

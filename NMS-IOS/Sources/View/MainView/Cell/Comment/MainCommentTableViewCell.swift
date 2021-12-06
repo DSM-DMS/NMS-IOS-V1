@@ -66,6 +66,7 @@ class MainCommentTableViewCell: UITableViewCell {
             $0.top.equalTo(20)
             $0.height.equalTo(20)
             $0.left.equalTo(self.useridLabel.snp.right).offset(2)
+            $0.width.equalTo(250)
         }
 
     }

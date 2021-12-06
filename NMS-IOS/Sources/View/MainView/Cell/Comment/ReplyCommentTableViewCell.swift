@@ -63,6 +63,7 @@ class ReplyCommentTableViewCell: UITableViewCell {
         commentLabel.snp.makeConstraints {
             $0.top.equalTo(20)
             $0.height.equalTo(20)
+            $0.width.equalTo(200)
             $0.left.equalTo(self.useridLabel.snp.right).offset(5)
         }
 
