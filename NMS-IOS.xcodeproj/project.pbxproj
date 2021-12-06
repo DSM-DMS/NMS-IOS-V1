@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F6AF070A433EBCBE50355F8 /* Pods_NMS_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE518AC6A9B31F9CA8CF16C /* Pods_NMS_IOS.framework */; };
 		570077B5273A7C4500608A93 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570077B4273A7C4500608A93 /* MenuTableViewCell.swift */; };
 		570B6D2E2732A218002AFA9E /* MainLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570B6D2D2732A218002AFA9E /* MainLoginViewController.swift */; };
 		571234D5273962F100E9E9B4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571234D4273962F100E9E9B4 /* MainViewController.swift */; };
@@ -40,13 +39,15 @@
 		57E0A56D2736B7D40074073E /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57E0A5682736B3A90074073E /* NotoSansKR-Regular.otf */; };
 		57FB6AD1273B910500512787 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57FB6ACF273B7FE800512787 /* NotoSansKR-Medium.otf */; };
 		57FB6AD2273B910A00512787 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57FB6AD0273B7FF200512787 /* NotoSansKR-Bold.otf */; };
+		C24A8FAC5906D2CF9CCD98F0 /* Pods_NMS_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C1B556CA9F06BD1CFCDBF7 /* Pods_NMS_IOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0B5A671016077FEAF634BBCB /* Pods-NMS-IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NMS-IOS.release.xcconfig"; path = "Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS.release.xcconfig"; sourceTree = "<group>"; };
+		21D8982C61B214D683690A85 /* Pods-NMS-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NMS-IOS.debug.xcconfig"; path = "Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS.debug.xcconfig"; sourceTree = "<group>"; };
 		570077B4273A7C4500608A93 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		570B6D2D2732A218002AFA9E /* MainLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLoginViewController.swift; sourceTree = "<group>"; };
 		571234D4273962F100E9E9B4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		5720433274A4DF04F4AB28EA /* Pods-NMS-IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NMS-IOS.release.xcconfig"; path = "Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS.release.xcconfig"; sourceTree = "<group>"; };
 		5724F80C274CD49A00F3A93A /* EditMyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyProfileViewController.swift; sourceTree = "<group>"; };
 		573E430927380F2E004457AA /* SecondSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSignUpViewController.swift; sourceTree = "<group>"; };
 		574A77B32757A6E000204BFF /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
@@ -78,8 +79,7 @@
 		57E0A5692736B3BD0074073E /* TwCenClassMTStd-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TwCenClassMTStd-Regular.otf"; sourceTree = "<group>"; };
 		57FB6ACF273B7FE800512787 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		57FB6AD0273B7FF200512787 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
-		D17171A966D72402C5B98E60 /* Pods-NMS-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NMS-IOS.debug.xcconfig"; path = "Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS.debug.xcconfig"; sourceTree = "<group>"; };
-		EFE518AC6A9B31F9CA8CF16C /* Pods_NMS_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NMS_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		89C1B556CA9F06BD1CFCDBF7 /* Pods_NMS_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NMS_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,8 +87,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F6AF070A433EBCBE50355F8 /* Pods_NMS_IOS.framework in Frameworks */,
 				577E39EF2753AEB100FBAD3A /* AudioToolbox.framework in Frameworks */,
+				C24A8FAC5906D2CF9CCD98F0 /* Pods_NMS_IOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,8 +276,8 @@
 		AB66B680842ED1FE62276E85 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D17171A966D72402C5B98E60 /* Pods-NMS-IOS.debug.xcconfig */,
-				0B5A671016077FEAF634BBCB /* Pods-NMS-IOS.release.xcconfig */,
+				21D8982C61B214D683690A85 /* Pods-NMS-IOS.debug.xcconfig */,
+				5720433274A4DF04F4AB28EA /* Pods-NMS-IOS.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -286,7 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				577E39EE2753AEB100FBAD3A /* AudioToolbox.framework */,
-				EFE518AC6A9B31F9CA8CF16C /* Pods_NMS_IOS.framework */,
+				89C1B556CA9F06BD1CFCDBF7 /* Pods_NMS_IOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -298,11 +298,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 57C8502526ECEFF300D0B3DF /* Build configuration list for PBXNativeTarget "NMS-IOS" */;
 			buildPhases = (
-				280DA8E72559161C5C3A75F0 /* [CP] Check Pods Manifest.lock */,
+				7494F85F672BAB032E4C0A01 /* [CP] Check Pods Manifest.lock */,
 				57C8500D26ECEFF200D0B3DF /* Sources */,
 				57C8500E26ECEFF200D0B3DF /* Frameworks */,
 				57C8500F26ECEFF200D0B3DF /* Resources */,
-				741168DFA013EE02C5AB0FC6 /* [CP] Embed Pods Frameworks */,
+				57CC13E87C13719C415EA704 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -363,7 +363,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		280DA8E72559161C5C3A75F0 /* [CP] Check Pods Manifest.lock */ = {
+		57CC13E87C13719C415EA704 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7494F85F672BAB032E4C0A01 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -383,23 +400,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		741168DFA013EE02C5AB0FC6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -571,7 +571,7 @@
 		};
 		57C8502626ECEFF300D0B3DF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D17171A966D72402C5B98E60 /* Pods-NMS-IOS.debug.xcconfig */;
+			baseConfigurationReference = 21D8982C61B214D683690A85 /* Pods-NMS-IOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -603,7 +603,7 @@
 		};
 		57C8502726ECEFF300D0B3DF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B5A671016077FEAF634BBCB /* Pods-NMS-IOS.release.xcconfig */;
+			baseConfigurationReference = 5720433274A4DF04F4AB28EA /* Pods-NMS-IOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

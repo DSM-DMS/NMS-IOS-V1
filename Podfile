@@ -6,11 +6,12 @@ target 'NMS-IOS' do
   use_frameworks!
 
   # Pods for NMS-IOS
-pod 'RxSwift', '6.1.0'
 
+pod 'RxSwift', '6.1.0'
 pod 'RxCocoa', '6.1.0'
 
 pod 'Alamofire', '~> 5.4'
+
 pod 'SnapKit', '~> 5.0.0'
 pod "Then"
 
