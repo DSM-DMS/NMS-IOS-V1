@@ -57,7 +57,10 @@ class MainComment {
         list = [
             DetailCommentDume(commentHashtagBool: false, id: 0, userName: "1301 김대희", userImage: UIImage(named: "DumeData-3"), locationDate: "1분 전", commentBody: "이저 진짜임?? 놀랍다."),
             DetailCommentDume(commentHashtagBool: false, id: 1, userName: "1201 김지민", userImage: UIImage(named: "DumeData-1"), locationDate: "지금막", commentBody: "어쩔티비"),
-            DetailCommentDume(commentHashtagBool: true, id: 1, userName: "장성해(마이스터부)", userImage: nil, locationDate: "1시간 전", commentBody: "일단은 내일 학교에서 보자. ")
+            DetailCommentDume(commentHashtagBool: true, id: 1, userName: "장성해(마이스터부)", userImage: nil, locationDate: "1시간 전", commentBody: "일단은 내일 학교에서 보자. "),
+            DetailCommentDume(commentHashtagBool: true, id: 0, userName: "1302 김범진", userImage: UIImage(named: "DumeData-4"), locationDate: "13분 전", commentBody: "이저 진짜임?? 놀랍다. ㄷㄷㄷ"),
+            DetailCommentDume(commentHashtagBool: false, id: 1, userName: "1201 강석현", userImage: UIImage(named: "DumeData-5"), locationDate: "지금막", commentBody: "어쩔티비어쩔티비어쩔티비"),
+            DetailCommentDume(commentHashtagBool: true, id: 1, userName: "장성해(마이스터부)", userImage: nil, locationDate: "1시간 전", commentBody: "일단은 내일 학교에서 보자. ㅋㅋㅋㅋㅋㅋㅋㅋㅋ")
         ]
     }
 }
