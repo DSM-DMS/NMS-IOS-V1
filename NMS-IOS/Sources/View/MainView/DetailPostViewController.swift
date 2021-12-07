@@ -20,6 +20,8 @@ class DetailPostViewController: UIViewController {
     let store = MainPost()
     let comment = MainComment()
     
+    var viewHeightConstraint: Constraint!
+    
     let mainBackView = UIView().then {
         $0.backgroundColor = .systemBackground
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -44,6 +46,7 @@ class DetailPostViewController: UIViewController {
     }
     let inputTextField = UITextField().then {
         $0.borderStyle = .none
+        $0.placeholder = "댓글을 입력하세요"
         $0.tintColor = .gray
     }
     let inputTextFieldBorderView = UIView().then {
@@ -60,10 +63,16 @@ class DetailPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         makeNavigationBar()
+        
         mainTableView.register(MainCommentTableViewCell.self, forCellReuseIdentifier: "cell")
         mainTableView.register(ReplyCommentTableViewCell.self, forCellReuseIdentifier: "cell1")
         mainTableView.register(MainPostTableViewCell.self, forCellReuseIdentifier: "cell2")
         mainTableView.register(MainPostHasImageTableViewCell.self, forCellReuseIdentifier: "cell3")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
         
         view.addSubview(mainBackView)
         view.addSubview(inputTextFieldView)
@@ -95,6 +104,38 @@ class DetailPostViewController: UIViewController {
     func bind() {
         
     }
+    @objc func keyboardWillShow(noti: Notification) {
+        let notinfo = noti.userInfo!
+        let keyboardFrame = notinfo[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
+        let heiget = keyboardFrame.size.height - self.view.safeAreaInsets.bottom
+        let animateDuration = notinfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
+        UIView.animate(withDuration: animateDuration) {
+            print("-------------1----------------")
+            self.inputTextFieldView.snp.updateConstraints {
+                $0.bottom.equalTo(heiget)
+                //                self.viewHeightConstraint =   $0.bottom.equalTo(heiget).constraint
+                //                $0.height.equalTo(60)
+            }
+            self.view.layoutIfNeeded()
+        }
+    }
+    @objc func keyboardWillHide(noti: Notification) {
+        let notinfo = noti.userInfo!
+        let animateDuration = notinfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
+        UIView.animate(withDuration: animateDuration) {
+            print("-------------2----------------")
+            self.inputTextFieldView.snp.updateConstraints() {
+                $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+            }
+            self.view.layoutIfNeeded()
+        }
+    }
+    @objc func handleTap(sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            view.endEditing(true)
+        }
+        sender.cancelsTouchesInView = false
+    }
     func makeConstraint() {
         mainBackView.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
@@ -106,7 +147,8 @@ class DetailPostViewController: UIViewController {
             $0.trailing.equalTo(0)
             $0.leading.equalTo(0)
             $0.height.equalTo(60)
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+//            viewHeightConstraint =   $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).constraint
+                        $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
         inputUserImage.snp.makeConstraints {
             $0.width.equalTo(35)
@@ -184,6 +226,9 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
                     AudioServicesPlaySystemSound(1520)
                     Hcell.likeButton.isSelected.toggle()
                     Hcell.likeButton.isSelected = revertBool(bool: Hcell.likeButton.isSelected)
+                }
+                Hcell.reportCommentButtonAction = {
+                    AudioServicesPlaySystemSound(1520)
                 }
                 Hcell.postTitleTextView.text = "\(store.list[indexNum ].Title)"
                 Hcell.postLocationLabel.text = "\(store.list[indexNum].LocationDate)"
