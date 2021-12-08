@@ -75,7 +75,7 @@ class DetailPostViewController: UIViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
         
         view.addSubview(mainBackView)
-        view.addSubview(inputTextFieldView)
+        mainBackView.addSubview(inputTextFieldView)
         inputTextFieldView.addSubview(inputUserImage)
         inputUserImage.layer.cornerRadius = 17.5
         inputTextFieldBorderView.layer.cornerRadius = 17.5
@@ -88,7 +88,7 @@ class DetailPostViewController: UIViewController {
         mainTableView.delegate = self
         mainTableView.dataSource = self
         makeConstraint()
-        
+        bind()
     }
     override func viewDidAppear(_ animated: Bool) {
         makeNavigationBar()
@@ -102,7 +102,19 @@ class DetailPostViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
     func bind() {
-        
+        sendButton.rx.tap.bind {
+            if (self.inputTextField.text == "") {
+                return
+            }
+            else {
+                let lastindexPath = IndexPath(row: self.comment.list.count, section: 0)
+//                chatDatas.append(chatStringTextView.text)
+                self.comment.list.append(DetailCommentDume(commentHashtagBool: false, id: 1, userName: "장성헤(마이스터부)", userImage: nil, locationDate: "방금 전", commentBody: self.inputTextField.text))
+                self.inputTextField.text = ""
+                self.mainTableView.insertRows(at: [lastindexPath], with: UITableView.RowAnimation.automatic)
+                self.mainTableView.scrollToRow(at: lastindexPath, at: UITableView.ScrollPosition.bottom, animated: true)
+            }
+        }.disposed(by: bag)
     }
     @objc func keyboardWillShow(noti: Notification) {
         let notinfo = noti.userInfo!
@@ -110,11 +122,8 @@ class DetailPostViewController: UIViewController {
         let heiget = keyboardFrame.size.height - self.view.safeAreaInsets.bottom
         let animateDuration = notinfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         UIView.animate(withDuration: animateDuration) {
-            print("-------------1----------------")
             self.inputTextFieldView.snp.updateConstraints {
-                $0.bottom.equalTo(heiget)
-                //                self.viewHeightConstraint =   $0.bottom.equalTo(heiget).constraint
-                //                $0.height.equalTo(60)
+                $0.bottom.equalTo(-heiget)
             }
             self.view.layoutIfNeeded()
         }
@@ -123,9 +132,8 @@ class DetailPostViewController: UIViewController {
         let notinfo = noti.userInfo!
         let animateDuration = notinfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         UIView.animate(withDuration: animateDuration) {
-            print("-------------2----------------")
             self.inputTextFieldView.snp.updateConstraints() {
-                $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+                $0.bottom.equalTo(0)
             }
             self.view.layoutIfNeeded()
         }
@@ -141,14 +149,13 @@ class DetailPostViewController: UIViewController {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing)
-            $0.bottom.equalTo(self.inputTextFieldView.snp.top)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
         inputTextFieldView.snp.makeConstraints {
-            $0.trailing.equalTo(0)
-            $0.leading.equalTo(0)
+            $0.width.equalTo(self.view.frame.width)
             $0.height.equalTo(60)
-//            viewHeightConstraint =   $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).constraint
-                        $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+            $0.bottom.equalTo(0)
+            $0.centerX.equalTo(self.view).offset(0)
         }
         inputUserImage.snp.makeConstraints {
             $0.width.equalTo(35)
@@ -182,7 +189,7 @@ class DetailPostViewController: UIViewController {
             $0.top.equalTo(0)
             $0.leading.equalTo(0)
             $0.trailing.equalTo(0)
-            $0.bottom.equalTo(0)
+            $0.bottom.equalTo(self.inputTextFieldView.snp.top)
         }
     }
 }
