@@ -37,6 +37,7 @@
 		57DF49D4275512CA001AC399 /* FirstChangPassWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DF49D3275512CA001AC399 /* FirstChangPassWordViewController.swift */; };
 		57E0A56C2736B7D00074073E /* TwCenClassMTStd-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57E0A5692736B3BD0074073E /* TwCenClassMTStd-Regular.otf */; };
 		57E0A56D2736B7D40074073E /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57E0A5682736B3A90074073E /* NotoSansKR-Regular.otf */; };
+		57EB66842762325E00F16A97 /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EB66832762325E00F16A97 /* TokenModel.swift */; };
 		57FB6AD1273B910500512787 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57FB6ACF273B7FE800512787 /* NotoSansKR-Medium.otf */; };
 		57FB6AD2273B910A00512787 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57FB6AD0273B7FF200512787 /* NotoSansKR-Bold.otf */; };
 		C24A8FAC5906D2CF9CCD98F0 /* Pods_NMS_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C1B556CA9F06BD1CFCDBF7 /* Pods_NMS_IOS.framework */; };
@@ -77,6 +78,7 @@
 		57DF49D3275512CA001AC399 /* FirstChangPassWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstChangPassWordViewController.swift; sourceTree = "<group>"; };
 		57E0A5682736B3A90074073E /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		57E0A5692736B3BD0074073E /* TwCenClassMTStd-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TwCenClassMTStd-Regular.otf"; sourceTree = "<group>"; };
+		57EB66832762325E00F16A97 /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
 		57FB6ACF273B7FE800512787 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		57FB6AD0273B7FF200512787 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		89C1B556CA9F06BD1CFCDBF7 /* Pods_NMS_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NMS_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,9 +172,10 @@
 		5793749A2734E79A00D8096F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5793749B2734E7A800D8096F /* Auth */,
 				57BBF7812745C79A0075053D /* DumeData.swift */,
 				5793749E2734E7EE00D8096F /* ViewModelType.swift */,
-				5793749B2734E7A800D8096F /* Auth */,
+				57EB66832762325E00F16A97 /* TokenModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				57C8501726ECEFF200D0B3DF /* SceneDelegate.swift in Sources */,
 				570077B5273A7C4500608A93 /* MenuTableViewCell.swift in Sources */,
 				5793749F2734E7EE00D8096F /* ViewModelType.swift in Sources */,
+				57EB66842762325E00F16A97 /* TokenModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
