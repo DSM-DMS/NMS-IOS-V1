@@ -11,6 +11,7 @@
 		570B6D2E2732A218002AFA9E /* MainLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570B6D2D2732A218002AFA9E /* MainLoginViewController.swift */; };
 		571234D5273962F100E9E9B4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571234D4273962F100E9E9B4 /* MainViewController.swift */; };
 		5724F80D274CD49A00F3A93A /* EditMyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5724F80C274CD49A00F3A93A /* EditMyProfileViewController.swift */; };
+		572A272227623C01003AFA06 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A272127623C01003AFA06 /* API.swift */; };
 		573E430A27380F2E004457AA /* SecondSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E430927380F2E004457AA /* SecondSignUpViewController.swift */; };
 		574A77B42757A6E000204BFF /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A77B32757A6E000204BFF /* DetailPostViewController.swift */; };
 		57637F8E273AAE2E007B8334 /* MainPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57637F8D273AAE2E007B8334 /* MainPostTableViewCell.swift */; };
@@ -50,6 +51,7 @@
 		571234D4273962F100E9E9B4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5720433274A4DF04F4AB28EA /* Pods-NMS-IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NMS-IOS.release.xcconfig"; path = "Target Support Files/Pods-NMS-IOS/Pods-NMS-IOS.release.xcconfig"; sourceTree = "<group>"; };
 		5724F80C274CD49A00F3A93A /* EditMyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyProfileViewController.swift; sourceTree = "<group>"; };
+		572A272127623C01003AFA06 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		573E430927380F2E004457AA /* SecondSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSignUpViewController.swift; sourceTree = "<group>"; };
 		574A77B32757A6E000204BFF /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
 		57637F8D273AAE2E007B8334 /* MainPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPostTableViewCell.swift; sourceTree = "<group>"; };
@@ -136,6 +138,14 @@
 			path = MainView;
 			sourceTree = "<group>";
 		};
+		572A272027623BF5003AFA06 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				572A272127623C01003AFA06 /* API.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		5768203C27341E61008685F7 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +172,7 @@
 		57892478275A42B700901FDB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				572A272027623BF5003AFA06 /* Networking */,
 				57D8061C273904FC003B5C06 /* Extension */,
 				5793749A2734E79A00D8096F /* Model */,
 				570B6D2B2732A19E002AFA9E /* View */,
@@ -419,6 +430,7 @@
 				573E430A27380F2E004457AA /* SecondSignUpViewController.swift in Sources */,
 				5724F80D274CD49A00F3A93A /* EditMyProfileViewController.swift in Sources */,
 				571234D5273962F100E9E9B4 /* MainViewController.swift in Sources */,
+				572A272227623C01003AFA06 /* API.swift in Sources */,
 				57C8501926ECEFF200D0B3DF /* LoginAndSignupViewController.swift in Sources */,
 				577A1BE4274BB51A00282527 /* MainPostHasImageTableViewCell.swift in Sources */,
 				57D8062027393CCD003B5C06 /* ThirdSignUpViewController.swift in Sources */,
