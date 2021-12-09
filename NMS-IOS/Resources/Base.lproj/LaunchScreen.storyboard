@@ -23,11 +23,23 @@
                                     <constraint firstAttribute="width" constant="100" id="W3b-UT-k7n"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@2021 Team DMS - Notice Management System" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmN-VB-ISw">
+                                <rect key="frame" x="20" y="836" width="374" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="1Ys-pb-qW2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YmN-VB-ISw" secondAttribute="trailing" constant="20" id="417-lt-Uez"/>
                             <constraint firstItem="brK-DZ-lhS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="PyN-jM-RIX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YmN-VB-ISw" secondAttribute="bottom" constant="5" id="Sby-Oi-Jeu"/>
+                            <constraint firstItem="YmN-VB-ISw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="iQq-oL-Jh6"/>
                             <constraint firstItem="brK-DZ-lhS" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="xVj-ZT-Fhp"/>
                         </constraints>
                     </view>
@@ -39,6 +51,9 @@
     </scenes>
     <resources>
         <image name="MainLogoBlue" width="55" height="55"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
