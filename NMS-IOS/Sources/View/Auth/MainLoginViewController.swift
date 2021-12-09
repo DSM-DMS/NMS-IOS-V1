@@ -82,7 +82,7 @@ class MainLoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "MainBackColor1")
+        view.backgroundColor = UIColor(named: "MainColor1")
         setSearchController()
         setAddSubView()
         setMain()

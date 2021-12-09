@@ -53,7 +53,19 @@ class ThirdSignUpViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     func setMain() {
-        
+        nextButton.rx.tap.bind {
+            let alert = UIAlertController(title: "회원가입이 완료되었습니다.", message: "", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .default) { (action) in
+
+                let editorViewController = MainViewController()
+                let navEditorViewController: UINavigationController = UINavigationController(rootViewController: editorViewController)
+                navEditorViewController.modalPresentationStyle = .fullScreen
+                self.present(navEditorViewController, animated: true, completion: nil)
+
+            }
+            alert.addAction(defaultAction)
+            self.present(alert, animated: true, completion: nil)
+        }.disposed(by: disposeBag)
     }
     func setAddSubView() {
         view.addSubview(signUpLabel)
