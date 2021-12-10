@@ -34,6 +34,9 @@
 		57C8502126ECEFF300D0B3DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C8501F26ECEFF300D0B3DF /* LaunchScreen.storyboard */; };
 		57D264562747F07A009002C4 /* MainMyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D264552747F07A009002C4 /* MainMyPageViewController.swift */; };
 		57D2C1A72762E3EF006DD45F /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2C1A62762E3EF006DD45F /* Client.swift */; };
+		57D2C1A92763B25A006DD45F /* AuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2C1A82763B25A006DD45F /* AuthApi.swift */; };
+		57D2C1AB2763B2A4006DD45F /* NoticeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2C1AA2763B2A4006DD45F /* NoticeApi.swift */; };
+		57D2C1AD2763B2BB006DD45F /* MyPageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2C1AC2763B2BB006DD45F /* MyPageApi.swift */; };
 		57D8061E2739052C003B5C06 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8061D2739052C003B5C06 /* TextField.swift */; };
 		57D8062027393CCD003B5C06 /* ThirdSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8061F27393CCD003B5C06 /* ThirdSignUpViewController.swift */; };
 		57DF49D4275512CA001AC399 /* FirstChangPassWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DF49D3275512CA001AC399 /* FirstChangPassWordViewController.swift */; };
@@ -77,6 +80,9 @@
 		57C8502226ECEFF300D0B3DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57D264552747F07A009002C4 /* MainMyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMyPageViewController.swift; sourceTree = "<group>"; };
 		57D2C1A62762E3EF006DD45F /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		57D2C1A82763B25A006DD45F /* AuthApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthApi.swift; sourceTree = "<group>"; };
+		57D2C1AA2763B2A4006DD45F /* NoticeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeApi.swift; sourceTree = "<group>"; };
+		57D2C1AC2763B2BB006DD45F /* MyPageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageApi.swift; sourceTree = "<group>"; };
 		57D8061D2739052C003B5C06 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		57D8061F27393CCD003B5C06 /* ThirdSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSignUpViewController.swift; sourceTree = "<group>"; };
 		57DF49D3275512CA001AC399 /* FirstChangPassWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstChangPassWordViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +151,9 @@
 			children = (
 				572A272127623C01003AFA06 /* API.swift */,
 				57D2C1A62762E3EF006DD45F /* Client.swift */,
+				57D2C1A82763B25A006DD45F /* AuthApi.swift */,
+				57D2C1AA2763B2A4006DD45F /* NoticeApi.swift */,
+				57D2C1AC2763B2BB006DD45F /* MyPageApi.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -426,6 +435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57D2C1AD2763B2BB006DD45F /* MyPageApi.swift in Sources */,
 				577A1BE0274B0F0200282527 /* CustomCollectionView.swift in Sources */,
 				577A1BE2274B7AB400282527 /* MainPostCrellFunc.swift in Sources */,
 				57BBF7822745C79A0075053D /* DumeData.swift in Sources */,
@@ -435,8 +445,10 @@
 				571234D5273962F100E9E9B4 /* MainViewController.swift in Sources */,
 				572A272227623C01003AFA06 /* API.swift in Sources */,
 				57C8501926ECEFF200D0B3DF /* LoginAndSignupViewController.swift in Sources */,
+				57D2C1A92763B25A006DD45F /* AuthApi.swift in Sources */,
 				577A1BE4274BB51A00282527 /* MainPostHasImageTableViewCell.swift in Sources */,
 				57D8062027393CCD003B5C06 /* ThirdSignUpViewController.swift in Sources */,
+				57D2C1AB2763B2A4006DD45F /* NoticeApi.swift in Sources */,
 				5772272727563FFC00BDF2BE /* SecondChangePasswordViewController.swift in Sources */,
 				57D264562747F07A009002C4 /* MainMyPageViewController.swift in Sources */,
 				570B6D2E2732A218002AFA9E /* MainLoginViewController.swift in Sources */,
