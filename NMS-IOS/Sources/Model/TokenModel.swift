@@ -13,8 +13,16 @@ struct TokenModel: Codable {
     let refresh_token: String
 }
 struct Token {
-    static var access_token: String = ""
-    static var room_token: String?
+    static var access_token: String? {
+        get {
+            let keychain = KeychainSwift()
+            return keychain.get("access_token")
+        }
+        set {
+            let keychain = KeychainSwift()
+            keychain.set(newValue ?? "", forKey: "access_token")
+        }
+    }
     static var refresh_token: String? {
         get {
             let keychain = KeychainSwift()
