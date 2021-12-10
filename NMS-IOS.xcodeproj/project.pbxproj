@@ -33,6 +33,7 @@
 		57C8501E26ECEFF300D0B3DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C8501D26ECEFF300D0B3DF /* Assets.xcassets */; };
 		57C8502126ECEFF300D0B3DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C8501F26ECEFF300D0B3DF /* LaunchScreen.storyboard */; };
 		57D264562747F07A009002C4 /* MainMyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D264552747F07A009002C4 /* MainMyPageViewController.swift */; };
+		57D2C1A72762E3EF006DD45F /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2C1A62762E3EF006DD45F /* Client.swift */; };
 		57D8061E2739052C003B5C06 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8061D2739052C003B5C06 /* TextField.swift */; };
 		57D8062027393CCD003B5C06 /* ThirdSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8061F27393CCD003B5C06 /* ThirdSignUpViewController.swift */; };
 		57DF49D4275512CA001AC399 /* FirstChangPassWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DF49D3275512CA001AC399 /* FirstChangPassWordViewController.swift */; };
@@ -75,6 +76,7 @@
 		57C8502026ECEFF300D0B3DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57C8502226ECEFF300D0B3DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57D264552747F07A009002C4 /* MainMyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMyPageViewController.swift; sourceTree = "<group>"; };
+		57D2C1A62762E3EF006DD45F /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		57D8061D2739052C003B5C06 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		57D8061F27393CCD003B5C06 /* ThirdSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSignUpViewController.swift; sourceTree = "<group>"; };
 		57DF49D3275512CA001AC399 /* FirstChangPassWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstChangPassWordViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				572A272127623C01003AFA06 /* API.swift */,
+				57D2C1A62762E3EF006DD45F /* Client.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				5793749D2734E7D000D8096F /* SignUpViewModel.swift in Sources */,
 				57DF49D4275512CA001AC399 /* FirstChangPassWordViewController.swift in Sources */,
 				57D8061E2739052C003B5C06 /* TextField.swift in Sources */,
+				57D2C1A72762E3EF006DD45F /* Client.swift in Sources */,
 				57A57A78275B900000845A22 /* MainCommentTableViewCell.swift in Sources */,
 				57C8501726ECEFF200D0B3DF /* SceneDelegate.swift in Sources */,
 				570077B5273A7C4500608A93 /* MenuTableViewCell.swift in Sources */,
