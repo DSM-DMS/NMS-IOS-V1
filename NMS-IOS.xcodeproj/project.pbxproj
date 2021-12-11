@@ -22,8 +22,6 @@
 		577A1BE2274B7AB400282527 /* MainPostCrellFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577A1BE1274B7AB400282527 /* MainPostCrellFunc.swift */; };
 		577A1BE4274BB51A00282527 /* MainPostHasImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577A1BE3274BB51A00282527 /* MainPostHasImageTableViewCell.swift */; };
 		577E39EF2753AEB100FBAD3A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577E39EE2753AEB100FBAD3A /* AudioToolbox.framework */; };
-		5793749D2734E7D000D8096F /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793749C2734E7D000D8096F /* SignUpViewModel.swift */; };
-		5793749F2734E7EE00D8096F /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793749E2734E7EE00D8096F /* ViewModelType.swift */; };
 		57A57A78275B900000845A22 /* MainCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A57A77275B900000845A22 /* MainCommentTableViewCell.swift */; };
 		57A57A7B275B902400845A22 /* ReplyCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A57A7A275B902400845A22 /* ReplyCommentTableViewCell.swift */; };
 		57BBF7822745C79A0075053D /* DumeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BBF7812745C79A0075053D /* DumeData.swift */; };
@@ -37,6 +35,8 @@
 		57D2C1A92763B25A006DD45F /* AuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2C1A82763B25A006DD45F /* AuthApi.swift */; };
 		57D2C1AB2763B2A4006DD45F /* NoticeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2C1AA2763B2A4006DD45F /* NoticeApi.swift */; };
 		57D2C1AD2763B2BB006DD45F /* MyPageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2C1AC2763B2BB006DD45F /* MyPageApi.swift */; };
+		57D2C1AF2764737F006DD45F /* FourthSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2C1AE2764737F006DD45F /* FourthSignupViewController.swift */; };
+		57D2C1B1276488DA006DD45F /* MainNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2C1B0276488DA006DD45F /* MainNotice.swift */; };
 		57D8061E2739052C003B5C06 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8061D2739052C003B5C06 /* TextField.swift */; };
 		57D8062027393CCD003B5C06 /* ThirdSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8061F27393CCD003B5C06 /* ThirdSignUpViewController.swift */; };
 		57DF49D4275512CA001AC399 /* FirstChangPassWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DF49D3275512CA001AC399 /* FirstChangPassWordViewController.swift */; };
@@ -66,8 +66,6 @@
 		577A1BE1274B7AB400282527 /* MainPostCrellFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPostCrellFunc.swift; sourceTree = "<group>"; };
 		577A1BE3274BB51A00282527 /* MainPostHasImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPostHasImageTableViewCell.swift; sourceTree = "<group>"; };
 		577E39EE2753AEB100FBAD3A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		5793749C2734E7D000D8096F /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
-		5793749E2734E7EE00D8096F /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		57A57A77275B900000845A22 /* MainCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCommentTableViewCell.swift; sourceTree = "<group>"; };
 		57A57A7A275B902400845A22 /* ReplyCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyCommentTableViewCell.swift; sourceTree = "<group>"; };
 		57BBF7812745C79A0075053D /* DumeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DumeData.swift; sourceTree = "<group>"; };
@@ -83,6 +81,8 @@
 		57D2C1A82763B25A006DD45F /* AuthApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthApi.swift; sourceTree = "<group>"; };
 		57D2C1AA2763B2A4006DD45F /* NoticeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeApi.swift; sourceTree = "<group>"; };
 		57D2C1AC2763B2BB006DD45F /* MyPageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageApi.swift; sourceTree = "<group>"; };
+		57D2C1AE2764737F006DD45F /* FourthSignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthSignupViewController.swift; sourceTree = "<group>"; };
+		57D2C1B0276488DA006DD45F /* MainNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNotice.swift; sourceTree = "<group>"; };
 		57D8061D2739052C003B5C06 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		57D8061F27393CCD003B5C06 /* ThirdSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSignUpViewController.swift; sourceTree = "<group>"; };
 		57DF49D3275512CA001AC399 /* FirstChangPassWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstChangPassWordViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +164,7 @@
 				5768203D27341E8B008685F7 /* FirstSignUpViewController.swift */,
 				573E430927380F2E004457AA /* SecondSignUpViewController.swift */,
 				57D8061F27393CCD003B5C06 /* ThirdSignUpViewController.swift */,
+				57D2C1AE2764737F006DD45F /* FourthSignupViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -195,20 +196,11 @@
 		5793749A2734E79A00D8096F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5793749B2734E7A800D8096F /* Auth */,
 				57BBF7812745C79A0075053D /* DumeData.swift */,
-				5793749E2734E7EE00D8096F /* ViewModelType.swift */,
 				57EB66832762325E00F16A97 /* TokenModel.swift */,
+				57D2C1B0276488DA006DD45F /* MainNotice.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		5793749B2734E7A800D8096F /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				5793749C2734E7D000D8096F /* SignUpViewModel.swift */,
-			);
-			path = Auth;
 			sourceTree = "<group>";
 		};
 		57A57A75275B8E6C00845A22 /* Post */ = {
@@ -445,26 +437,26 @@
 				571234D5273962F100E9E9B4 /* MainViewController.swift in Sources */,
 				572A272227623C01003AFA06 /* API.swift in Sources */,
 				57C8501926ECEFF200D0B3DF /* LoginAndSignupViewController.swift in Sources */,
+				57D2C1B1276488DA006DD45F /* MainNotice.swift in Sources */,
 				57D2C1A92763B25A006DD45F /* AuthApi.swift in Sources */,
 				577A1BE4274BB51A00282527 /* MainPostHasImageTableViewCell.swift in Sources */,
 				57D8062027393CCD003B5C06 /* ThirdSignUpViewController.swift in Sources */,
 				57D2C1AB2763B2A4006DD45F /* NoticeApi.swift in Sources */,
 				5772272727563FFC00BDF2BE /* SecondChangePasswordViewController.swift in Sources */,
 				57D264562747F07A009002C4 /* MainMyPageViewController.swift in Sources */,
+				57D2C1AF2764737F006DD45F /* FourthSignupViewController.swift in Sources */,
 				570B6D2E2732A218002AFA9E /* MainLoginViewController.swift in Sources */,
 				57637F8E273AAE2E007B8334 /* MainPostTableViewCell.swift in Sources */,
 				57C8501526ECEFF200D0B3DF /* AppDelegate.swift in Sources */,
 				5768203E27341E8B008685F7 /* FirstSignUpViewController.swift in Sources */,
 				577A1BDE274B0BAD00282527 /* LikePostCollectionViewCell.swift in Sources */,
 				57A57A7B275B902400845A22 /* ReplyCommentTableViewCell.swift in Sources */,
-				5793749D2734E7D000D8096F /* SignUpViewModel.swift in Sources */,
 				57DF49D4275512CA001AC399 /* FirstChangPassWordViewController.swift in Sources */,
 				57D8061E2739052C003B5C06 /* TextField.swift in Sources */,
 				57D2C1A72762E3EF006DD45F /* Client.swift in Sources */,
 				57A57A78275B900000845A22 /* MainCommentTableViewCell.swift in Sources */,
 				57C8501726ECEFF200D0B3DF /* SceneDelegate.swift in Sources */,
 				570077B5273A7C4500608A93 /* MenuTableViewCell.swift in Sources */,
-				5793749F2734E7EE00D8096F /* ViewModelType.swift in Sources */,
 				57EB66842762325E00F16A97 /* TokenModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
