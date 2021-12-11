@@ -13,6 +13,9 @@ import RxSwift
 import RxCocoa
 
 class MainLoginViewController: UIViewController {
+    
+    let Auth = AuthApi()
+    
     let disposeBag = DisposeBag()
     let MainLogoImage = UIImageView().then {
         $0.image = UIImage(named: "MainLogoWhite")
@@ -23,7 +26,7 @@ class MainLoginViewController: UIViewController {
         $0.layer.cornerRadius = 25
         $0.layer.maskedCorners = [ .layerMaxXMaxYCorner, .layerMaxXMinYCorner]
     }
-
+    
     let saveIdButton = UIButton().then {
         let checkbox = UIImage(named: "fillCheck")
         let emptyCheckbox = UIImage(named:"emptyCheck")
@@ -71,7 +74,7 @@ class MainLoginViewController: UIViewController {
         $0.attributedPlaceholder = NSAttributedString(
             string: " PASSWORD",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "MainColor2")!, NSAttributedString.Key.font : UIFont(name: "NotoSansKR-Regular", size: 16.0)!]
-
+            
         )
         $0.textColor = .black
         $0.font = UIFont(name: "NotoSansKR-Regular", size: 16.0)
@@ -92,12 +95,27 @@ class MainLoginViewController: UIViewController {
         
     }
     func setMain() {
-        loginButton.rx.tap.bind {
-            let editorViewController = MainViewController()
-            let navEditorViewController: UINavigationController = UINavigationController(rootViewController: editorViewController)
-            navEditorViewController.modalPresentationStyle = .fullScreen
-            self.present(navEditorViewController, animated: true, completion: nil)
-        }.disposed(by: disposeBag)
+        loginButton.rx.tap.bind { [self] in
+            if idTextField.text == nil || pwtextField.text == "" {
+                print("No Resalt")
+                return
+            } else {
+                print(Auth.login(email: idTextField.text, password: pwtextField.text).subscribe(onNext:  {res in
+                    switch res {
+                    case .success:
+                        print("성공")
+                        let editorViewController = MainViewController()
+                        let navEditorViewController: UINavigationController = UINavigationController(rootViewController: editorViewController)
+                        navEditorViewController.modalPresentationStyle = .fullScreen
+                        present(navEditorViewController, animated: true, completion: nil)
+                    default:
+                        print("Faled")
+                    }
+                }))
+                
+
+            }
+                    }.disposed(by: disposeBag)
         saveIdButton.rx.tap
             .bind {
                 self.saveIdButton.isSelected.toggle()
@@ -110,7 +128,7 @@ class MainLoginViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         idTextField.setUnderLine(color: UIColor(named: "MainColor2")!)
         pwtextField.setUnderLine(color: UIColor(named: "MainColor2")!)
-
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         setSearchController()
@@ -161,7 +179,7 @@ class MainLoginViewController: UIViewController {
             
         }
         SignupMembership.snp.makeConstraints {
-
+            
             $0.centerY.equalTo(self.view).offset(380)
             $0.width.equalTo(100)
             $0.height.equalTo(20)
@@ -184,7 +202,7 @@ class MainLoginViewController: UIViewController {
             $0.height.equalTo(15)
             $0.centerY.equalTo(self.view).offset(380)
             $0.centerX.equalTo(self.view).offset(0)
-
+            
         }
     }
     func setSearchController() {
@@ -224,13 +242,4 @@ extension MainLoginViewController : UITextFieldDelegate {
             self.view.layoutIfNeeded()
         }
     }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText = textField.text ?? ""
-        // attempt to read the range they are trying to change, or exit if we can't
-        guard let stringRange = Range(range, in: currentText) else { return false }
-        // add their new text to the existing text
-        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-        // make sure the result is under 16 characters
-        return updatedText.count <= 10
     }
-}
