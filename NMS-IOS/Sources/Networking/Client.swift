@@ -10,7 +10,7 @@ import RxSwift
 import Alamofire
 import RxAlamofire
 
-let baseURL = "http://13.209.48.160:8080"
+let baseURL = "http://13.209.176.77:8080"
 
 class Client {
     typealias httpResult = Observable<(HTTPURLResponse, Data)>
@@ -21,8 +21,8 @@ class Client {
                            encoding: JSONEncoding.prettyPrinted,
                            headers: api.header())
     }
-    func post(_ api : API, parameter : Parameters?, encoding: ParameterEncoding = JSONEncoding.default) -> httpResult{
-        return requestData(.get, baseURL + api.path(),
+    func post(_ api : API, parameter : Parameters?, encoding: ParameterEncoding = JSONEncoding.prettyPrinted) -> httpResult{
+        return requestData(.post, baseURL + api.path(),
                            parameters: parameter,
                            encoding: encoding,
                            headers: api.header())
