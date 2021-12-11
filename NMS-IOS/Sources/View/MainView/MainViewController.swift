@@ -15,6 +15,7 @@ import AudioToolbox
 class MainViewController: UIViewController {
     
     let store = MainPost()
+    let NoticeClass = NoticeApi()
     let bag = DisposeBag()
     
     let mainBackView = UIView().then {
@@ -69,7 +70,7 @@ class MainViewController: UIViewController {
         let image = UIImage(named: "MainLogoBlue")
         imageView.image = image
         self.navigationItem.titleView = imageView
-
+        
         self.navigationItem.rightBarButtonItem = personButton
     }
     func setConstent() {
@@ -85,7 +86,7 @@ class MainViewController: UIViewController {
 extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1 + store.list.count
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,7 +97,14 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
             Ccell.selectedBackgroundView = bgColorView
             return Ccell
         } else {
-            
+            print(NoticeClass.allNoticeGet().subscribe(onNext: { noticeData, statusCodes in
+                switch statusCodes {
+                case .success:
+                    print(noticeData as Any)
+                default:
+                    print("Not -----")
+                }
+            }))
             let bgColorView = UIView()
             bgColorView.backgroundColor = .clear
             if store.list[indexPath.row - 1].PostImage == nil {

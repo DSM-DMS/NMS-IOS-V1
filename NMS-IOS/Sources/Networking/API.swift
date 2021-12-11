@@ -12,7 +12,7 @@ enum API {
     
     case checkPassword  // 기존 비밀번호 확인
     case login
-    case signUo
+    case signUp
     case reissiuTokens  // 토큰 재발급
     case reviseStudent  // 학생 정보 수정
     case myPage
@@ -36,7 +36,7 @@ enum API {
             return "/student/password"
         case .login:
             return "/student/auth"
-        case .signUo:
+        case .signUp:
             return "/student"
         case .reissiuTokens:
             return "/student/auth"
@@ -69,7 +69,7 @@ enum API {
             
         case .checkPassword, .reviseStudent, .myPage, .checkAllPost, .checkTargetPost(_),  .checkJustPost(_), .bookMark(_), .cancelBookMark(_), .writeComment(_), .writeReComment(_):
             return ["access-token": "Bearer \(String(describing: Token.access_token))"]
-        case .login, .signUo, .checkEmail, .sendEmail:
+        case .login, .signUp, .checkEmail, .sendEmail:
             return nil
         case .reissiuTokens:
             return ["X-Refresh-Token": "Bearer \(String(describing: Token.refresh_token))"]
