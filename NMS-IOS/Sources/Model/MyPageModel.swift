@@ -10,10 +10,10 @@ import Foundation
 struct MyPageModel : Codable {
     let nickname : String
     let name : String
-    let gcn : String
+    let gcn : String?
     let email : String
-    let profile_url : String
-    let stared_notices : [StaredNotice]
+    let profile_url : String?
+    let stared_notices : [StaredNotice]?
 }
 struct StaredNotice : Codable {
     let id : Int

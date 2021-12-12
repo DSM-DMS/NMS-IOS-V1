@@ -15,7 +15,10 @@ import AudioToolbox
 class DetailPostViewController: UIViewController {
     
     var indexNum = 1
+    var noticeId = 1
     let mainVC = MainViewController()
+    var notice = [Notices]()
+    let NoticeClass = NoticeApi()
     let bag = DisposeBag()
     let store = MainPost()
     let comment = MainComment()
@@ -102,11 +105,15 @@ class DetailPostViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
     func bind() {
-        sendButton.rx.tap.bind {
+
+        sendButton.rx.tap.bind { [self] in
             if (self.inputTextField.text == "") {
                 return
             }
             else {
+                self.NoticeClass.allNoticeGet().subscribe(onNext: { noticeSucces, statusCode in
+                    
+                }).disposed(by: bag)
                 let lastindexPath = IndexPath(row: self.comment.list.count, section: 0)
 //                chatDatas.append(chatStringTextView.text)
                 self.comment.list.append(DetailCommentDume(commentHashtagBool: false, id: 1, userName: "장성헤(마이스터부)", userImage: nil, locationDate: "방금 전", commentBody: self.inputTextField.text))

@@ -16,6 +16,8 @@ class MainMyPageViewController: UIViewController {
     
     private var likePostCollectionView: CustomCollectionView!
     let store = MainPost()
+    let myPage = MyPageApi()
+    var myPageModel = StaredNotice()
     let bag = DisposeBag()
     
     let mainBackView = UIView().then {
@@ -71,10 +73,7 @@ class MainMyPageViewController: UIViewController {
         super.viewDidLoad()
         setNavagationBar()
         setcustomCollectionView()
-        editButton.rx.tap.bind {
-            let editMyProfileViewController = EditMyProfileViewController()
-            self.navigationController?.pushViewController(editMyProfileViewController, animated: true)
-        }.disposed(by: bag)
+        
         likePostCollectionView.register(LikePostCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "cellIdentifier")
         userImage.layer.cornerRadius = 25.5
         view.addSubview(mainBackView)
@@ -91,8 +90,31 @@ class MainMyPageViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        bind()
         setNavagationBar()
     }
+    
+    func bind() {
+        myPage.myPageGet().subscribe(onNext: { myPageData, StatusCode in
+            switch StatusCode {
+            case .success:
+                self.useridLabel.text = "\(myPageData?.gcn ?? "") \(myPageData?.name ?? "")"
+                self.emailLabel.text = "\(myPageData?.email ?? "")"
+                
+            default:
+                let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                }
+                alert.addAction(defaultAction)
+                self.present(alert, animated: true, completion: nil)
+            }
+        }).disposed(by: bag)
+        editButton.rx.tap.bind {
+            let editMyProfileViewController = EditMyProfileViewController()
+            self.navigationController?.pushViewController(editMyProfileViewController, animated: true)
+        }.disposed(by: bag)
+    }
+    
     func makeConstraint() {
         mainBackView.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)

@@ -28,7 +28,6 @@ class FirstSignUpViewController: UIViewController {
         $0.layer.borderColor = UIColor.white.cgColor
         $0.layer.borderWidth = 2
     }
-    
     let nameTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(
             string: " 이름",
@@ -124,12 +123,6 @@ class FirstSignUpViewController: UIViewController {
             $0.top.equalTo(360)
             $0.centerX.equalTo(self.view).offset(0)
         }
-        //        gradeMenuButton.snp.makeConstraints {
-        //            $0.width.equalTo(356)
-        //            $0.height.equalTo(35)
-        //            $0.top.equalTo(360)
-        //            $0.centerX.equalTo(self.view).offset(0)
-        //        }
     }
     func setSearchController() {
         self.view.backgroundColor = UIColor.white

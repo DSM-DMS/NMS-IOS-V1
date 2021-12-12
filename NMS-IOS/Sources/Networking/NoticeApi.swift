@@ -54,7 +54,27 @@ class NoticeApi {
                 default:
                     return (nil, .fault)
                 }
-                
+            }
+    }
+    func justNoticeGet(noticeID : Int) -> Observable<( Notices?, StatusCodes)> {
+        client.get(.checkJustPost(noticeID), parameter: nil)
+            .map {response, data -> (Notices?, StatusCodes) in
+                print(Token.access_token ?? "")
+                switch response.statusCode {
+                case 200:
+                    do {
+                        let data = try JSONDecoder().decode(Notices.self, from: data)
+                        return (data, .success)
+                    }
+                    catch {
+                        print("Parse Error : \n \(error)")
+                        return (nil, .fault)
+                    }
+                case 404:
+                    return (nil, .notFound)
+                default:
+                    return (nil, .fault)
+                }
             }
     }
     

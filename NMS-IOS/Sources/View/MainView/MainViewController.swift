@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
     let bag = DisposeBag()
     let refreshControl = UIRefreshControl()
     var noticeDataCount =  0
+    var noticeIdNum = 1
     
     let mainBackView = UIView().then {
         $0.backgroundColor = .systemBackground
@@ -65,6 +66,7 @@ class MainViewController: UIViewController {
                 case .success:
                     self.notice = noticeData!.notices
                     self.noticeDataCount = noticeData!.notice_count
+                    self.noticeIdNum = noticeData?.notice_count ?? 1
                     self.mainTableView.reloadData()
                 default:
                     let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
@@ -143,6 +145,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     AudioServicesPlaySystemSound(1520)
                     let DetailPostViewController = DetailPostViewController()
                     DetailPostViewController.indexNum = indexPath.row - 1
+                    DetailPostViewController.noticeId = self.noticeIdNum
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
                 }
                 let userUrl = URL(string: (self.notice[indexPath.row - 1].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
