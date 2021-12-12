@@ -57,4 +57,27 @@ class NoticeApi {
                 
             }
     }
+    
+    func likeStarGet(noticeID : Int) -> Observable<StatusCodes> {
+        client.post(.bookMark(noticeID), parameter: nil).map { response, data -> StatusCodes in
+            print(data)
+            print(response)
+            switch response.statusCode {
+            case 200:
+                return (.success)
+            default:
+                return (.fault)
+            }
+        }
+    }
+    func unLikeStarGet(noticeID : Int) -> Observable<StatusCodes> {
+        client.delete(.cancelBookMark(noticeID), parameter: nil).map { response, data -> StatusCodes in
+            switch response.statusCode {
+            case 204:
+                return (.success)
+            default:
+                return (.fault)
+            }
+        }
+    }
 }

@@ -22,13 +22,13 @@ enum API {
     
     case checkAllPost
     case checkTargetPost( _ target : String)
-    case checkJustPost( _ noticeId : String)
+    case checkJustPost( _ noticeId : Int)
     
-    case bookMark( _ noticeId : String)
-    case cancelBookMark( _ noticeId : String)
+    case bookMark( _ noticeId : Int)
+    case cancelBookMark( _ noticeId : Int)
     
-    case writeComment( _ noticeId : String)
-    case writeReComment( _ noticeId : String)
+    case writeComment( _ noticeId : Int)
+    case writeReComment( _ noticeId : Int)
     
     func path() -> String {
         switch self {

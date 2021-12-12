@@ -42,6 +42,7 @@
 		57DF49D4275512CA001AC399 /* FirstChangPassWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DF49D3275512CA001AC399 /* FirstChangPassWordViewController.swift */; };
 		57E0A56C2736B7D00074073E /* TwCenClassMTStd-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57E0A5692736B3BD0074073E /* TwCenClassMTStd-Regular.otf */; };
 		57E0A56D2736B7D40074073E /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57E0A5682736B3A90074073E /* NotoSansKR-Regular.otf */; };
+		57E829CA2765D5DE0051E9DD /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E829C92765D5DE0051E9DD /* MyPageModel.swift */; };
 		57EB66842762325E00F16A97 /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EB66832762325E00F16A97 /* TokenModel.swift */; };
 		57FB6AD1273B910500512787 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57FB6ACF273B7FE800512787 /* NotoSansKR-Medium.otf */; };
 		57FB6AD2273B910A00512787 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57FB6AD0273B7FF200512787 /* NotoSansKR-Bold.otf */; };
@@ -88,6 +89,7 @@
 		57DF49D3275512CA001AC399 /* FirstChangPassWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstChangPassWordViewController.swift; sourceTree = "<group>"; };
 		57E0A5682736B3A90074073E /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		57E0A5692736B3BD0074073E /* TwCenClassMTStd-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TwCenClassMTStd-Regular.otf"; sourceTree = "<group>"; };
+		57E829C92765D5DE0051E9DD /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
 		57EB66832762325E00F16A97 /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
 		57FB6ACF273B7FE800512787 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		57FB6AD0273B7FF200512787 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				57BBF7812745C79A0075053D /* DumeData.swift */,
 				57EB66832762325E00F16A97 /* TokenModel.swift */,
 				57D2C1B0276488DA006DD45F /* MainNotice.swift */,
+				57E829C92765D5DE0051E9DD /* MyPageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57E829CA2765D5DE0051E9DD /* MyPageModel.swift in Sources */,
 				57D2C1AD2763B2BB006DD45F /* MyPageApi.swift in Sources */,
 				577A1BE0274B0F0200282527 /* CustomCollectionView.swift in Sources */,
 				577A1BE2274B7AB400282527 /* MainPostCrellFunc.swift in Sources */,

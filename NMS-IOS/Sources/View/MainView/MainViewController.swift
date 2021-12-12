@@ -53,7 +53,7 @@ class MainViewController: UIViewController {
                 DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.5) {
                     self.mainTableView.reloadData()
                     self.refreshControl.endRefreshing()
-//                    refreshLoading.accept(true) // viewModel에서 dataSource업데이트 끝난 경우
+                    //                    refreshLoading.accept(true) // viewModel에서 dataSource업데이트 끝난 경우
                 }
             }).disposed(by: bag)
         refreshLoading
@@ -138,7 +138,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                 Pcell.reportButtonAction = { [unowned self] in
                     AudioServicesPlaySystemSound(1520)
                     Pcell.likeButton.isSelected.toggle()
-                    Pcell.likeButton.isSelected = revertBool(bool: Pcell.likeButton.isSelected)
+                    Pcell.likeButton.isSelected = revertBool(noticeID: notice[indexPath.row - 1].notice_id, bool: Pcell.likeButton.isSelected)
                 }
                 Pcell.reportCommentButtonAction = {
                     AudioServicesPlaySystemSound(1520)
@@ -147,9 +147,10 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
                 }
                 let userUrl = URL(string: (self.notice[indexPath.row - 1].images?[0]) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
-                let userImageData = try! Data(contentsOf: userUrl!)
-                Pcell.userImage.image = (UIImage(data: userImageData))
-
+                let userImageData = try? Data(contentsOf: userUrl!)
+                Pcell.userImage.image = (UIImage(data: userImageData!))
+                print("------------\(String(describing: self.notice[indexPath.row - 1].star))--------------------")
+                Pcell.likeButton.isSelected = self.notice[indexPath.row - 1].star ?? false
                 Pcell.useridLabel.text = "\(self.notice[indexPath.row - 1].writer)"
                 Pcell.postTitleTextView.text = "\(self.notice[indexPath.row - 1].title )"
                 Pcell.postLocationLabel.text = "\(self.notice[indexPath.row - 1].updated_date )"
@@ -171,7 +172,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                 Hcell.reportButtonAction = { [unowned self] in
                     AudioServicesPlaySystemSound(1520)
                     Hcell.likeButton.isSelected.toggle()
-                    Hcell.likeButton.isSelected = revertBool(bool: Hcell.likeButton.isSelected)
+                    Hcell.likeButton.isSelected = revertBool(noticeID: notice[indexPath.row - 1].notice_id, bool: Hcell.likeButton.isSelected)
                 }
                 Hcell.reportCommentButtonAction = {
                     AudioServicesPlaySystemSound(1520)
@@ -182,7 +183,8 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                 let userUrl = URL(string: (self.notice[indexPath.row - 1].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
                 let userImageData = try! Data(contentsOf: userUrl!)
                 Hcell.userImage.image = (UIImage(data: userImageData))
-
+                print("------------\(String(describing: self.notice[indexPath.row - 1].star))--------------------")
+                Hcell.likeButton.isSelected = self.notice[indexPath.row - 1].star ?? false
                 Hcell.useridLabel.text = "\(self.notice[indexPath.row - 1].writer.name)"
                 Hcell.postTitleTextView.text = "\(self.notice[indexPath.row - 1].title)"
                 Hcell.postLocationLabel.text = "\(self.notice[indexPath.row - 1].updated_date )"
@@ -203,10 +205,73 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
-    func revertBool(bool : Bool) -> Bool {
+    func revertBool(noticeID : Int, bool : Bool) -> Bool {
         if bool == false {
+            print("true")
+            NoticeClass.likeStarGet(noticeID: noticeID).subscribe(onNext: { statusCode in
+                switch statusCode {
+                case .success:
+                    print("likeStarGet success!!")
+                    self.NoticeClass.allNoticeGet()
+                        .subscribe(onNext: { noticeData, statusCodes in
+                            switch statusCodes {
+                            case .success:
+                                self.notice = noticeData!.notices
+                                self.noticeDataCount = noticeData!.notice_count
+                                print("-\(noticeData!.notice_count)-")
+                                self.mainTableView.reloadData()
+                            default:
+                                let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
+                                let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                                }
+                                alert.addAction(defaultAction)
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                        }).disposed(by: self.bag)
+
+                default:
+                    let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                    }
+                    alert.addAction(defaultAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+            }).disposed(by: bag)
             return true
         } else {
+            print("false")
+            NoticeClass.unLikeStarGet(noticeID: noticeID).subscribe(onNext: { statusCode in
+                switch statusCode {
+                case .success:
+                    print("unLikeStarGet success!!")
+                    self.NoticeClass.allNoticeGet()
+                        .subscribe(onNext: { noticeData, statusCodes in
+                            switch statusCodes {
+                            case .success:
+                                self.notice = noticeData!.notices
+                                self.noticeDataCount = noticeData!.notice_count
+                                print("-\(noticeData!.notice_count)-")
+                                self.mainTableView.reloadData()
+                            default:
+                                let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
+                                let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                                }
+                                alert.addAction(defaultAction)
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                        }).disposed(by: self.bag)
+
+                default:
+                    let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                    }
+                    alert.addAction(defaultAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+            }).disposed(by: bag)
+            
             return false
         }
     }

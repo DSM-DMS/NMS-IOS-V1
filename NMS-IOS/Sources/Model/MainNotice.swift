@@ -21,7 +21,7 @@ struct Notices : Codable {
     let updated_date : String
     let images : [String]?
     
-    let is_star : Bool?
+    let star : Bool?
     let star_count : Int
     let comment_count : Int
     let comments : [comments]?
