@@ -64,10 +64,7 @@ class MainViewController: UIViewController {
                 switch statusCodes {
                 case .success:
                     self.notice = noticeData!.notices
-                    print(noticeData!.notices)
-                    
                     self.noticeDataCount = noticeData!.notice_count
-                    print("-noticeData!.notice_count\(noticeData!.notice_count)-")
                     self.mainTableView.reloadData()
                 default:
                     let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
@@ -121,7 +118,6 @@ class MainViewController: UIViewController {
 extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                print("--numberOfRowsInSection---\(noticeDataCount)-----")
         return 1 + noticeDataCount
     }
     
@@ -135,10 +131,6 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
         } else {
             let bgColorView = UIView()
             bgColorView.backgroundColor = .clear
-            print(notice.count)
-            print(notice[2])
-            print(self.notice[indexPath.row - 1].images?.count)
-            
             if self.notice[indexPath.row - 1].images?.count == 0 {
                 let Pcell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! MainPostTableViewCell
                 Pcell.mainPostTextView.textContainer.maximumNumberOfLines = 6
