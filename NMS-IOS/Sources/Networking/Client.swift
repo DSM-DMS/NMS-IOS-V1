@@ -42,7 +42,7 @@ class Client {
     
 }
 enum StatusCodes: Int {
-    case success = 201
+    case success = 200
     case badRequest = 400
     case unauthorized = 401
     case forbidden = 403

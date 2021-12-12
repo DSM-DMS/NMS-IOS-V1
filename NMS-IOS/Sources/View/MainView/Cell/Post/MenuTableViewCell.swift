@@ -14,6 +14,9 @@ import RxCocoa
 class MenuTableViewCell: UITableViewCell {
     
     let disposebag = DisposeBag()
+    let NoticeClass = NoticeApi()
+    let bag = DisposeBag()
+
     let gradeMenuButton = UIButton().then {
         $0.setTitle("학년별 ", for: .normal)
         $0.setImage(#imageLiteral(resourceName: "Icon ionic-ios-arrow-down"), for: .normal)
@@ -75,9 +78,27 @@ class MenuTableViewCell: UITableViewCell {
         
         let inSchool = UIAction(title: "교내", handler: {_ in
             self.changeTitle(title: "교내 ", target: self.schoolMenuButton)
+            self.NoticeClass.targetNoticeGet(target: "SCHOOL").subscribe(onNext: { noticeData, statusCodes in
+                switch statusCodes {
+                case .success:
+                    MainViewController().notice = noticeData!.notices
+                    MainViewController().noticeDataCount = noticeData!.notice_count
+                    MainViewController().mainTableView.reloadData()
+                default: break
+                }
+            }).disposed(by: self.bag)
         })
-        let outSchool = UIAction(title: "교내", handler: {_ in
+        let outSchool = UIAction(title: "교외", handler: {_ in
             self.changeTitle(title: "교외 ", target: self.schoolMenuButton)
+            self.NoticeClass.targetNoticeGet(target: "SUBURBS").subscribe(onNext: { noticeData, statusCodes in
+                switch statusCodes {
+                case .success:
+                    MainViewController().notice = noticeData!.notices
+                    MainViewController().noticeDataCount = noticeData!.notice_count
+                    MainViewController().mainTableView.reloadData()
+                default: break
+                }
+            }).disposed(by: self.bag)
         })
         let noneinschool = UIAction(title: "선택안함", handler: {_ in
             self.noneSelectTitle(title: "카테고리 ", target: self.schoolMenuButton)
@@ -87,12 +108,40 @@ class MenuTableViewCell: UITableViewCell {
         })
         let grade1  = UIAction(title: "1학년", handler: {_ in
             self.changeTitle(title: "1학년 ", target: self.gradeMenuButton)
+            self.NoticeClass.targetNoticeGet(target: "GRADE_FIRST").subscribe(onNext: { noticeData, statusCodes in
+                switch statusCodes {
+                case .success:
+                    print("------chaang")
+                    MainViewController().notice = noticeData!.notices
+                    MainViewController().noticeDataCount = noticeData!.notice_count
+                    MainViewController().mainTableView.reloadData()
+                default: break
+                }
+            }).disposed(by: self.bag)
         })
         let grade2 = UIAction(title: "2학년", handler: {_ in
             self.changeTitle(title: "2학년 ", target: self.gradeMenuButton)
+            self.NoticeClass.targetNoticeGet(target: "GRADE_SECOND").subscribe(onNext: { noticeData, statusCodes in
+                switch statusCodes {
+                case .success:
+                    MainViewController().notice = noticeData!.notices
+                    MainViewController().noticeDataCount = noticeData!.notice_count
+                    MainViewController().mainTableView.reloadData()
+                default: break
+                }
+            }).disposed(by: self.bag)
         })
         let grade3 = UIAction(title: "3학년", handler: {_ in
             self.changeTitle(title: "3학년 ", target: self.gradeMenuButton)
+            self.NoticeClass.targetNoticeGet(target: "GRADE_THIRD").subscribe(onNext: { noticeData, statusCodes in
+                switch statusCodes {
+                case .success:
+                    MainViewController().notice = noticeData!.notices
+                    MainViewController().noticeDataCount = noticeData!.notice_count
+                    MainViewController().mainTableView.reloadData()
+                default: break
+                }
+            }).disposed(by: self.bag)
         })
         schoolMenuButton.showsMenuAsPrimaryAction = true
         schoolMenuButton.menu = UIMenu( options: .displayInline, children: [noneinschool, inSchool, outSchool])

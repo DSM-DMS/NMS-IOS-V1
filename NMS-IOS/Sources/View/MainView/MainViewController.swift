@@ -18,8 +18,9 @@ class MainViewController: UIViewController {
     var notice = [Notices]()
     let NoticeClass = NoticeApi()
     let bag = DisposeBag()
+    let refreshControl = UIRefreshControl()
     var noticeDataCount =  0
-   
+    
     let mainBackView = UIView().then {
         $0.backgroundColor = .systemBackground
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -38,25 +39,43 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        refreshControl.endRefreshing() // 초기화 - refresh 종료
+        mainTableView.refreshControl = refreshControl
         personButton.rx.tap.bind {
             let mainMyPageViewController = MainMyPageViewController()
             self.navigationController?.pushViewController(mainMyPageViewController, animated: true)
         }.disposed(by: bag)
         view.backgroundColor = .systemBackground
         view.addSubview(mainBackView)
+        let refreshLoading = PublishRelay<Bool>() // ViewModel에 있다고 가정
+        refreshControl.rx.controlEvent(.allEvents)
+            .bind(onNext: {
+                DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.5) {
+                    self.mainTableView.reloadData()
+                    self.refreshControl.endRefreshing()
+//                    refreshLoading.accept(true) // viewModel에서 dataSource업데이트 끝난 경우
+                }
+            }).disposed(by: bag)
+        refreshLoading
+            .bind(to: refreshControl.rx.isRefreshing)
+            .disposed(by: bag)
         NoticeClass.allNoticeGet()
             .subscribe(onNext: { noticeData, statusCodes in
-            switch statusCodes {
-            case .success:
-                self.notice = noticeData!.notices
-                self.noticeDataCount = noticeData!.notice_count
-                print("-\(noticeData!.notice_count)-")
-                self.mainTableView.reloadData()
-            default:
-                print("Not")
-            }
-        }).disposed(by: bag)
-
+                switch statusCodes {
+                case .success:
+                    self.notice = noticeData!.notices
+                    self.noticeDataCount = noticeData!.notice_count
+                    print("-\(noticeData!.notice_count)-")
+                    self.mainTableView.reloadData()
+                default:
+                    let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                    }
+                    alert.addAction(defaultAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }).disposed(by: bag)
+        
         mainBackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         mainBackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         mainBackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
@@ -75,7 +94,6 @@ class MainViewController: UIViewController {
         
     }
     override func viewDidAppear(_ animated: Bool) {
-
         setNavagationBar()
     }
     func setNavagationBar() {
@@ -114,7 +132,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
         } else {
             let bgColorView = UIView()
             bgColorView.backgroundColor = .clear
-            if store.list[indexPath.row - 1].PostImage == nil {
+            if self.notice[indexPath.row - 1].images?[0] == nil {
                 let Pcell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! MainPostTableViewCell
                 Pcell.mainPostTextView.textContainer.maximumNumberOfLines = 6
                 Pcell.reportButtonAction = { [unowned self] in
@@ -128,16 +146,21 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     DetailPostViewController.indexNum = indexPath.row - 1
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
                 }
+                let userUrl = URL(string: (self.notice[indexPath.row - 1].images?[0]) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
+                let userImageData = try! Data(contentsOf: userUrl!)
+                Pcell.userImage.image = (UIImage(data: userImageData))
+
+                Pcell.useridLabel.text = "\(self.notice[indexPath.row - 1].writer)"
                 Pcell.postTitleTextView.text = "\(self.notice[indexPath.row - 1].title )"
                 Pcell.postLocationLabel.text = "\(self.notice[indexPath.row - 1].updated_date )"
                 Pcell.mainPostTextView.text = "\(self.notice[indexPath.row - 1].content )"
                 Pcell.likeCountLabel.setTitle(" \(self.notice[indexPath.row - 1].star_count)", for: .normal)
                 Pcell.commentCountLabel.text = "댓글 \(self.notice[indexPath.row - 1].comment_count)"
                 if self.notice[indexPath.row - 1].targets?.count == 1 {
-                    badgeSetting(title: "\(self.notice[indexPath.row - 1].targets![0] )", target: Pcell.categorybadge)
+                    badgeSetting(title: targetKoreanChanged(target:"\(self.notice[indexPath.row - 1].targets![0] )"), target: Pcell.categorybadge)
                 } else if self.notice[indexPath.row - 1].targets?.count == 2 {
-                    badgeSetting(title: "\(self.notice[indexPath.row - 1].targets![1] )", target: Pcell.categorybadge)
-                    badgeSetting(title: "\(self.notice[indexPath.row - 1].targets![1] )", target: Pcell.categorybadge2)
+                    badgeSetting(title: targetKoreanChanged(target:"\(self.notice[indexPath.row - 1].targets![0] )"), target: Pcell.categorybadge)
+                    badgeSetting(title:targetKoreanChanged(target:"\(self.notice[indexPath.row - 1].targets![1] )"), target: Pcell.categorybadge2)
                 }
                 Pcell.selectedBackgroundView = bgColorView
                 return Pcell
@@ -156,26 +179,25 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     DetailPostViewController.indexNum = indexPath.row - 1
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
                 }
+                let userUrl = URL(string: (self.notice[indexPath.row - 1].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
+                let userImageData = try! Data(contentsOf: userUrl!)
+                Hcell.userImage.image = (UIImage(data: userImageData))
+
+                Hcell.useridLabel.text = "\(self.notice[indexPath.row - 1].writer.name)"
                 Hcell.postTitleTextView.text = "\(self.notice[indexPath.row - 1].title)"
                 Hcell.postLocationLabel.text = "\(self.notice[indexPath.row - 1].updated_date )"
                 Hcell.mainPostTextView.text = "\(self.notice[indexPath.row - 1].content )"
                 Hcell.likeCountLabel.setTitle(" \(self.notice[indexPath.row - 1].star_count )", for: .normal)
                 Hcell.commentCountLabel.text = "댓글 \(self.notice[indexPath.row - 1].comment_count)"
                 if self.notice[indexPath.row - 1].targets?.count == 1 {
-                    badgeSetting(title: "\(self.notice[indexPath.row - 1].targets![0] )", target: Hcell.categorybadge)
+                    badgeSetting(title: targetKoreanChanged(target:"\(self.notice[indexPath.row - 1].targets![0] )"), target: Hcell.categorybadge)
                 } else if self.notice[indexPath.row - 1].targets?.count == 2 {
-                    badgeSetting(title: "\(self.notice[indexPath.row - 1].targets![1] )", target: Hcell.categorybadge)
-                    badgeSetting(title: "\(self.notice[indexPath.row - 1].targets![1] )", target: Hcell.categorybadge2)
+                    badgeSetting(title: targetKoreanChanged(target:"\(self.notice[indexPath.row - 1].targets![0] )"), target: Hcell.categorybadge)
+                    badgeSetting(title:targetKoreanChanged(target:"\(self.notice[indexPath.row - 1].targets![1] )"), target: Hcell.categorybadge2)
                 }
-                if self.notice[indexPath.row - 1].images?[0] == nil {
-                    let url2 = URL(string: "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image")!
-                    let ImageData = try! Data(contentsOf: url2)
-                    Hcell.PostImage.image = (UIImage(data: ImageData))
-                } else {
-                    let url = URL(string: (self.notice[indexPath.row - 1].images?[0]) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
-                    let ImageData = try! Data(contentsOf: url!)
-                    Hcell.PostImage.image = (UIImage(data: ImageData))
-                }
+                let url = URL(string: (self.notice[indexPath.row - 1].images?[0]) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
+                let ImageData = try! Data(contentsOf: url!)
+                Hcell.PostImage.image = (UIImage(data: ImageData))
                 Hcell.selectedBackgroundView = bgColorView
                 return Hcell
             }

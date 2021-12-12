@@ -165,5 +165,4 @@ extension FourthSignupViewController : UITextFieldDelegate {
             self.view.layoutIfNeeded()
         }
     }
-    
 }

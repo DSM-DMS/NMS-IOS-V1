@@ -109,9 +109,29 @@ class MainLoginViewController: UIViewController {
                         let navEditorViewController: UINavigationController = UINavigationController(rootViewController: editorViewController)
                         navEditorViewController.modalPresentationStyle = .fullScreen
                         present(navEditorViewController, animated: true, completion: nil)
+                    case .notFound:
+                        let alert = UIAlertController(title: "아이디나 비밀번호가 일치하지 않습니다.", message: "다시 입력하세요", preferredStyle: .alert)
+                        let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                        }
+                        alert.addAction(defaultAction)
+                        self.present(alert, animated: true, completion: nil)
+
+                    case .fault:
+                        let alert = UIAlertController(title: "로그인에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
+                        let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                        }
+                        alert.addAction(defaultAction)
+                        self.present(alert, animated: true, completion: nil)
+                        print("Not")
                     default:
-                        print("Faled")
+                        let alert = UIAlertController(title: "로그인에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
+                        let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                        }
+                        alert.addAction(defaultAction)
+                        self.present(alert, animated: true, completion: nil)
+                        
                     }
+
                 }))
                 
 
@@ -203,7 +223,6 @@ class MainLoginViewController: UIViewController {
             $0.height.equalTo(15)
             $0.centerY.equalTo(self.view).offset(380)
             $0.centerX.equalTo(self.view).offset(0)
-            
         }
     }
     func setSearchController() {

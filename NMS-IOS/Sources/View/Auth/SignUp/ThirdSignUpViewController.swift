@@ -54,13 +54,7 @@ class ThirdSignUpViewController: UIViewController {
     }
     func setMain() {
         nextButton.rx.tap.bind {
-            let alert = UIAlertController(title: "인증이 완료되었습니다.", message: "", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
-                let fourthSignupViewController = FourthSignupViewController()
-                self.navigationController?.pushViewController(fourthSignupViewController, animated: true)
-            }
-            alert.addAction(defaultAction)
-            self.present(alert, animated: true, completion: nil)
+           
         }.disposed(by: disposeBag)
     }
     func setAddSubView() {
@@ -143,5 +137,4 @@ extension ThirdSignUpViewController : UITextFieldDelegate  {
             self.view.layoutIfNeeded()
         }
     }
-
 }

@@ -51,17 +51,17 @@ enum API {
         case .checkAllPost:
             return "/notice/all"
         case .checkTargetPost(let target):
-            return "/notice?target={\(target)}"
+            return "/notice?target=\(target)"
         case .checkJustPost(let noticeId):
-            return "/notice/{\(noticeId)}"
+            return "/notice/\(noticeId)"
         case .bookMark(let noticeId):
-            return "/star?notice-id={\(noticeId)}"
+            return "/star?notice-id=\(noticeId)"
         case .cancelBookMark(let noticeId):
-            return "/star?notice-id={\(noticeId)}"
+            return "/star?notice-id=\(noticeId)"
         case .writeComment(let noticeId):
-            return "comment?notice-id={\(noticeId)}"
+            return "comment?notice-id=\(noticeId)"
         case .writeReComment(let noticeId):
-            return "/comment?id={\(noticeId)}"
+            return "/comment?id=\(noticeId)"
         }
     }
     func header() -> HTTPHeaders? {

@@ -30,7 +30,7 @@ struct Notices : Codable {
 
 struct writer : Codable {
     let name : String
-    let profile_url : URL?
+    let profile_url : String?
 }
 
 struct comments : Codable {

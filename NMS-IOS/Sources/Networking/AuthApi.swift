@@ -30,6 +30,9 @@ class AuthApi {
                     Token.access_token = data.access_token
                     Token.refresh_token = data.refresh_token
                     return .success
+                case 404:
+                    return .notFound
+
                 default:
                     print(Error.self)
                     print(response.statusCode)
