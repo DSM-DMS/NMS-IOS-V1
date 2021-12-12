@@ -64,8 +64,10 @@ class MainViewController: UIViewController {
                 switch statusCodes {
                 case .success:
                     self.notice = noticeData!.notices
+                    print(noticeData!.notices)
+                    
                     self.noticeDataCount = noticeData!.notice_count
-                    print("-\(noticeData!.notice_count)-")
+                    print("-noticeData!.notice_count\(noticeData!.notice_count)-")
                     self.mainTableView.reloadData()
                 default:
                     let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
@@ -119,6 +121,7 @@ class MainViewController: UIViewController {
 extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+                print("--numberOfRowsInSection---\(noticeDataCount)-----")
         return 1 + noticeDataCount
     }
     
@@ -132,7 +135,11 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
         } else {
             let bgColorView = UIView()
             bgColorView.backgroundColor = .clear
-            if self.notice[indexPath.row - 1].images?[0] == nil {
+            print(notice.count)
+            print(notice[2])
+            print(self.notice[indexPath.row - 1].images?.count)
+            
+            if self.notice[indexPath.row - 1].images?.count == 0 {
                 let Pcell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! MainPostTableViewCell
                 Pcell.mainPostTextView.textContainer.maximumNumberOfLines = 6
                 Pcell.reportButtonAction = { [unowned self] in
@@ -146,12 +153,12 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     DetailPostViewController.indexNum = indexPath.row - 1
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
                 }
-                let userUrl = URL(string: (self.notice[indexPath.row - 1].images?[0]) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
+                let userUrl = URL(string: (self.notice[indexPath.row - 1].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
                 let userImageData = try? Data(contentsOf: userUrl!)
                 Pcell.userImage.image = (UIImage(data: userImageData!))
                 print("------------\(String(describing: self.notice[indexPath.row - 1].star))--------------------")
                 Pcell.likeButton.isSelected = self.notice[indexPath.row - 1].star ?? false
-                Pcell.useridLabel.text = "\(self.notice[indexPath.row - 1].writer)"
+                Pcell.useridLabel.text = "\(self.notice[indexPath.row - 1].writer.name)"
                 Pcell.postTitleTextView.text = "\(self.notice[indexPath.row - 1].title )"
                 Pcell.postLocationLabel.text = "\(self.notice[indexPath.row - 1].updated_date )"
                 Pcell.mainPostTextView.text = "\(self.notice[indexPath.row - 1].content )"
@@ -197,7 +204,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     badgeSetting(title: targetKoreanChanged(target:"\(self.notice[indexPath.row - 1].targets![0] )"), target: Hcell.categorybadge)
                     badgeSetting(title:targetKoreanChanged(target:"\(self.notice[indexPath.row - 1].targets![1] )"), target: Hcell.categorybadge2)
                 }
-                let url = URL(string: (self.notice[indexPath.row - 1].images?[0]) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
+                let url = URL(string: (self.notice[indexPath.row - 1].images![0]))
                 let ImageData = try! Data(contentsOf: url!)
                 Hcell.PostImage.image = (UIImage(data: ImageData))
                 Hcell.selectedBackgroundView = bgColorView
