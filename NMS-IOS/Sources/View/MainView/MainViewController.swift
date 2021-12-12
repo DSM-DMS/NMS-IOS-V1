@@ -15,9 +15,11 @@ import AudioToolbox
 class MainViewController: UIViewController {
     
     let store = MainPost()
+    var notice = [Notices]()
     let NoticeClass = NoticeApi()
     let bag = DisposeBag()
-    
+    var noticeDataCount =  0
+   
     let mainBackView = UIView().then {
         $0.backgroundColor = .systemBackground
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -42,12 +44,23 @@ class MainViewController: UIViewController {
         }.disposed(by: bag)
         view.backgroundColor = .systemBackground
         view.addSubview(mainBackView)
-        
+        NoticeClass.allNoticeGet()
+            .subscribe(onNext: { noticeData, statusCodes in
+            switch statusCodes {
+            case .success:
+                self.notice = noticeData!.notices
+                self.noticeDataCount = noticeData!.notice_count
+                print("-\(noticeData!.notice_count)-")
+                self.mainTableView.reloadData()
+            default:
+                print("Not")
+            }
+        }).disposed(by: bag)
+
         mainBackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         mainBackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         mainBackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         mainBackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        
         mainTableView.reloadData()
         mainTableView.delegate = self
         mainTableView.dataSource = self
@@ -59,8 +72,10 @@ class MainViewController: UIViewController {
         mainTableView.register(MainPostTableViewCell.self, forCellReuseIdentifier: "cell2")
         mainTableView.register(MainPostHasImageTableViewCell.self, forCellReuseIdentifier: "cell3")
         setNavagationBar()
+        
     }
     override func viewDidAppear(_ animated: Bool) {
+
         setNavagationBar()
     }
     func setNavagationBar() {
@@ -86,7 +101,7 @@ class MainViewController: UIViewController {
 extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 1 + noticeDataCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,14 +112,6 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
             Ccell.selectedBackgroundView = bgColorView
             return Ccell
         } else {
-            print(NoticeClass.allNoticeGet().subscribe(onNext: { noticeData, statusCodes in
-                switch statusCodes {
-                case .success:
-                    print(noticeData as Any)
-                default:
-                    print("Not -----")
-                }
-            }))
             let bgColorView = UIView()
             bgColorView.backgroundColor = .clear
             if store.list[indexPath.row - 1].PostImage == nil {
@@ -116,20 +123,21 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     Pcell.likeButton.isSelected = revertBool(bool: Pcell.likeButton.isSelected)
                 }
                 Pcell.reportCommentButtonAction = {
+                    AudioServicesPlaySystemSound(1520)
                     let DetailPostViewController = DetailPostViewController()
                     DetailPostViewController.indexNum = indexPath.row - 1
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
                 }
-                Pcell.postTitleTextView.text = "\(store.list[indexPath.row - 1 ].Title)"
-                Pcell.postLocationLabel.text = "\(store.list[indexPath.row - 1].LocationDate)"
-                Pcell.mainPostTextView.text = "\(store.list[indexPath.row - 1].Body)"
-                Pcell.likeCountLabel.setTitle(" \(store.list[indexPath.row - 1].LikeCount)", for: .normal)
-                Pcell.commentCountLabel.text = "댓글 \(store.list[indexPath.row - 1].CommentCount)"
-                if store.list[indexPath.row - 1].badge?.count == 1 {
-                    badgeSetting(title: "\(store.list[indexPath.row - 1].badge![0])", target: Pcell.categorybadge)
-                } else if store.list[indexPath.row - 1].badge?.count == 2 {
-                    badgeSetting(title: "\(store.list[indexPath.row - 1].badge![0])", target: Pcell.categorybadge)
-                    badgeSetting(title: "\(store.list[indexPath.row - 1].badge![1])", target: Pcell.categorybadge2)
+                Pcell.postTitleTextView.text = "\(self.notice[indexPath.row - 1].title )"
+                Pcell.postLocationLabel.text = "\(self.notice[indexPath.row - 1].updated_date )"
+                Pcell.mainPostTextView.text = "\(self.notice[indexPath.row - 1].content )"
+                Pcell.likeCountLabel.setTitle(" \(self.notice[indexPath.row - 1].star_count)", for: .normal)
+                Pcell.commentCountLabel.text = "댓글 \(self.notice[indexPath.row - 1].comment_count)"
+                if self.notice[indexPath.row - 1].targets?.count == 1 {
+                    badgeSetting(title: "\(self.notice[indexPath.row - 1].targets![0] )", target: Pcell.categorybadge)
+                } else if self.notice[indexPath.row - 1].targets?.count == 2 {
+                    badgeSetting(title: "\(self.notice[indexPath.row - 1].targets![1] )", target: Pcell.categorybadge)
+                    badgeSetting(title: "\(self.notice[indexPath.row - 1].targets![1] )", target: Pcell.categorybadge2)
                 }
                 Pcell.selectedBackgroundView = bgColorView
                 return Pcell
@@ -148,22 +156,28 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     DetailPostViewController.indexNum = indexPath.row - 1
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
                 }
-                Hcell.postTitleTextView.text = "\(store.list[indexPath.row - 1 ].Title)"
-                Hcell.postLocationLabel.text = "\(store.list[indexPath.row - 1].LocationDate)"
-                Hcell.mainPostTextView.text = "\(store.list[indexPath.row - 1].Body)"
-                Hcell.likeCountLabel.setTitle(" \(store.list[indexPath.row - 1].LikeCount)", for: .normal)
-                Hcell.commentCountLabel.text = "댓글 \(store.list[indexPath.row - 1].CommentCount)"
-                if store.list[indexPath.row - 1].badge?.count == 1 {
-                    badgeSetting(title: "\(store.list[indexPath.row - 1].badge![0])", target: Hcell.categorybadge)
-                } else if store.list[indexPath.row - 1].badge?.count == 2 {
-                    badgeSetting(title: "\(store.list[indexPath.row - 1].badge![0])", target: Hcell.categorybadge)
-                    badgeSetting(title: "\(store.list[indexPath.row - 1].badge![1])", target: Hcell.categorybadge2)
+                Hcell.postTitleTextView.text = "\(self.notice[indexPath.row - 1].title)"
+                Hcell.postLocationLabel.text = "\(self.notice[indexPath.row - 1].updated_date )"
+                Hcell.mainPostTextView.text = "\(self.notice[indexPath.row - 1].content )"
+                Hcell.likeCountLabel.setTitle(" \(self.notice[indexPath.row - 1].star_count )", for: .normal)
+                Hcell.commentCountLabel.text = "댓글 \(self.notice[indexPath.row - 1].comment_count)"
+                if self.notice[indexPath.row - 1].targets?.count == 1 {
+                    badgeSetting(title: "\(self.notice[indexPath.row - 1].targets![0] )", target: Hcell.categorybadge)
+                } else if self.notice[indexPath.row - 1].targets?.count == 2 {
+                    badgeSetting(title: "\(self.notice[indexPath.row - 1].targets![1] )", target: Hcell.categorybadge)
+                    badgeSetting(title: "\(self.notice[indexPath.row - 1].targets![1] )", target: Hcell.categorybadge2)
                 }
-                
-                Hcell.PostImage.image = store.list[indexPath.row - 1].PostImage
+                if self.notice[indexPath.row - 1].images?[0] == nil {
+                    let url2 = URL(string: "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image")!
+                    let ImageData = try! Data(contentsOf: url2)
+                    Hcell.PostImage.image = (UIImage(data: ImageData))
+                } else {
+                    let url = URL(string: (self.notice[indexPath.row - 1].images?[0]) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
+                    let ImageData = try! Data(contentsOf: url!)
+                    Hcell.PostImage.image = (UIImage(data: ImageData))
+                }
                 Hcell.selectedBackgroundView = bgColorView
                 return Hcell
-                
             }
         }
     }

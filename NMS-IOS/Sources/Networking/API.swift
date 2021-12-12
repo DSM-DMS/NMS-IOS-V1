@@ -68,11 +68,11 @@ enum API {
         switch self {
             
         case .checkPassword, .reviseStudent, .myPage, .checkAllPost, .checkTargetPost(_),  .checkJustPost(_), .bookMark(_), .cancelBookMark(_), .writeComment(_), .writeReComment(_):
-            return ["access-token": "Bearer \(String(describing: Token.access_token))"]
+            return ["Authorization": "Bearer \(Token.access_token ?? "")"]
         case .login, .signUp, .checkEmail, .sendEmail:
             return nil
         case .reissiuTokens:
-            return ["X-Refresh-Token": "Bearer \(String(describing: Token.refresh_token))"]
+            return ["X-Refresh-Token": "Bearer \(Token.refresh_token ?? "")"]
         }
     }
 }

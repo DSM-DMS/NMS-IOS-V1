@@ -13,21 +13,23 @@ import RxSwift
 class NoticeApi {
     let client = Client()
     
-    func allNoticeGet() -> Observable<( Notice?, StatusCodes)> {
+    func allNoticeGet() -> Observable<( NoticeSucces?, StatusCodes)> {
         client.get(.checkAllPost, parameter: nil)
-            .map{ response, data -> (Notice?, StatusCodes) in
-                print(response)
-                print(data)
+            .map{ response, data -> (NoticeSucces?, StatusCodes) in
+                print(Token.access_token ?? "")
                 switch response.statusCode {
                 case 200:
-                    guard let data = try? JSONDecoder().decode(Notice.self, from: data) else { return (nil, .fault) }
-                    print(data)
-                    return (data, .success)
+                    do {
+                        let data = try JSONDecoder().decode(NoticeSucces.self, from: data)
+                        return (data, .success)
+                    }
+                    catch {
+                        print("Parse Error : \n \(error)")
+                        return (nil, .fault)
+                    }
                 default:
                     return (nil, .fault)
                 }
             }
-
     }
-    
 }
