@@ -162,9 +162,13 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     DetailPostViewController.notice = self.notice
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
                 }
-                let userUrl = URL(string: (self.notice[indexPath.row - 1].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
-                let userImageData = try? Data(contentsOf: userUrl!)
-                Pcell.userImage.image = (UIImage(data: userImageData!))
+                DispatchQueue.global().async {
+                    let userUrl = URL(string: (self.notice[indexPath.row - 1].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
+                    let userImageData = try? Data(contentsOf: userUrl!)
+                    DispatchQueue.main.async {
+                        Pcell.userImage.image = (UIImage(data: userImageData!))
+                    }
+                }
                 Pcell.likeButton.isSelected = self.notice[indexPath.row - 1].star ?? false
                 Pcell.useridLabel.text = "\(self.notice[indexPath.row - 1].writer.name)"
                 Pcell.postTitleTextView.text = "\(self.notice[indexPath.row - 1].title )"
@@ -196,9 +200,14 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     DetailPostViewController.notice = self.notice
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
                 }
-                let userUrl = URL(string: (self.notice[indexPath.row - 1].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
-                let userImageData = try! Data(contentsOf: userUrl!)
-                Hcell.userImage.image = (UIImage(data: userImageData))
+                DispatchQueue.global().async {
+                    let userUrl = URL(string: (self.notice[indexPath.row - 1].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
+                    let userImageData = try! Data(contentsOf: userUrl!)
+                    DispatchQueue.main.async {
+                        Hcell.userImage.image = (UIImage(data: userImageData))
+                    }
+                    
+                }
                 Hcell.likeButton.isSelected = self.notice[indexPath.row - 1].star ?? false
                 Hcell.useridLabel.text = "\(self.notice[indexPath.row - 1].writer.name)"
                 Hcell.postTitleTextView.text = "\(self.notice[indexPath.row - 1].title)"
@@ -212,9 +221,14 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     badgeSetting(title: targetKoreanChanged(target:"\(self.notice[indexPath.row - 1].targets![0] )"), target: Hcell.categorybadge)
                     badgeSetting(title:targetKoreanChanged(target:"\(self.notice[indexPath.row - 1].targets![1] )"), target: Hcell.categorybadge2)
                 }
-                let url = URL(string: (self.notice[indexPath.row - 1].images![0]))
-                let ImageData = try! Data(contentsOf: url!)
-                Hcell.PostImage.image = (UIImage(data: ImageData))
+                DispatchQueue.global().async {
+                    let url = URL(string: (self.notice[indexPath.row - 1].images![0]))
+                    let ImageData = try! Data(contentsOf: url!)
+                    DispatchQueue.main.async {
+                        Hcell.PostImage.image = (UIImage(data: ImageData))
+                    }
+                }
+                
                 Hcell.selectedBackgroundView = bgColorView
                 return Hcell
             }
@@ -244,7 +258,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                                 self.present(alert, animated: true, completion: nil)
                             }
                         }).disposed(by: self.bag)
-
+                    
                 default:
                     let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
                     let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
@@ -277,7 +291,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                                 self.present(alert, animated: true, completion: nil)
                             }
                         }).disposed(by: self.bag)
-
+                    
                 default:
                     let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
                     let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in

@@ -221,9 +221,14 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
                 Pcell.reportCommentButtonAction = {
                     AudioServicesPlaySystemSound(1520)
                 }
-                let userUrl = URL(string: (self.notice[indexNum].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
-                let userImageData = try! Data(contentsOf: userUrl!)
-                Pcell.userImage.image = (UIImage(data: userImageData))
+                DispatchQueue.global().async {
+                    
+                    let userUrl = URL(string: (self.notice[self.indexNum].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
+                    let userImageData = try! Data(contentsOf: userUrl!)
+                    DispatchQueue.main.async {
+                        Pcell.userImage.image = (UIImage(data: userImageData))
+                    }
+                }
                 print("------------\(String(describing: self.notice[indexNum].star))--------------------")
                 Pcell.likeButton.isSelected = self.notice[indexNum].star ?? false
                 Pcell.useridLabel.text = "\(self.notice[indexNum].writer.name)"
@@ -252,9 +257,14 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
                 Hcell.reportCommentButtonAction = {
                     AudioServicesPlaySystemSound(1520)
                 }
-                let userUrl = URL(string: (self.notice[indexNum].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
-                let userImageData = try! Data(contentsOf: userUrl!)
-                Hcell.userImage.image = (UIImage(data: userImageData))
+                DispatchQueue.global().async {
+                    let userUrl = URL(string: (self.notice[self.indexNum].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
+                    let userImageData = try! Data(contentsOf: userUrl!)
+                    DispatchQueue.main.async {
+                        Hcell.userImage.image = (UIImage(data: userImageData))
+                    }
+                }
+                
                 print("------------\(String(describing: self.notice[indexNum].star))--------------------")
                 Hcell.likeButton.isSelected = self.notice[indexNum].star ?? false
                 Hcell.useridLabel.text = "\(self.notice[indexNum].writer.name)"
@@ -269,9 +279,14 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
                     badgeSetting(title: targetKoreanChanged(target:"\(self.notice[indexNum].targets![0] )"), target: Hcell.categorybadge)
                     badgeSetting(title:targetKoreanChanged(target:"\(self.notice[indexNum].targets![1] )"), target: Hcell.categorybadge2)
                 }
-                let url = URL(string: (self.notice[indexNum].images![0]))
-                let ImageData = try! Data(contentsOf: url!)
-                Hcell.PostImage.image = (UIImage(data: ImageData))
+                DispatchQueue.global().async {
+                    let url = URL(string: (self.notice[self.indexNum].images![0]))
+                    let ImageData = try! Data(contentsOf: url!)
+                    DispatchQueue.main.async {
+                        Hcell.PostImage.image = (UIImage(data: ImageData))
+                    }
+                    
+                }
                 Hcell.selectedBackgroundView = bgColorView
                 return Hcell
             }
