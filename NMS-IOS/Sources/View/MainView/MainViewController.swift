@@ -158,7 +158,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     AudioServicesPlaySystemSound(1520)
                     let DetailPostViewController = DetailPostViewController()
                     DetailPostViewController.indexNum = indexPath.row - 1
-                    DetailPostViewController.noticeId = self.noticeIdNum
+                    DetailPostViewController.noticeId = self.notice[indexPath.row - 1].notice_id
                     DetailPostViewController.notice = self.notice
                     DetailPostViewController.frameSize = Pcell.frameSize
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
@@ -199,6 +199,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     let DetailPostViewController = DetailPostViewController()
                     DetailPostViewController.indexNum = indexPath.row - 1
                     DetailPostViewController.notice = self.notice
+                    DetailPostViewController.noticeId = self.notice[indexPath.row - 1].notice_id
                     DetailPostViewController.frameSize = Hcell.frameSize
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
                 }

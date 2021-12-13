@@ -59,7 +59,7 @@ enum API {
         case .cancelBookMark(let noticeId):
             return "/star?notice-id=\(noticeId)"
         case .writeComment(let noticeId):
-            return "comment?notice-id=\(noticeId)"
+            return "/comment?notice-id=\(noticeId)"
         case .writeReComment(let noticeId):
             return "/comment?id=\(noticeId)"
         }

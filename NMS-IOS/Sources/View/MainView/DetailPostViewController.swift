@@ -17,6 +17,8 @@ class DetailPostViewController: UIViewController, ConstraintRelatableTarget {
     var indexNum = 1
     var noticeId = 1
     var frameSize = 300
+    var lastRowInLastSection = 0
+    var lastSection = 0
     var isTableViewSelected = false
     let mainVC = MainViewController()
     var notice = [Notices]()
@@ -111,21 +113,49 @@ class DetailPostViewController: UIViewController, ConstraintRelatableTarget {
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
     func bind() {
-        
         sendButton.rx.tap.bind { [self] in
             if (self.inputTextField.text == "") {
                 return
             }
             else {
-                self.NoticeClass.allNoticeGet().subscribe(onNext: { noticeSucces, statusCode in
+                NoticeClass.postComment(content: self.inputTextField.text ?? "이거 에러남", noticeID: noticeId).subscribe(onNext: { statusCode in
+                    switch statusCode {
+                    case .success:
+                        print("2412341343030550304-02950352950-0-5290-59320-5923-59 success!!")
+                        self.NoticeClass.allNoticeGet()
+                            .subscribe(onNext: { noticeData, statusCodes in
+                                switch statusCodes {
+                                case .success:
+                                    self.notice = noticeData!.notices
+                                    self.inputTextField.text = ""
+
+                                    scrollToBottom()
+                                    self.mainTableView.reloadData()
+                                default:
+                                    let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
+                                    let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                                    }
+                                    alert.addAction(defaultAction)
+                                    self.present(alert, animated: true, completion: nil)
+                                }
+                            }).disposed(by: self.bag)
+                        
+                    default:
+                        let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
+                        let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                        }
+                        alert.addAction(defaultAction)
+                        self.present(alert, animated: true, completion: nil)
+                    }
                     
                 }).disposed(by: bag)
-                let lastindexPath = IndexPath(row: self.comment.list.count, section: 0)
-                //                chatDatas.append(chatStringTextView.text)
-                self.comment.list.append(DetailCommentDume(commentHashtagBool: false, id: 1, userName: "장성헤(마이스터부)", userImage: nil, locationDate: "방금 전", commentBody: self.inputTextField.text))
-                self.inputTextField.text = ""
-                self.mainTableView.insertRows(at: [lastindexPath], with: UITableView.RowAnimation.automatic)
-                self.mainTableView.scrollToRow(at: lastindexPath, at: UITableView.ScrollPosition.bottom, animated: true)
+
+//                let lastindexPath = IndexPath(row: self.comment.list.count, section: 0)
+//                //                chatDatas.append(chatStringTextView.text)
+//                self.comment.list.append(DetailCommentDume(commentHashtagBool: false, id: 1, userName: "장성헤(마이스터부)", userImage: nil, locationDate: "방금 전", commentBody: self.inputTextField.text))
+//                self.inputTextField.text = ""
+//                self.mainTableView.insertRows(at: [lastindexPath], with: UITableView.RowAnimation.automatic)
+//                self.mainTableView.scrollToRow(at: lastindexPath, at: UITableView.ScrollPosition.bottom, animated: true)
             }
         }.disposed(by: bag)
     }
@@ -211,18 +241,23 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == PostTableView {
+            lastRowInLastSection = 1
             return 1
         } else {
+            lastRowInLastSection = notice[indexNum].comments?.count ?? 0 + 1
             return notice[indexNum].comments?.count ?? 0 + 1
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == PostTableView {
+            lastSection = 1
             return 1
         } else {
             if notice[indexNum].comments?[section].reply_count  == 0 {
+                lastSection = 1
                 return 1
             } else if notice[indexNum].comments?[section].reply_count  != 0 {
+                lastSection = notice[indexNum].comments?[section].reply_count ?? 0 + 1
                 return notice[indexNum].comments?[section].reply_count ?? 0 + 1
             } else {
                 return 1
@@ -336,13 +371,11 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
                     print(frameSize)
                     return CGFloat(frameSize)
                 }
-        return CGFloat(section == 0 ? frameSize : 0)
     }
     func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
         return 0
 
     }
-
     func revertBool(noticeID : Int, bool : Bool) -> Bool {
         if bool == false {
             print("true")
@@ -413,4 +446,10 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
             return false
         }
     }
+    func scrollToBottom(){
+        DispatchQueue.main.async { [self] in
+            print("---------------------------------------------------------------------------\(lastRowInLastSection)\(lastSection)")
+              mainTableView.scrollToNearestSelectedRow(at: UITableView.ScrollPosition.bottom, animated: true)
+          }
+      }
 }

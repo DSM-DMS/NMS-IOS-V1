@@ -77,7 +77,20 @@ class NoticeApi {
                 }
             }
     }
-    
+    func postComment(content : String, noticeID : Int) -> Observable<StatusCodes> {
+        client.postLike(.writeComment(noticeID), parameter: ["content" : content]).map { response -> StatusCodes in
+            print("----=-=--=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-")
+            print(response)
+            print("----=-=--=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-")
+            switch response.statusCode {
+            case 201:
+                return .success
+            default:
+                return .fault
+            }
+        }
+
+    }
     func likeStarGet(noticeID : Int) -> Observable<StatusCodes> {
         client.postLike(.bookMark(noticeID), parameter: nil).map { response -> StatusCodes in
             print(response)
