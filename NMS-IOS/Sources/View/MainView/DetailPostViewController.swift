@@ -202,8 +202,21 @@ class DetailPostViewController: UIViewController {
 }
 extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return notice[indexNum].comments?.count ?? 0 + 1
+    }
+    // it is crash
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1 + comment.list.count
+        if notice[indexNum].comments?[0].reply_count  == 0 {
+            return 1
+        }
+        else if notice[indexNum].comments?[section - 1].reply_count  == 0 {
+            return 1
+        } else if notice[indexNum].comments?[section - 1].reply_count  != 0 {
+            return notice[indexNum].comments?[section - 1].reply_count ?? 0 + 1
+        } else {
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -211,102 +224,20 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
         let bgColorView = UIView()
         bgColorView.backgroundColor = .clear
         if indexPath.row == 0 {
-            if self.notice[indexNum].images?.count == 0 {
-                let Pcell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! MainPostTableViewCell
-                Pcell.reportButtonAction = { [unowned self] in
-                    AudioServicesPlaySystemSound(1520)
-                    Pcell.likeButton.isSelected.toggle()
-                    Pcell.likeButton.isSelected = revertBool(noticeID: notice[indexNum].notice_id, bool: Pcell.likeButton.isSelected)
-                }
-                Pcell.reportCommentButtonAction = {
-                    AudioServicesPlaySystemSound(1520)
-                }
-                DispatchQueue.global().async {
-                    
-                    let userUrl = URL(string: (self.notice[self.indexNum].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
-                    let userImageData = try! Data(contentsOf: userUrl!)
-                    DispatchQueue.main.async {
-                        Pcell.userImage.image = (UIImage(data: userImageData))
-                    }
-                }
-                print("------------\(String(describing: self.notice[indexNum].star))--------------------")
-                Pcell.likeButton.isSelected = self.notice[indexNum].star ?? false
-                Pcell.useridLabel.text = "\(self.notice[indexNum].writer.name)"
-                Pcell.postTitleTextView.text = "\(self.notice[indexNum].title)"
-                Pcell.postLocationLabel.text = "\(self.notice[indexNum].updated_date )"
-                Pcell.mainPostTextView.text = "\(self.notice[indexNum].content )"
-                Pcell.likeCountLabel.setTitle(" \(self.notice[indexNum].star_count )", for: .normal)
-                Pcell.commentCountLabel.text = "댓글 \(self.notice[indexNum].comment_count)"
-                if self.notice[indexNum].targets?.count == 1 {
-                    badgeSetting(title: targetKoreanChanged(target:"\(self.notice[indexNum].targets![0] )"), target: Pcell.categorybadge)
-                } else if self.notice[indexNum].targets?.count == 2 {
-                    badgeSetting(title: targetKoreanChanged(target:"\(self.notice[indexNum].targets![0] )"), target: Pcell.categorybadge)
-                    badgeSetting(title:targetKoreanChanged(target:"\(self.notice[indexNum].targets![1] )"), target: Pcell.categorybadge2)
-                }
-                Pcell.selectedBackgroundView = bgColorView
-                return Pcell
-                
-            } else {
-                let Hcell = tableView.dequeueReusableCell(withIdentifier: "cell3") as! MainPostHasImageTableViewCell
-                Hcell.mainPostTextView.textContainer.maximumNumberOfLines = 6
-                Hcell.reportButtonAction = { [unowned self] in
-                    AudioServicesPlaySystemSound(1520)
-                    Hcell.likeButton.isSelected.toggle()
-                    Hcell.likeButton.isSelected = revertBool(noticeID: notice[indexNum].notice_id, bool: Hcell.likeButton.isSelected)
-                }
-                Hcell.reportCommentButtonAction = {
-                    AudioServicesPlaySystemSound(1520)
-                }
-                DispatchQueue.global().async {
-                    let userUrl = URL(string: (self.notice[self.indexNum].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
-                    let userImageData = try! Data(contentsOf: userUrl!)
-                    DispatchQueue.main.async {
-                        Hcell.userImage.image = (UIImage(data: userImageData))
-                    }
-                }
-                
-                print("------------\(String(describing: self.notice[indexNum].star))--------------------")
-                Hcell.likeButton.isSelected = self.notice[indexNum].star ?? false
-                Hcell.useridLabel.text = "\(self.notice[indexNum].writer.name)"
-                Hcell.postTitleTextView.text = "\(self.notice[indexNum].title)"
-                Hcell.postLocationLabel.text = "\(self.notice[indexNum].updated_date )"
-                Hcell.mainPostTextView.text = "\(self.notice[indexNum].content )"
-                Hcell.likeCountLabel.setTitle(" \(self.notice[indexNum].star_count )", for: .normal)
-                Hcell.commentCountLabel.text = "댓글 \(self.notice[indexNum].comment_count)"
-                if self.notice[indexNum].targets?.count == 1 {
-                    badgeSetting(title: targetKoreanChanged(target:"\(self.notice[indexNum].targets![0] )"), target: Hcell.categorybadge)
-                } else if self.notice[indexNum].targets?.count == 2 {
-                    badgeSetting(title: targetKoreanChanged(target:"\(self.notice[indexNum].targets![0] )"), target: Hcell.categorybadge)
-                    badgeSetting(title:targetKoreanChanged(target:"\(self.notice[indexNum].targets![1] )"), target: Hcell.categorybadge2)
-                }
-                DispatchQueue.global().async {
-                    let url = URL(string: (self.notice[self.indexNum].images![0]))
-                    let ImageData = try! Data(contentsOf: url!)
-                    DispatchQueue.main.async {
-                        Hcell.PostImage.image = (UIImage(data: ImageData))
-                    }
-                    
-                }
-                Hcell.selectedBackgroundView = bgColorView
-                return Hcell
-            }
+            let Ccell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainCommentTableViewCell
+//            Ccell.userImage.image = comment.list[indexPath.row - 1].userImage ?? UIImage(named: "noImage")
+            Ccell.useridLabel.text = notice[indexNum].comments?[indexPath.section].writer.name
+            Ccell.commentLocationLabel.text = notice[indexNum].comments?[indexPath.section].created_date
+            Ccell.commentLabel.text = notice[indexNum].comments?[indexPath.section].content
+            return Ccell
         }
         else {
-            if comment.list[indexNum].commentHashtagBool == false {
-                let Ccell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainCommentTableViewCell
-                Ccell.userImage.image = comment.list[indexPath.row - 1].userImage ?? UIImage(named: "noImage")
-                Ccell.useridLabel.text = comment.list[indexPath.row - 1].userName
-                Ccell.commentLocationLabel.text = comment.list[indexPath.row - 1].locationDate
-                Ccell.commentLabel.text = comment.list[indexPath.row - 1].commentBody
-                return Ccell
-            } else {
-                let CBcell = tableView.dequeueReusableCell(withIdentifier: "cell1") as! ReplyCommentTableViewCell
-                CBcell.userImage.image = comment.list[indexPath.row - 1].userImage ?? UIImage(named: "noImage")
-                CBcell.useridLabel.text = comment.list[indexPath.row - 1].userName
-                CBcell.commentLocationLabel.text = comment.list[indexPath.row - 1].locationDate
-                CBcell.commentLabel.text = comment.list[indexPath.row - 1].commentBody
-                return CBcell
-            }
+            let CBcell = tableView.dequeueReusableCell(withIdentifier: "cell1") as! ReplyCommentTableViewCell
+//            CBcell.userImage.image = comment.list[indexPath.row - 1].userImage ?? UIImage(named: "noImage")
+            CBcell.useridLabel.text = notice[indexNum].comments?[indexPath.section].replies[indexPath.row - 1].writer.name
+            CBcell.commentLocationLabel.text = notice[indexNum].comments?[indexPath.section].replies[indexPath.row - 1].created_date
+            CBcell.commentLabel.text = notice[indexNum].comments?[indexPath.section].replies[indexPath.row - 1].content
+            return CBcell
         }
     }
     
