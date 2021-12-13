@@ -17,7 +17,7 @@ class MainMyPageViewController: UIViewController {
     private var likePostCollectionView: CustomCollectionView!
     let store = MainPost()
     let myPage = MyPageApi()
-    var myPageModel = StaredNotice()
+    var staredNotice = [StaredNotice]()
     let bag = DisposeBag()
     
     let mainBackView = UIView().then {
@@ -32,19 +32,17 @@ class MainMyPageViewController: UIViewController {
     }
     
     var userImage = UIImageView().then {
-        $0.image = UIImage(named: "DumeData-2")
+        $0.image = UIImage(named: "noimage")
         $0.layer.borderWidth = 1
-        
         $0.clipsToBounds = true
-        
         $0.layer.borderColor = UIColor.clear.cgColor
     }
     var useridLabel = UILabel().then {
-        $0.text = "1301 김대희"
+        $0.text = "로딩중"
         $0.font = UIFont(name: "NotoSansKR-Bold", size: 14.0)
     }
     var emailLabel = UILabel().then {
-        $0.text = "0824dh@dsm.hs.kr"
+        $0.text = "로딩중입니다."
         $0.font = UIFont(name: "NotoSansKR-Medium", size: 14.0)
         $0.textColor = .secondaryLabel
     }
@@ -100,7 +98,10 @@ class MainMyPageViewController: UIViewController {
             case .success:
                 self.useridLabel.text = "\(myPageData?.gcn ?? "") \(myPageData?.name ?? "")"
                 self.emailLabel.text = "\(myPageData?.email ?? "")"
-                
+                let userUrl = URL(string: (myPageData?.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
+                let userImageData = try! Data(contentsOf: userUrl!)
+                self.userImage.image = (UIImage(data: userImageData))
+                self.staredNotice =  (myPageData?.stared_notices)!
             default:
                 let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
@@ -176,7 +177,6 @@ class MainMyPageViewController: UIViewController {
         self.navigationController?.navigationBar.layoutIfNeeded()
         self.navigationController?.navigationBar.topItem?.title = ""
     }
-    
 }
 
 extension MainMyPageViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

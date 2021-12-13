@@ -17,8 +17,6 @@ class MyPageApi {
     func myPageGet() -> Observable<(MyPageModel?, StatusCodes)> {
         client.get(.myPage, parameter: nil)
             .map{ response, data -> (MyPageModel?, StatusCodes) in
-//                print(response)
-//                print(data)
                 switch response.statusCode {
                 case 200:
                     do {
