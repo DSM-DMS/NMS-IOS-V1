@@ -105,7 +105,7 @@ class DetailPostViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
     func bind() {
-
+        
         sendButton.rx.tap.bind { [self] in
             if (self.inputTextField.text == "") {
                 return
@@ -115,7 +115,7 @@ class DetailPostViewController: UIViewController {
                     
                 }).disposed(by: bag)
                 let lastindexPath = IndexPath(row: self.comment.list.count, section: 0)
-//                chatDatas.append(chatStringTextView.text)
+                //                chatDatas.append(chatStringTextView.text)
                 self.comment.list.append(DetailCommentDume(commentHashtagBool: false, id: 1, userName: "장성헤(마이스터부)", userImage: nil, locationDate: "방금 전", commentBody: self.inputTextField.text))
                 self.inputTextField.text = ""
                 self.mainTableView.insertRows(at: [lastindexPath], with: UITableView.RowAnimation.automatic)
@@ -207,67 +207,82 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        print("indexNum :\(indexNum)")
         let bgColorView = UIView()
         bgColorView.backgroundColor = .clear
         if indexPath.row == 0 {
-            if store.list[indexNum].PostImage == nil {
+            if self.notice[indexNum].images?.count == 0 {
                 let Pcell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! MainPostTableViewCell
-                
                 Pcell.reportButtonAction = { [unowned self] in
                     AudioServicesPlaySystemSound(1520)
                     Pcell.likeButton.isSelected.toggle()
-                    Pcell.likeButton.isSelected = revertBool(bool: Pcell.likeButton.isSelected)
+                    Pcell.likeButton.isSelected = revertBool(noticeID: notice[indexNum].notice_id, bool: Pcell.likeButton.isSelected)
                 }
-                Pcell.postTitleTextView.text = "\(store.list[indexNum].Title)"
-                Pcell.postLocationLabel.text = "\(store.list[indexNum].LocationDate)"
-                Pcell.mainPostTextView.text = "\(store.list[indexNum].Body)"
-                Pcell.likeCountLabel.setTitle(" \(store.list[indexNum].LikeCount)", for: .normal)
-                Pcell.commentCountLabel.text = "댓글 \(store.list[indexNum].CommentCount)"
-                if store.list[indexNum].badge?.count == 1 {
-                    badgeSetting(title: "\(store.list[indexNum].badge![0])", target: Pcell.categorybadge)
-                } else if store.list[indexNum].badge?.count == 2 {
-                    badgeSetting(title: "\(store.list[indexNum].badge![0])", target: Pcell.categorybadge)
-                    badgeSetting(title: "\(store.list[indexNum].badge![1])", target: Pcell.categorybadge2)
+                Pcell.reportCommentButtonAction = {
+                    AudioServicesPlaySystemSound(1520)
+                }
+                let userUrl = URL(string: (self.notice[indexNum].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
+                let userImageData = try! Data(contentsOf: userUrl!)
+                Pcell.userImage.image = (UIImage(data: userImageData))
+                print("------------\(String(describing: self.notice[indexNum].star))--------------------")
+                Pcell.likeButton.isSelected = self.notice[indexNum].star ?? false
+                Pcell.useridLabel.text = "\(self.notice[indexNum].writer.name)"
+                Pcell.postTitleTextView.text = "\(self.notice[indexNum].title)"
+                Pcell.postLocationLabel.text = "\(self.notice[indexNum].updated_date )"
+                Pcell.mainPostTextView.text = "\(self.notice[indexNum].content )"
+                Pcell.likeCountLabel.setTitle(" \(self.notice[indexNum].star_count )", for: .normal)
+                Pcell.commentCountLabel.text = "댓글 \(self.notice[indexNum].comment_count)"
+                if self.notice[indexNum].targets?.count == 1 {
+                    badgeSetting(title: targetKoreanChanged(target:"\(self.notice[indexNum].targets![0] )"), target: Pcell.categorybadge)
+                } else if self.notice[indexNum].targets?.count == 2 {
+                    badgeSetting(title: targetKoreanChanged(target:"\(self.notice[indexNum].targets![0] )"), target: Pcell.categorybadge)
+                    badgeSetting(title:targetKoreanChanged(target:"\(self.notice[indexNum].targets![1] )"), target: Pcell.categorybadge2)
                 }
                 Pcell.selectedBackgroundView = bgColorView
                 return Pcell
-            }
-            else  {
-                let Hcell = tableView.dequeueReusableCell(withIdentifier: "cell3") as! MainPostHasImageTableViewCell
                 
+            } else {
+                let Hcell = tableView.dequeueReusableCell(withIdentifier: "cell3") as! MainPostHasImageTableViewCell
+                Hcell.mainPostTextView.textContainer.maximumNumberOfLines = 6
                 Hcell.reportButtonAction = { [unowned self] in
                     AudioServicesPlaySystemSound(1520)
                     Hcell.likeButton.isSelected.toggle()
-                    Hcell.likeButton.isSelected = revertBool(bool: Hcell.likeButton.isSelected)
+                    Hcell.likeButton.isSelected = revertBool(noticeID: notice[indexNum].notice_id, bool: Hcell.likeButton.isSelected)
                 }
                 Hcell.reportCommentButtonAction = {
                     AudioServicesPlaySystemSound(1520)
                 }
-                Hcell.postTitleTextView.text = "\(store.list[indexNum ].Title)"
-                Hcell.postLocationLabel.text = "\(store.list[indexNum].LocationDate)"
-                Hcell.mainPostTextView.text = "\(store.list[indexNum].Body)"
-                Hcell.likeCountLabel.setTitle(" \(store.list[indexNum].LikeCount)", for: .normal)
-                Hcell.commentCountLabel.text = "댓글 \(store.list[indexNum].CommentCount)"
-                if store.list[indexNum].badge?.count == 1 {
-                    badgeSetting(title: "\(store.list[indexNum].badge![0])", target: Hcell.categorybadge)
-                } else if store.list[indexNum].badge?.count == 2 {
-                    badgeSetting(title: "\(store.list[indexNum].badge![0])", target: Hcell.categorybadge)
-                    badgeSetting(title: "\(store.list[indexNum].badge![1])", target: Hcell.categorybadge2)
+                let userUrl = URL(string: (self.notice[indexNum].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
+                let userImageData = try! Data(contentsOf: userUrl!)
+                Hcell.userImage.image = (UIImage(data: userImageData))
+                print("------------\(String(describing: self.notice[indexNum].star))--------------------")
+                Hcell.likeButton.isSelected = self.notice[indexNum].star ?? false
+                Hcell.useridLabel.text = "\(self.notice[indexNum].writer.name)"
+                Hcell.postTitleTextView.text = "\(self.notice[indexNum].title)"
+                Hcell.postLocationLabel.text = "\(self.notice[indexNum].updated_date )"
+                Hcell.mainPostTextView.text = "\(self.notice[indexNum].content )"
+                Hcell.likeCountLabel.setTitle(" \(self.notice[indexNum].star_count )", for: .normal)
+                Hcell.commentCountLabel.text = "댓글 \(self.notice[indexNum].comment_count)"
+                if self.notice[indexNum].targets?.count == 1 {
+                    badgeSetting(title: targetKoreanChanged(target:"\(self.notice[indexNum].targets![0] )"), target: Hcell.categorybadge)
+                } else if self.notice[indexNum].targets?.count == 2 {
+                    badgeSetting(title: targetKoreanChanged(target:"\(self.notice[indexNum].targets![0] )"), target: Hcell.categorybadge)
+                    badgeSetting(title:targetKoreanChanged(target:"\(self.notice[indexNum].targets![1] )"), target: Hcell.categorybadge2)
                 }
-                Hcell.PostImage.image = store.list[indexNum].PostImage
+                let url = URL(string: (self.notice[indexNum].images![0]))
+                let ImageData = try! Data(contentsOf: url!)
+                Hcell.PostImage.image = (UIImage(data: ImageData))
                 Hcell.selectedBackgroundView = bgColorView
                 return Hcell
             }
         }
         else {
-            if comment.list[indexPath.row - 1].commentHashtagBool == false {
+            if comment.list[indexNum].commentHashtagBool == false {
                 let Ccell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainCommentTableViewCell
                 Ccell.userImage.image = comment.list[indexPath.row - 1].userImage ?? UIImage(named: "noImage")
                 Ccell.useridLabel.text = comment.list[indexPath.row - 1].userName
                 Ccell.commentLocationLabel.text = comment.list[indexPath.row - 1].locationDate
                 Ccell.commentLabel.text = comment.list[indexPath.row - 1].commentBody
-                
                 return Ccell
             } else {
                 let CBcell = tableView.dequeueReusableCell(withIdentifier: "cell1") as! ReplyCommentTableViewCell
@@ -279,10 +294,74 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
             }
         }
     }
-    func revertBool(bool : Bool) -> Bool {
+    
+    func revertBool(noticeID : Int, bool : Bool) -> Bool {
         if bool == false {
+            print("true")
+            NoticeClass.likeStarGet(noticeID: noticeID).subscribe(onNext: { statusCode in
+                switch statusCode {
+                case .success:
+                    print("likeStarGet success!!")
+                    self.NoticeClass.allNoticeGet()
+                        .subscribe(onNext: { noticeData, statusCodes in
+                            switch statusCodes {
+                            case .success:
+                                self.notice = noticeData!.notices
+                                
+                                print("-\(noticeData!.notice_count)-")
+                                self.mainTableView.reloadData()
+                            default:
+                                let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
+                                let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                                }
+                                alert.addAction(defaultAction)
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                        }).disposed(by: self.bag)
+                    
+                default:
+                    let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                    }
+                    alert.addAction(defaultAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+            }).disposed(by: bag)
             return true
         } else {
+            print("false")
+            NoticeClass.unLikeStarGet(noticeID: noticeID).subscribe(onNext: { statusCode in
+                switch statusCode {
+                case .success:
+                    print("unLikeStarGet success!!")
+                    self.NoticeClass.allNoticeGet()
+                        .subscribe(onNext: { noticeData, statusCodes in
+                            switch statusCodes {
+                            case .success:
+                                self.notice = noticeData!.notices
+                                
+                                print("-\(noticeData!.notice_count)-")
+                                self.mainTableView.reloadData()
+                            default:
+                                let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
+                                let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                                }
+                                alert.addAction(defaultAction)
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                        }).disposed(by: self.bag)
+                    
+                default:
+                    let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                    }
+                    alert.addAction(defaultAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+            }).disposed(by: bag)
+            
             return false
         }
     }

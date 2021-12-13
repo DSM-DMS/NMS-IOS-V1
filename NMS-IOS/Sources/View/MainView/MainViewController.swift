@@ -30,7 +30,6 @@ class MainViewController: UIViewController {
     let mainTableView = UITableView().then {
         $0.backgroundColor = .systemBackground
         $0.separatorStyle = .none
-        
     }
     let personButton = UIBarButtonItem().then {
         let personImage = UIImage(systemName: "person.fill")
@@ -52,7 +51,23 @@ class MainViewController: UIViewController {
         refreshControl.rx.controlEvent(.allEvents)
             .bind(onNext: {
                 DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.5) {
-                    self.mainTableView.reloadData()
+                    self.NoticeClass.allNoticeGet()
+                        .subscribe(onNext: { noticeData, statusCodes in
+                            switch statusCodes {
+                            case .success:
+                                self.notice = noticeData!.notices
+                                self.noticeDataCount = noticeData!.notice_count
+                                self.noticeIdNum = noticeData?.notice_count ?? 1
+                                self.mainTableView.reloadData()
+                                self.refreshControl.endRefreshing()
+                            default:
+                                let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
+                                let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                                }
+                                alert.addAction(defaultAction)
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                        }).disposed(by: self.bag)
                     self.refreshControl.endRefreshing()
                     //                    refreshLoading.accept(true) // viewModel에서 dataSource업데이트 끝난 경우
                 }
@@ -85,9 +100,7 @@ class MainViewController: UIViewController {
         mainTableView.delegate = self
         mainTableView.dataSource = self
         mainBackView.addSubview(mainTableView)
-        
         setConstent()
-        
         mainTableView.register(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
         mainTableView.register(MainPostTableViewCell.self, forCellReuseIdentifier: "cell2")
         mainTableView.register(MainPostHasImageTableViewCell.self, forCellReuseIdentifier: "cell3")
@@ -146,12 +159,12 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     let DetailPostViewController = DetailPostViewController()
                     DetailPostViewController.indexNum = indexPath.row - 1
                     DetailPostViewController.noticeId = self.noticeIdNum
+                    DetailPostViewController.notice = self.notice
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
                 }
                 let userUrl = URL(string: (self.notice[indexPath.row - 1].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
                 let userImageData = try? Data(contentsOf: userUrl!)
                 Pcell.userImage.image = (UIImage(data: userImageData!))
-                print("------------\(String(describing: self.notice[indexPath.row - 1].star))--------------------")
                 Pcell.likeButton.isSelected = self.notice[indexPath.row - 1].star ?? false
                 Pcell.useridLabel.text = "\(self.notice[indexPath.row - 1].writer.name)"
                 Pcell.postTitleTextView.text = "\(self.notice[indexPath.row - 1].title )"
@@ -180,12 +193,12 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     AudioServicesPlaySystemSound(1520)
                     let DetailPostViewController = DetailPostViewController()
                     DetailPostViewController.indexNum = indexPath.row - 1
+                    DetailPostViewController.notice = self.notice
                     self.navigationController?.pushViewController(DetailPostViewController, animated: true)
                 }
                 let userUrl = URL(string: (self.notice[indexPath.row - 1].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
                 let userImageData = try! Data(contentsOf: userUrl!)
                 Hcell.userImage.image = (UIImage(data: userImageData))
-                print("------------\(String(describing: self.notice[indexPath.row - 1].star))--------------------")
                 Hcell.likeButton.isSelected = self.notice[indexPath.row - 1].star ?? false
                 Hcell.useridLabel.text = "\(self.notice[indexPath.row - 1].writer.name)"
                 Hcell.postTitleTextView.text = "\(self.notice[indexPath.row - 1].title)"
@@ -210,6 +223,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     func revertBool(noticeID : Int, bool : Bool) -> Bool {
         if bool == false {
             print("true")
+            print("\(noticeID)")
             NoticeClass.likeStarGet(noticeID: noticeID).subscribe(onNext: { statusCode in
                 switch statusCode {
                 case .success:

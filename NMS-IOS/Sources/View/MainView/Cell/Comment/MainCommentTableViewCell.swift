@@ -13,8 +13,6 @@ import RxCocoa
 
 class MainCommentTableViewCell: UITableViewCell {
     
-    
-    
     var userImage = UIImageView().then {
         $0.image = UIImage(named: "noImage")
         $0.layer.borderWidth = 1

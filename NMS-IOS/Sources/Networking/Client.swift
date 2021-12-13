@@ -14,6 +14,7 @@ let baseURL = "http://13.209.176.77:8080"
 
 class Client {
     typealias httpResult = Observable<(HTTPURLResponse, Data)>
+    typealias statusCodeResult = Observable<HTTPURLResponse>
 
     func get(_ api : API, parameter : Parameters?) -> httpResult{
         return requestData(.get, baseURL + api.path(),
@@ -27,6 +28,13 @@ class Client {
                            encoding: encoding,
                            headers: api.header())
     }
+    func postLike(_ api : API, parameter : Parameters?, encoding: ParameterEncoding = JSONEncoding.prettyPrinted) -> statusCodeResult{
+        return response(.post, baseURL + api.path(),
+                           parameters: parameter,
+                           encoding: encoding,
+                           headers: api.header())
+    }
+
     func put(_ api: API, parameter: Parameters?, encoding: ParameterEncoding = JSONEncoding.default) -> httpResult {
         return requestData(.put, baseURL + api.path(),
                            parameters: parameter,

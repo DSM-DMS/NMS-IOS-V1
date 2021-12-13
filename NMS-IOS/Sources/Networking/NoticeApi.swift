@@ -79,14 +79,13 @@ class NoticeApi {
     }
     
     func likeStarGet(noticeID : Int) -> Observable<StatusCodes> {
-        client.post(.bookMark(noticeID), parameter: nil).map { response, data -> StatusCodes in
-            print(data)
+        client.postLike(.bookMark(noticeID), parameter: nil).map { response -> StatusCodes in
             print(response)
             switch response.statusCode {
-            case 200:
-                return (.success)
+            case 201:
+                return .success
             default:
-                return (.fault)
+                return .fault
             }
         }
     }
