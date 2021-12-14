@@ -101,8 +101,9 @@ class MainMyPageViewController: UIViewController {
                 let userUrl = URL(string: (myPageData?.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
                 let userImageData = try! Data(contentsOf: userUrl!)
                 self.userImage.image = (UIImage(data: userImageData))
-                self.staredNotice =  myPageData!.stared_notices ?? [StaredNotice]()
-                print(myPageData!.stared_notices)
+                self.staredNotice =  myPageData!.stared_notice
+                print(myPageData!.stared_notice.count)
+                self.likePostCollectionView.reloadData()
             default:
                 let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
@@ -193,6 +194,7 @@ extension MainMyPageViewController : UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return staredNotice.count
     }
     
@@ -205,11 +207,19 @@ extension MainMyPageViewController : UICollectionViewDelegate, UICollectionViewD
             cell.postImageView.image = store.list[indexPath.row].PostImage
         }
         DispatchQueue.global().async {
-            let url = URL(string: (self.staredNotice[indexPath.row].image))
-            let ImageData = try! Data(contentsOf: url!)
-            DispatchQueue.main.async {
-                cell.postImageView.image = (UIImage(data: ImageData))
+            let url = URL(string: (self.staredNotice[indexPath.row].image ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image"))
+            if let ImageData = try? Data(contentsOf: url!) {
+                DispatchQueue.main.async {
+                    cell.postImageView.image = (UIImage(data: ImageData))
+                }
+            } else {
+                DispatchQueue.main.async {
+                    cell.postImageView.image = (UIImage(named: "noImage"))
+                }
+
+                
             }
+            
         }
         cell.locationLabel.text = "\(self.staredNotice[indexPath.row].created_date)"
         cell.titleLabel.text = "\(self.staredNotice[indexPath.row].title)"

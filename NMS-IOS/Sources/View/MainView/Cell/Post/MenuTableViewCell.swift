@@ -81,27 +81,37 @@ class MenuTableViewCell: UITableViewCell {
             self.NoticeClass.targetNoticeGet(target: "SCHOOL").subscribe(onNext: { noticeData, statusCodes in
                 switch statusCodes {
                 case .success:
+                    
                     MainViewController().notice = noticeData!.notices
                     MainViewController().noticeDataCount = noticeData!.notice_count
                     MainViewController().mainTableView.reloadData()
+                    print("------devORnotice-----\(devORnotice)")
+                    devORnotice = false
+                    print("------devORnotice-----\(devORnotice)")
                 default: break
                 }
             }).disposed(by: self.bag)
         })
         let outSchool = UIAction(title: "교외", handler: {_ in
             self.changeTitle(title: "교외 ", target: self.schoolMenuButton)
-            self.NoticeClass.targetNoticeGet(target: "SUBURBS").subscribe(onNext: { noticeData, statusCodes in
+            self.NoticeClass.DevTargetNoticeGet(target: "SUBURBS").subscribe(onNext: { noticeData, statusCodes in
                 switch statusCodes {
                 case .success:
-                    MainViewController().notice = noticeData!.notices
+                    MainViewController().devNotice = noticeData!.notices
                     MainViewController().noticeDataCount = noticeData!.notice_count
+                    print("------devORnotice-----\(devORnotice)")
+                    devORnotice = true
+                    print("------devORnotice-----\(devORnotice)")
                     MainViewController().mainTableView.reloadData()
+                    
                 default: break
                 }
             }).disposed(by: self.bag)
         })
         let noneinschool = UIAction(title: "선택안함", handler: {_ in
             self.noneSelectTitle(title: "카테고리 ", target: self.schoolMenuButton)
+            print("------devORnotice-----\(devORnotice)")
+            devORnotice = false
         })
         let nonegrade = UIAction(title: "선택안함", handler: {_ in
             self.noneSelectTitle(title: "학년별 ", target: self.gradeMenuButton)

@@ -39,6 +39,7 @@
 		57D2C1B1276488DA006DD45F /* MainNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2C1B0276488DA006DD45F /* MainNotice.swift */; };
 		57D8061E2739052C003B5C06 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8061D2739052C003B5C06 /* TextField.swift */; };
 		57D8062027393CCD003B5C06 /* ThirdSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8061F27393CCD003B5C06 /* ThirdSignUpViewController.swift */; };
+		57DF1087276832C200BF5057 /* DevPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DF1086276832C200BF5057 /* DevPostTableViewCell.swift */; };
 		57DF49D4275512CA001AC399 /* FirstChangPassWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DF49D3275512CA001AC399 /* FirstChangPassWordViewController.swift */; };
 		57E0A56C2736B7D00074073E /* TwCenClassMTStd-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57E0A5692736B3BD0074073E /* TwCenClassMTStd-Regular.otf */; };
 		57E0A56D2736B7D40074073E /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57E0A5682736B3A90074073E /* NotoSansKR-Regular.otf */; };
@@ -86,6 +87,7 @@
 		57D2C1B0276488DA006DD45F /* MainNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNotice.swift; sourceTree = "<group>"; };
 		57D8061D2739052C003B5C06 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		57D8061F27393CCD003B5C06 /* ThirdSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSignUpViewController.swift; sourceTree = "<group>"; };
+		57DF1086276832C200BF5057 /* DevPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevPostTableViewCell.swift; sourceTree = "<group>"; };
 		57DF49D3275512CA001AC399 /* FirstChangPassWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstChangPassWordViewController.swift; sourceTree = "<group>"; };
 		57E0A5682736B3A90074073E /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		57E0A5692736B3BD0074073E /* TwCenClassMTStd-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TwCenClassMTStd-Regular.otf"; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			children = (
 				577A1BE1274B7AB400282527 /* MainPostCrellFunc.swift */,
 				570077B4273A7C4500608A93 /* MenuTableViewCell.swift */,
+				57DF1086276832C200BF5057 /* DevPostTableViewCell.swift */,
 				57637F8D273AAE2E007B8334 /* MainPostTableViewCell.swift */,
 				577A1BE3274BB51A00282527 /* MainPostHasImageTableViewCell.swift */,
 			);
@@ -462,6 +465,7 @@
 				57C8501726ECEFF200D0B3DF /* SceneDelegate.swift in Sources */,
 				570077B5273A7C4500608A93 /* MenuTableViewCell.swift in Sources */,
 				57EB66842762325E00F16A97 /* TokenModel.swift in Sources */,
+				57DF1087276832C200BF5057 /* DevPostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

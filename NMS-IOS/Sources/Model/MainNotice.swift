@@ -11,6 +11,19 @@ struct NoticeSucces : Codable {
     let notice_count : Int
     let notices : [Notices]
 }
+struct DevNoticeSucces : Codable {
+    let notice_count : Int
+    let notices : [DevNotice]
+}
+
+struct DevNotice : Codable {
+    let id : Int
+    let title : String
+    let host : String
+    let event_day : String
+    let link : String
+    let created_date : String
+}
 struct Notices : Codable {
     let notice_id : Int
     let title : String

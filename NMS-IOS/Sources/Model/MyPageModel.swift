@@ -13,7 +13,7 @@ struct MyPageModel : Codable {
     let gcn : String
     let email : String
     let profile_url : String?
-    let stared_notices : [StaredNotice]?
+    let stared_notice : [StaredNotice]
 }
 struct StaredNotice : Codable {
     let id : Int
@@ -21,5 +21,5 @@ struct StaredNotice : Codable {
     let writer : String
     let department : String
     let created_date : String
-    let image : String
+    let image : String?
 }

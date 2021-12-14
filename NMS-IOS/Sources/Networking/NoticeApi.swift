@@ -56,6 +56,28 @@ class NoticeApi {
                 }
             }
     }
+    func DevTargetNoticeGet(target : String) -> Observable<( DevNoticeSucces?, StatusCodes)> {
+        client.get(.checkTargetPost(target), parameter: nil)
+            .map {response, data -> (DevNoticeSucces?, StatusCodes) in
+                print(Token.access_token ?? "")
+                print(response)
+                switch response.statusCode {
+                case 200:
+                    do {
+                        let data = try JSONDecoder().decode(DevNoticeSucces.self, from: data)
+                        return (data, .success)
+                    }
+                    catch {
+                        print("Parse Error : \n \(error)")
+                        return (nil, .fault)
+                    }
+                case 404:
+                    return (nil, .notFound)
+                default:
+                    return (nil, .fault)
+                }
+            }
+    }
     func justNoticeGet(noticeID : Int) -> Observable<( Notices?, StatusCodes)> {
         client.get(.checkJustPost(noticeID), parameter: nil)
             .map {response, data -> (Notices?, StatusCodes) in

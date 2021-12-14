@@ -48,9 +48,7 @@ class AuthApi {
         let schoolNumber = firstVC.schoolNumberTextField.text
         
         let schoolNumArr = schoolNumber?.components(separatedBy: "")
-        
         var gradeStr = "FIRST"
-        
         let grade = schoolNumArr?[0]
         let classNum = schoolNumArr?[1]
         let number = (schoolNumArr?[2])! + (schoolNumArr?[3])!
@@ -62,6 +60,7 @@ class AuthApi {
         } else if grade == "3" {
             gradeStr = "THIRD"
         }
+        print("grade : \(gradeStr), ")
         return client.post(.signUp, parameter: [
             "nickname": "\(firstVC.schoolNickTextField.text!)",
             "name" : "\(firstVC.nameTextField.text!)",
