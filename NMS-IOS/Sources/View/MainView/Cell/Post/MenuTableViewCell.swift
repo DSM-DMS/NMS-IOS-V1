@@ -88,6 +88,11 @@ class MenuTableViewCell: UITableViewCell {
                     print("------devORnotice-----\(devORnotice)")
                     devORnotice = false
                     print("------devORnotice-----\(devORnotice)")
+                    MainViewController().refreshLoading
+                        .bind(to: MainViewController().refreshControl.rx.isRefreshing)
+                        .disposed(by: self.bag)
+                    MainViewController().mainTableView.beginUpdates()
+                    MainViewController().mainTableView.endUpdates()
                 default: break
                 }
             }).disposed(by: self.bag)
@@ -101,8 +106,12 @@ class MenuTableViewCell: UITableViewCell {
                     MainViewController().noticeDataCount = noticeData!.notice_count
                     print("------devORnotice-----\(devORnotice)")
                     devORnotice = true
+                    
                     print("------devORnotice-----\(devORnotice)")
                     MainViewController().mainTableView.reloadData()
+                    
+                    MainViewController().mainTableView.beginUpdates()
+                    MainViewController().mainTableView.endUpdates()
                     
                 default: break
                 }
@@ -112,6 +121,10 @@ class MenuTableViewCell: UITableViewCell {
             self.noneSelectTitle(title: "카테고리 ", target: self.schoolMenuButton)
             print("------devORnotice-----\(devORnotice)")
             devORnotice = false
+            MainViewController().refreshLoading
+                .bind(to: MainViewController().refreshControl.rx.isRefreshing)
+                .disposed(by: self.bag)
+
         })
         let nonegrade = UIAction(title: "선택안함", handler: {_ in
             self.noneSelectTitle(title: "학년별 ", target: self.gradeMenuButton)
@@ -125,6 +138,9 @@ class MenuTableViewCell: UITableViewCell {
                     MainViewController().notice = noticeData!.notices
                     MainViewController().noticeDataCount = noticeData!.notice_count
                     MainViewController().mainTableView.reloadData()
+                    
+                    MainViewController().mainTableView.beginUpdates()
+                    MainViewController().mainTableView.endUpdates()
                 default: break
                 }
             }).disposed(by: self.bag)

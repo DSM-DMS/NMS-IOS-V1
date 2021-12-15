@@ -23,6 +23,7 @@ class MainViewController: UIViewController {
     let refreshControl = UIRefreshControl()
     var noticeDataCount =  0
     var noticeIdNum = 1
+    let refreshLoading = PublishRelay<Bool>() // ViewModel에 있다고 가정
     
     let mainBackView = UIView().then {
         $0.backgroundColor = .systemBackground
@@ -49,7 +50,7 @@ class MainViewController: UIViewController {
         }.disposed(by: bag)
         view.backgroundColor = .systemBackground
         view.addSubview(mainBackView)
-        let refreshLoading = PublishRelay<Bool>() // ViewModel에 있다고 가정
+        
         refreshControl.rx.controlEvent(.allEvents)
             .bind(onNext: {
                 print("-------------------devORnotice----------------------\(devORnotice)")
@@ -167,6 +168,8 @@ class MainViewController: UIViewController {
 extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("------------------\(noticeDataCount)")
+        print(noticeDataCount)
         return 1 + noticeDataCount
     }
     
