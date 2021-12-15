@@ -116,7 +116,7 @@ class FourthSignupViewController: UIViewController {
             let alert = UIAlertController(title: "회원가입이 완료되었습니다.", message: "", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
 
-                let editorViewController = MainViewController()
+                let editorViewController = LoginAndSignupViewController()
                 let navEditorViewController: UINavigationController = UINavigationController(rootViewController: editorViewController)
                 navEditorViewController.modalPresentationStyle = .fullScreen
                 self.present(navEditorViewController, animated: true, completion: nil)

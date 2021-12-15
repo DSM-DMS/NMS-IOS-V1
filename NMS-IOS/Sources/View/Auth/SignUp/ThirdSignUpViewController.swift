@@ -40,7 +40,6 @@ class ThirdSignUpViewController: UIViewController {
         $0.layer.borderColor = UIColor.white.cgColor
         $0.layer.borderWidth = 2
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         emailNumberTextField.delegate = self
@@ -50,11 +49,16 @@ class ThirdSignUpViewController: UIViewController {
         setAddSubView()
         setConstent()
         setMain()
-        // Do any additional setup after loading the view.
     }
     func setMain() {
         nextButton.rx.tap.bind {
-           
+            let alert = UIAlertController(title: "이메일 인증이 완료되었습니다..", message: "", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "확인", style: .default) { (action) in
+                let secondSignUpViewController = FourthSignupViewController()
+                self.navigationController?.pushViewController(secondSignUpViewController, animated: true)
+            }
+            alert.addAction(defaultAction)
+            self.present(alert, animated: true, completion: nil)
         }.disposed(by: disposeBag)
     }
     func setAddSubView() {
