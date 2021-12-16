@@ -27,10 +27,14 @@ class MainViewController: UIViewController {
     
     let mainBackView = UIView().then {
         $0.backgroundColor = .systemBackground
-        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     let mainTableView = UITableView().then {
+        $0.register(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
+        $0.register(MainPostTableViewCell.self, forCellReuseIdentifier: "cell2")
+        $0.register(MainPostHasImageTableViewCell.self, forCellReuseIdentifier: "cell3")
+        $0.register(DevPostTableViewCell.self, forCellReuseIdentifier: "cell4")
+        
         $0.backgroundColor = .systemBackground
         $0.separatorStyle = .none
     }
@@ -53,7 +57,6 @@ class MainViewController: UIViewController {
         
         refreshControl.rx.controlEvent(.allEvents)
             .bind(onNext: {
-                print("-------------------devORnotice----------------------\(devORnotice)")
                 DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.5) {
                     if devORnotice == true {
                         self.NoticeClass.DevTargetNoticeGet(target: "SUBURBS").subscribe(onNext: { noticeData, statusCodes in
@@ -66,7 +69,7 @@ class MainViewController: UIViewController {
                             default: break
                             }
                         }).disposed(by: self.bag)
-
+                        
                     } else {
                         self.NoticeClass.allNoticeGet()
                             .subscribe(onNext: { noticeData, statusCodes in
@@ -85,10 +88,8 @@ class MainViewController: UIViewController {
                                     self.present(alert, animated: true, completion: nil)
                                 }
                             }).disposed(by: self.bag)
-
                     }
-                                        self.refreshControl.endRefreshing()
-                    //                    refreshLoading.accept(true) // viewModel에서 dataSource업데이트 끝난 경우
+                    self.refreshControl.endRefreshing()
                 }
             }).disposed(by: bag)
         refreshLoading
@@ -105,7 +106,7 @@ class MainViewController: UIViewController {
                 default: break
                 }
             }).disposed(by: self.bag)
-
+            
         } else {
             NoticeClass.allNoticeGet()
                 .subscribe(onNext: { noticeData, statusCodes in
@@ -123,22 +124,13 @@ class MainViewController: UIViewController {
                         self.present(alert, animated: true, completion: nil)
                     }
                 }).disposed(by: bag)
-
+            
         }
-                
-        mainBackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        mainBackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        mainBackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        mainBackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         mainTableView.reloadData()
         mainTableView.delegate = self
         mainTableView.dataSource = self
         mainBackView.addSubview(mainTableView)
         setConstent()
-        mainTableView.register(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
-        mainTableView.register(MainPostTableViewCell.self, forCellReuseIdentifier: "cell2")
-        mainTableView.register(MainPostHasImageTableViewCell.self, forCellReuseIdentifier: "cell3")
-        mainTableView.register(DevPostTableViewCell.self, forCellReuseIdentifier: "cell4")
         setNavagationBar()
         
     }
@@ -152,10 +144,17 @@ class MainViewController: UIViewController {
         let image = UIImage(named: "MainLogoBlue")
         imageView.image = image
         self.navigationItem.titleView = imageView
-        
         self.navigationItem.rightBarButtonItem = personButton
+        
     }
     func setConstent() {
+        mainBackView.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading)
+            $0.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+        }
+
         mainTableView.snp.makeConstraints {
             $0.top.equalTo(mainBackView.snp.top)
             $0.bottom.equalTo(mainBackView.snp.bottom)
@@ -168,8 +167,6 @@ class MainViewController: UIViewController {
 extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("------------------\(noticeDataCount)")
-        print(noticeDataCount)
         return 1 + noticeDataCount
     }
     
@@ -251,10 +248,12 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                     DispatchQueue.global().async {
                         let userUrl = URL(string: (self.notice[indexPath.row - 1].writer.profile_url) ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image" )
                         let userImageData = try! Data(contentsOf: userUrl!)
+                        let url = URL(string: (self.notice[indexPath.row - 1].images![0]))
+                        let ImageData = try! Data(contentsOf: url!)
                         DispatchQueue.main.async {
+                            Hcell.PostImage.image = (UIImage(data: ImageData))
                             Hcell.userImage.image = (UIImage(data: userImageData))
                         }
-                        
                     }
                     Hcell.likeButton.isSelected = self.notice[indexPath.row - 1].star ?? false
                     Hcell.useridLabel.text = "\(self.notice[indexPath.row - 1].writer.name)"
@@ -269,14 +268,6 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                         badgeSetting(title: targetKoreanChanged(target:"\(self.notice[indexPath.row - 1].targets![0] )"), target: Hcell.categorybadge)
                         badgeSetting(title:targetKoreanChanged(target:"\(self.notice[indexPath.row - 1].targets![1] )"), target: Hcell.categorybadge2)
                     }
-                    DispatchQueue.global().async {
-                        let url = URL(string: (self.notice[indexPath.row - 1].images![0]))
-                        let ImageData = try! Data(contentsOf: url!)
-                        DispatchQueue.main.async {
-                            Hcell.PostImage.image = (UIImage(data: ImageData))
-                        }
-                    }
-                    
                     Hcell.selectedBackgroundView = bgColorView
                     return Hcell
                 }
@@ -298,7 +289,6 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                             case .success:
                                 self.notice = noticeData!.notices
                                 self.noticeDataCount = noticeData!.notice_count
-                                print("-\(noticeData!.notice_count)-")
                                 self.mainTableView.reloadData()
                             default:
                                 let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
@@ -331,7 +321,6 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
                             case .success:
                                 self.notice = noticeData!.notices
                                 self.noticeDataCount = noticeData!.notice_count
-                                print("-\(noticeData!.notice_count)-")
                                 self.mainTableView.reloadData()
                             default:
                                 let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
