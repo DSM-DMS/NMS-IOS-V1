@@ -15,7 +15,6 @@ import Alamofire
 class MainMyPageViewController: UIViewController {
     
     private var likePostCollectionView: CustomCollectionView!
-    let store = MainPost()
     let myPage = MyPageApi()
     var staredNotice = [StaredNotice]()
     let bag = DisposeBag()
@@ -201,12 +200,9 @@ extension MainMyPageViewController : UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = likePostCollectionView.dequeueReusableCell(withReuseIdentifier: "cellIdentifier", for: indexPath) as! LikePostCollectionViewCell
         
-        if store.list[indexPath.row].PostImage == nil {
-            cell.postImageView.image = UIImage(named: "noImage")
-        } else {
-            cell.postImageView.image = store.list[indexPath.row].PostImage
-        }
+        
         DispatchQueue.global().async {
+            
             let url = URL(string: (self.staredNotice[indexPath.row].image ?? "https://dummyimage.com/500x500/e5e5e5/000000&text=No+Image"))
             if let ImageData = try? Data(contentsOf: url!) {
                 DispatchQueue.main.async {
@@ -216,10 +212,7 @@ extension MainMyPageViewController : UICollectionViewDelegate, UICollectionViewD
                 DispatchQueue.main.async {
                     cell.postImageView.image = (UIImage(named: "noImage"))
                 }
-
-                
             }
-            
         }
         cell.locationLabel.text = "\(self.staredNotice[indexPath.row].created_date)"
         cell.titleLabel.text = "\(self.staredNotice[indexPath.row].title)"

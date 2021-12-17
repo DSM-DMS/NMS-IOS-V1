@@ -125,8 +125,6 @@ extension SecondChangePasswordViewController : UITextFieldDelegate {
             
             if "\(self.newPasswordField.text ?? "NULL")" != "\(self.newCheckPasswordField.text ?? "NULL")" {
                 self.errorColor2 = true
-                print("--------\(self.newPasswordField.text ?? "NULL")")
-                print("--------\(self.newCheckPasswordField.text ?? "NULL")")
                 self.errorLabel.text = "비밀번호가 일치하지 않습니다."
                 self.mainBackView.addSubview(self.errorLabel)
                 self.newPasswordField.setUnderLine(color: UIColor.systemRed)

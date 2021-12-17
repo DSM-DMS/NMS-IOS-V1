@@ -41,7 +41,6 @@ class FirstChangPassWordViewController: UIViewController {
         $0.layer.borderWidth = 2
     }
     var errorLabel = UILabel().then {
-//        $0.textAlignment = .left
         $0.textColor = .systemRed
         $0.font = UIFont(name: "NotoSansKR-Regular", size: 12.0)
     }
@@ -59,7 +58,6 @@ class FirstChangPassWordViewController: UIViewController {
         mainBackView.addSubview(nowPasswordField)
         mainBackView.addSubview(nextButton)
         makeConstraint()
-        // Do any additional setup after loading the view.
     }
     override func viewDidLayoutSubviews() {
         nowPasswordField.setUnderLine(color: UIColor(named: "MainColor2")!)
@@ -104,7 +102,6 @@ extension FirstChangPassWordViewController : UITextFieldDelegate {
         nextButton.rx.tap.bind {
             if self.nowPasswordField.text == "" {
                 self.errorColor = true
-                print("--------\(self.nowPasswordField.text ?? "NULL")")
                 self.errorLabel.text = "비밀번호를 입력하세요"
                 self.mainBackView.addSubview(self.errorLabel)
                 self.nowPasswordField.setUnderLine(color: UIColor.systemRed)
@@ -119,7 +116,6 @@ extension FirstChangPassWordViewController : UITextFieldDelegate {
             else {
                 let secondChangePasswordViewController = SecondChangePasswordViewController()
                 self.navigationController?.pushViewController(secondChangePasswordViewController, animated: true)
-
             }
         }.disposed(by: bag )
     }
@@ -139,11 +135,7 @@ extension FirstChangPassWordViewController : UITextFieldDelegate {
         
     }
     func changBottomColor(textField : UITextField) {
-        print("12")
-//        textField.setUnderLine(color: UIColor.red)
         self.view.layoutIfNeeded()
-        
-//        textField.becomeFirstResponder()
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.setUnderLine(color: UIColor(named: "MainColor2")!)
@@ -169,8 +161,8 @@ extension FirstChangPassWordViewController : UITextFieldDelegate {
             self.view.layoutIfNeeded()
         }
     }
-    @objc func keyboardWillHide(noti: Notification) {
-        let notinfo = noti.userInfo!
+    @objc func keyboardWillHide(notice: Notification) {
+        let notinfo = notice.userInfo!
         let animateDuration = notinfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         UIView.animate(withDuration: animateDuration) {
             self.nextButton.snp.updateConstraints() {

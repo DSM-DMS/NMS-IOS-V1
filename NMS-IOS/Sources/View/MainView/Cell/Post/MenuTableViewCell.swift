@@ -85,9 +85,7 @@ class MenuTableViewCell: UITableViewCell {
                     MainViewController().notice = noticeData!.notices
                     MainViewController().noticeDataCount = noticeData!.notice_count
                     MainViewController().mainTableView.reloadData()
-                    print("------devORnotice-----\(devORnotice)")
-                    devORnotice = false
-                    print("------devORnotice-----\(devORnotice)")
+                    devONotice = false
                     MainViewController().refreshLoading
                         .bind(to: MainViewController().refreshControl.rx.isRefreshing)
                         .disposed(by: self.bag)
@@ -104,10 +102,7 @@ class MenuTableViewCell: UITableViewCell {
                 case .success:
                     MainViewController().devNotice = noticeData!.notices
                     MainViewController().noticeDataCount = noticeData!.notice_count
-                    print("------devORnotice-----\(devORnotice)")
-                    devORnotice = true
-                    
-                    print("------devORnotice-----\(devORnotice)")
+                    devONotice = true
                     MainViewController().mainTableView.reloadData()
                     
                     MainViewController().mainTableView.beginUpdates()
@@ -119,8 +114,7 @@ class MenuTableViewCell: UITableViewCell {
         })
         let noneinschool = UIAction(title: "선택안함", handler: {_ in
             self.noneSelectTitle(title: "카테고리 ", target: self.schoolMenuButton)
-            print("------devORnotice-----\(devORnotice)")
-            devORnotice = false
+            devONotice = false
             MainViewController().refreshLoading
                 .bind(to: MainViewController().refreshControl.rx.isRefreshing)
                 .disposed(by: self.bag)

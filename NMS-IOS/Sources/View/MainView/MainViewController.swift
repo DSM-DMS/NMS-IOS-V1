@@ -11,11 +11,11 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import AudioToolbox
-var devORnotice = true
+
+var devONotice = true
 
 class MainViewController: UIViewController {
     
-    let store = MainPost()
     var notice = [Notices]()
     var devNotice = [DevNotice]()
     let NoticeClass = NoticeApi()
@@ -58,13 +58,13 @@ class MainViewController: UIViewController {
         refreshControl.rx.controlEvent(.allEvents)
             .bind(onNext: {
                 DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.5) {
-                    if devORnotice == true {
+                    if devONotice == true {
                         self.NoticeClass.DevTargetNoticeGet(target: "SUBURBS").subscribe(onNext: { noticeData, statusCodes in
                             switch statusCodes {
                             case .success:
                                 self.devNotice = noticeData!.notices
                                 self.noticeDataCount = noticeData!.notice_count
-                                devORnotice = true
+                                devONotice = true
                                 self.mainTableView.reloadData()
                             default: break
                             }
@@ -95,13 +95,13 @@ class MainViewController: UIViewController {
         refreshLoading
             .bind(to: refreshControl.rx.isRefreshing)
             .disposed(by: bag)
-        if devORnotice == true {
+        if devONotice == true {
             self.NoticeClass.DevTargetNoticeGet(target: "SUBURBS").subscribe(onNext: { noticeData, statusCodes in
                 switch statusCodes {
                 case .success:
                     self.devNotice = noticeData!.notices
                     self.noticeDataCount = noticeData!.notice_count
-                    devORnotice = true
+                    devONotice = true
                     self.mainTableView.reloadData()
                 default: break
                 }
@@ -130,14 +130,14 @@ class MainViewController: UIViewController {
         mainTableView.delegate = self
         mainTableView.dataSource = self
         mainBackView.addSubview(mainTableView)
-        setConstent()
-        setNavagationBar()
+        setConstant()
+        setNavigationBar()
         
     }
     override func viewDidAppear(_ animated: Bool) {
-        setNavagationBar()
+        setNavigationBar()
     }
-    func setNavagationBar() {
+    func setNavigationBar() {
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
         imageView.contentMode = .scaleAspectFit
@@ -147,7 +147,7 @@ class MainViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = personButton
         
     }
-    func setConstent() {
+    func setConstant() {
         mainBackView.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading)
@@ -178,7 +178,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
             Ccell.selectedBackgroundView = bgColorView
             return Ccell
         } else {
-            if devORnotice == true {
+            if devONotice == true {
                 let Dcell = tableView.dequeueReusableCell(withIdentifier: "cell4") as! DevPostTableViewCell
                 Dcell.postDateTextView.text = devNotice[indexPath.row - 1].event_day
                 Dcell.postLocationLabel.text = devNotice[indexPath.row - 1].created_date
@@ -277,12 +277,10 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     }
     func revertBool(noticeID : Int, bool : Bool) -> Bool {
         if bool == false {
-            print("true")
             print("\(noticeID)")
             NoticeClass.likeStarGet(noticeID: noticeID).subscribe(onNext: { statusCode in
                 switch statusCode {
                 case .success:
-                    print("likeStarGet success!!")
                     self.NoticeClass.allNoticeGet()
                         .subscribe(onNext: { noticeData, statusCodes in
                             switch statusCodes {
@@ -310,11 +308,9 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
             }).disposed(by: bag)
             return true
         } else {
-            print("false")
             NoticeClass.unLikeStarGet(noticeID: noticeID).subscribe(onNext: { statusCode in
                 switch statusCode {
                 case .success:
-                    print("unLikeStarGet success!!")
                     self.NoticeClass.allNoticeGet()
                         .subscribe(onNext: { noticeData, statusCodes in
                             switch statusCodes {

@@ -24,8 +24,6 @@ class DetailPostViewController: UIViewController, ConstraintRelatableTarget {
     var notice = [Notices]()
     let NoticeClass = NoticeApi()
     let bag = DisposeBag()
-    let store = MainPost()
-    let comment = MainComment()
     
     var viewHeightConstraint: Constraint!
     
@@ -128,8 +126,6 @@ class DetailPostViewController: UIViewController, ConstraintRelatableTarget {
                                 case .success:
                                     self.notice = noticeData!.notices
                                     self.inputTextField.text = ""
-
-                                    scrollToBottom()
                                     self.mainTableView.reloadData()
                                 default:
                                     let alert = UIAlertController(title: "로딩에 실페했습니다. .", message: "네트워크 설정을 확인하세요", preferredStyle: .alert)
@@ -150,12 +146,6 @@ class DetailPostViewController: UIViewController, ConstraintRelatableTarget {
                     
                 }).disposed(by: bag)
 
-//                let lastindexPath = IndexPath(row: self.comment.list.count, section: 0)
-//                //                chatDatas.append(chatStringTextView.text)
-//                self.comment.list.append(DetailCommentDume(commentHashtagBool: false, id: 1, userName: "장성헤(마이스터부)", userImage: nil, locationDate: "방금 전", commentBody: self.inputTextField.text))
-//                self.inputTextField.text = ""
-//                self.mainTableView.insertRows(at: [lastindexPath], with: UITableView.RowAnimation.automatic)
-//                self.mainTableView.scrollToRow(at: lastindexPath, at: UITableView.ScrollPosition.bottom, animated: true)
             }
         }.disposed(by: bag)
     }
@@ -268,7 +258,6 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let Ccell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainCommentTableViewCell
-            //            Ccell.userImage.image = comment.list[indexPath.row - 1].userImage ?? UIImage(named: "noImage")
             Ccell.useridLabel.text = notice[indexNum].comments?[indexPath.section].writer.name
             Ccell.commentLocationLabel.text = notice[indexNum].comments?[indexPath.section].created_date
             Ccell.commentLabel.text = notice[indexNum].comments?[indexPath.section].content
@@ -276,7 +265,6 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
         }
         else {
             let CBcell = tableView.dequeueReusableCell(withIdentifier: "cell1") as! ReplyCommentTableViewCell
-            //            CBcell.userImage.image = comment.list[indexPath.row - 1].userImage ?? UIImage(named: "noImage")
             CBcell.useridLabel.text = notice[indexNum].comments?[indexPath.section].replies[indexPath.row - 1].writer.name
             CBcell.commentLocationLabel.text = notice[indexNum].comments?[indexPath.section].replies[indexPath.row - 1].created_date
             CBcell.commentLabel.text = notice[indexNum].comments?[indexPath.section].replies[indexPath.row - 1].content
@@ -298,7 +286,6 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
                     Pcell.userImage.image = (UIImage(data: userImageData))
                 }
             }
-            print("------------\(String(describing: self.notice[indexNum].star))--------------------")
           
             Pcell.useridLabel.text = "\(self.notice[indexNum].writer.name)"
             Pcell.postTitleTextView.text = "\(self.notice[indexNum].title)"
@@ -351,23 +338,19 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
         
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        // Header 영역 크기 = 140(separator 상단) + 12(separator 하단)\
                 if section == 0 {
                     if self.notice[indexNum].images?.count == 0  {
-                        print("---------------------------")
                         frameSize = 250
                         print(frameSize)
                         return CGFloat(frameSize)
                     }
                     else {
                         frameSize = 500
-                        print("---------------------------")
                         print(frameSize)
                         return CGFloat(frameSize)
                     }
                 } else {
                     frameSize = 0
-                    print("---------------------------")
                     print(frameSize)
                     return CGFloat(frameSize)
                 }
@@ -378,11 +361,9 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
     }
     func revertBool(noticeID : Int, bool : Bool) -> Bool {
         if bool == false {
-            print("true")
             NoticeClass.likeStarGet(noticeID: noticeID).subscribe(onNext: { statusCode in
                 switch statusCode {
                 case .success:
-                    print("likeStarGet success!!")
                     self.NoticeClass.allNoticeGet()
                         .subscribe(onNext: { noticeData, statusCodes in
                             switch statusCodes {
@@ -411,11 +392,10 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
             }).disposed(by: bag)
             return true
         } else {
-            print("false")
+
             NoticeClass.unLikeStarGet(noticeID: noticeID).subscribe(onNext: { statusCode in
                 switch statusCode {
                 case .success:
-                    print("unLikeStarGet success!!")
                     self.NoticeClass.allNoticeGet()
                         .subscribe(onNext: { noticeData, statusCodes in
                             switch statusCodes {
@@ -446,10 +426,4 @@ extension DetailPostViewController : UITableViewDelegate, UITableViewDataSource 
             return false
         }
     }
-    func scrollToBottom(){
-        DispatchQueue.main.async { [self] in
-            print("---------------------------------------------------------------------------\(lastRowInLastSection)\(lastSection)")
-              mainTableView.scrollToNearestSelectedRow(at: UITableView.ScrollPosition.bottom, animated: true)
-          }
-      }
 }

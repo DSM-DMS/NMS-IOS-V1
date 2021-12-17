@@ -24,7 +24,6 @@
 		577E39EF2753AEB100FBAD3A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577E39EE2753AEB100FBAD3A /* AudioToolbox.framework */; };
 		57A57A78275B900000845A22 /* MainCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A57A77275B900000845A22 /* MainCommentTableViewCell.swift */; };
 		57A57A7B275B902400845A22 /* ReplyCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A57A7A275B902400845A22 /* ReplyCommentTableViewCell.swift */; };
-		57BBF7822745C79A0075053D /* DumeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BBF7812745C79A0075053D /* DumeData.swift */; };
 		57C8501526ECEFF200D0B3DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8501426ECEFF200D0B3DF /* AppDelegate.swift */; };
 		57C8501726ECEFF200D0B3DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8501626ECEFF200D0B3DF /* SceneDelegate.swift */; };
 		57C8501926ECEFF200D0B3DF /* LoginAndSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8501826ECEFF200D0B3DF /* LoginAndSignupViewController.swift */; };
@@ -70,7 +69,6 @@
 		577E39EE2753AEB100FBAD3A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		57A57A77275B900000845A22 /* MainCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCommentTableViewCell.swift; sourceTree = "<group>"; };
 		57A57A7A275B902400845A22 /* ReplyCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyCommentTableViewCell.swift; sourceTree = "<group>"; };
-		57BBF7812745C79A0075053D /* DumeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DumeData.swift; sourceTree = "<group>"; };
 		57C8501126ECEFF200D0B3DF /* NMS-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NMS-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57C8501426ECEFF200D0B3DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57C8501626ECEFF200D0B3DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,7 +198,6 @@
 		5793749A2734E79A00D8096F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				57BBF7812745C79A0075053D /* DumeData.swift */,
 				57EB66832762325E00F16A97 /* TokenModel.swift */,
 				57D2C1B0276488DA006DD45F /* MainNotice.swift */,
 				57E829C92765D5DE0051E9DD /* MyPageModel.swift */,
@@ -437,7 +434,6 @@
 				57D2C1AD2763B2BB006DD45F /* MyPageApi.swift in Sources */,
 				577A1BE0274B0F0200282527 /* CustomCollectionView.swift in Sources */,
 				577A1BE2274B7AB400282527 /* MainPostCrellFunc.swift in Sources */,
-				57BBF7822745C79A0075053D /* DumeData.swift in Sources */,
 				574A77B42757A6E000204BFF /* DetailPostViewController.swift in Sources */,
 				573E430A27380F2E004457AA /* SecondSignUpViewController.swift in Sources */,
 				5724F80D274CD49A00F3A93A /* EditMyProfileViewController.swift in Sources */,
